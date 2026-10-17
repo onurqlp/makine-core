@@ -20,5 +20,16 @@
     "published_product_version": "UNASSIGNED",
     "version_changed": false,
     "id": "bd49b14bbaf9628e5e"
+  },
+  {
+    "build_id": "BUILD-20261017-01",
+    "time_utc": "2026-10-17T14:33:08Z",
+    "source_sha": null,
+    "scan_id": null,
+    "state": "REFRESH_FAILED",
+    "models": 57,
+    "published_product_version": "UNASSIGNED",
+    "version_changed": false,
+    "id": "b4c0bd9e88e8bd3ce3"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "schema": "makine-research-report-v1",
-  "generated_at_utc": "2026-10-17T14:18:20Z",
+  "generated_at_utc": "2026-10-17T14:33:08Z",
   "build_id": "BUILD-20261017-01",
   "product_version": "UNASSIGNED",
   "product_version_approval": "USER_ONLY",
@@ -10,8 +10,9 @@
   "source_catalog_status": "LOCAL_VERIFIED_57_SEED",
   "source_catalog_mismatches": [],
   "source": {
-    "state": "NOT_FETCHED_YET",
-    "message": "İlk gerçek bağlantı kurulmadı. Kaynak kataloğu salt-okunur başlangıç verisidir."
+    "state": "REFRESH_FAILED",
+    "message": "ValueError: Source exceeds import size cap",
+    "last_verified_source_snapshot_utc": null
   },
   "engines": [
     {
@@ -1628,6 +1629,7 @@
   ],
   "next_action": "Önce ilk 6 fikrin müşteri talebini ve veri lisanslarını doğrula; COIN.LIVE motoru kendiliğinden güncellenmeyecek.",
   "warnings": [
+    "Veri bağlantısı başarısız: geçmiş kaynak yeni gibi kullanılmadı.",
     "57 kavramın hiçbiri varsayılan olarak çalışan gelir makinesi değildir.",
     "COIN.LIVE fiyat/kıvılcım verileri ALTI veya MAKİNE sanal getirisi değildir.",
     "Kaynağın yaşı, kanıt düzeyi ve geçmiş performans ayrıdır.",
