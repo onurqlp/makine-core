@@ -1,21 +1,28 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-17T14:33:08Z",
-  "source_commit_sha": null,
-  "source_scan_id": null,
-  "source_integrity": "UNVERIFIED",
-  "source_fresh_at_import": false,
+  "generated_at_utc": "2026-10-17T14:35:05Z",
+  "source_commit_sha": "2ba2dd85e2bd6219aa6dae2873ee0a0bf3b31883",
+  "source_scan_id": "bc2691aff50c54a02cac84bf",
+  "source_integrity": "VERIFIED",
+  "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
   "can_modify_live_policy": false,
   "can_execute_orders": false,
   "can_modify_coins_live_ledger": false,
   "new_trade_candidates": [],
   "market_context": {
-    "status": "NOT_VERIFIED",
-    "radar_counts": {},
-    "health": null,
-    "import_timestamp": null
+    "status": "VERIFIED_READ_ONLY",
+    "radar_counts": {
+      "spotlight": 0,
+      "motion": 0,
+      "watch": 40,
+      "recheck_pending": 77,
+      "active_total": 79,
+      "archived_total": 47
+    },
+    "health": "DEGRADED_SCHEDULE_GAP",
+    "import_timestamp": "2026-10-17T14:35:03Z"
   },
   "recommendations": [
     {
