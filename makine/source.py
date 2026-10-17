@@ -26,7 +26,7 @@ def parse_time(value):
     except (TypeError,ValueError,OverflowError):return None
 
 def read_url(url):
-    if not (url.startswith(RAW+'/') or url==API+'/commits/main'):
+    if not (url.startswith(RAW+'/') or url==API+'/git/ref/heads/main'):
         raise ValueError('Source outside exact approved repository')
     req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'MakineCoreResearch/0.1','Cache-Control':'no-cache'})
     with urllib.request.urlopen(req,timeout=20) as res:
@@ -36,8 +36,8 @@ def read_url(url):
 
 def collect(now=None,fetch=read_url):
     now=now or utcnow();warnings=[];records={}; hashes={}
-    commit=json.loads(fetch(API+'/commits/main'))
-    sha=commit.get('sha')
+    commit_ref=json.loads(fetch(API+'/git/ref/heads/main'))
+    sha=(commit_ref.get('object') or {}).get('sha')
     if not isinstance(sha,str) or len(sha)!=40 or any(c not in '0123456789abcdef' for c in sha):
         raise ValueError('No immutable source commit available')
     for path in NAMES+PUBLIC:

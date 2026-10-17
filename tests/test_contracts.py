@@ -60,7 +60,7 @@ class ContractTests(unittest.TestCase):
             sources[sourcekey]={'sha256':hashlib.sha256(src[p]).hexdigest()}
         src['web/data/v4-manifest.json']=payload({'publication_valid':True,'no_real_orders':True,'scan_id':scan,'finished_at_utc':fixed,'sources':sources})
         def fetch(url):
-            if url==API+'/commits/main':return payload({'sha':sha})
+            if url==API+'/git/ref/heads/main':return payload({'ref':'refs/heads/main','object':{'sha':sha,'type':'commit'}})
             prefix=f'{RAW}/{sha}/'
             if not url.startswith(prefix):raise AssertionError('Not pinned to source commit')
             return src[url[len(prefix):]]
