@@ -21,3 +21,18 @@
 ## Yönetim sınırları
 
 Yalnız `onurqlp/makine-core` üzerinde değişiklik ve manuel salt-okunur kaynak araştırması yapılır. `onurqlp/coin-live-pro` ve `onurqlp/alti-quant-lab` için hiçbir kaynak güncellemesi, workflow eylemi veya dosya yazımı yapılmaz.
+
+## İlk canlı kaynak aktarımı — doğrulandı
+
+- **İlk başarılı COIN.LIVE kaynak sabitlemesi:** 17 Ekim 2026, 14:35:03 UTC (Türkiye 17:35).
+- **Kaynaktaki commit:** `2ba2dd85e2bd6219aa6dae2873ee0a0bf3b31883`.
+- **Kaynak scan ID:** `bc2691aff50c54a02cac84bf`.
+- **Kaynak katalog:** 57/57 kimlik ve ad eşleşti; `MATCHES_REMOTE_PINNED_COMMIT`.
+- **Kaynak bütünlüğü:** `VERIFIED`, aktarım sırasında `fresh_at_import: true`.
+- **Kaynak işletim uyarısı:** `DEGRADED_SCHEDULE_GAP`; kaynak taramalarının kesintisiz gerçekleştiği garanti edilmez.
+- **İlk doğrulama GitHub Actions:** https://github.com/onurqlp/makine-core/actions/runs/39041358006 — başarıyla tamamlandı, testler geçti.
+- **Güncellenen Vercel dağıtımı:** `dpl_F4b67GgbYyvhDbSc8pdNV1WQNyqT`, durum `READY`, adres https://makine-core-lab.vercel.app/.
+- **Ürün sürümü:** `UNASSIGNED`; kullanıcı onayı olmadan değiştirilmedi.
+- **GitHub Pages:** İlk doğrulamada henüz etkin değildi; bu yüzden opsiyonel yayın adımı atlandı. Vercel yayını aktif.
+
+Bu tarihli kaydın `fresh_at_import` durumu, ilerleyen günlerde de verinin hâlâ güncel olduğunu **göstermez**; kaynak zamanları her yeni araştırmada tekrar kontrol edilir. Vercel, GitHub'a otomatik bağlı değildir. COIN.LIVE veya ALTI deposuna hiçbir yazma yapılmadı.
