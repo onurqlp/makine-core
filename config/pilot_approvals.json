@@ -1,0 +1,5 @@
+{
+  "schema":"makine-pilot-approvals-v1",
+  "approved_experiments":[],
+  "description":"An experiment must be explicitly approved with approved_at_utc >= initial publication timestamp; no backdated financial or market simulation."
+}

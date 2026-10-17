@@ -1,0 +1,77 @@
+{
+  "schema": "makine-coinlive-research-handoff-v1",
+  "generator": "MAKINE_CORE",
+  "generated_at_utc": "2026-10-17T14:18:20Z",
+  "source_commit_sha": null,
+  "source_scan_id": null,
+  "source_integrity": "UNVERIFIED",
+  "source_fresh_at_import": false,
+  "can_promote_to_live_signal": false,
+  "can_modify_live_policy": false,
+  "can_execute_orders": false,
+  "can_modify_coins_live_ledger": false,
+  "new_trade_candidates": [],
+  "market_context": {
+    "status": "NOT_VERIFIED",
+    "radar_counts": {},
+    "health": null,
+    "import_timestamp": null
+  },
+  "recommendations": [
+    {
+      "id": "M-31",
+      "model_id": 31,
+      "idea": "Perpetual funding farkı — iki borsa",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "B1"
+    },
+    {
+      "id": "M-36",
+      "model_id": 36,
+      "idea": "Stablecoin fiyat sapması arbitrajı",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "B2"
+    },
+    {
+      "id": "M-43",
+      "model_id": 43,
+      "idea": "Borsa hisseleri pairs trading",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "A1"
+    },
+    {
+      "id": "M-45",
+      "model_id": 45,
+      "idea": "ETF–ETF göreli değer farkı",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "A2"
+    },
+    {
+      "id": "M-54",
+      "model_id": 54,
+      "idea": "İstatistiksel sepet / cointegration stratejisi",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "A3"
+    },
+    {
+      "id": "M-55",
+      "model_id": 55,
+      "idea": "Tahvil–repo finansman farkı",
+      "recommendation": "RESEARCH_ONLY",
+      "priority": "B",
+      "not_executable": true,
+      "alti_overlap": "T0"
+    }
+  ],
+  "usage": "Read-only interpretation, not a trade signal, model promotion or trading authorization."
+}

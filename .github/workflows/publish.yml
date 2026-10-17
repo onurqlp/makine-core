@@ -1,0 +1,102 @@
+name: MAKİNE CORE — Research & Optional Pages
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_source:
+        description: 'Read current pinned COIN.LIVE public research and update MAKİNE only'
+        type: boolean
+        required: false
+        default: true
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/**'
+      - 'site/data/report.json'
+      - 'site/data/coinlive-handoff.json'
+      - 'site/data/update-history.json'
+
+concurrency:
+  group: makine-core-publication
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Contract and security tests
+        run: python -m unittest discover -s tests -q
+      - name: Source refresh ONLY on explicit manual request
+        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.refresh_source == true) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[refresh-source]')) }}
+        run: python -m makine refresh
+      - name: Archive ONLY MAKİNE reports
+        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.refresh_source == true) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[refresh-source]')) }}
+        run: |
+          git config user.name 'MAKİNE Research Archive'
+          git config user.email 'makine-core-bot@users.noreply.github.com'
+          git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'research: user-requested read-only source snapshot [skip ci]'
+            git push origin HEAD:main
+          fi
+      - name: Confirm local site artifact exists
+        run: |
+          test -s site/index.html
+          test -s site/app.js
+          test -s site/style.css
+          test -s site/data/report.json
+          test -s site/data/release.json
+          test -s site/data/coinlive-handoff.json
+
+  pages:
+    needs: research
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Check if optional GitHub Pages has been enabled
+        id: pages_enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          status=$(curl -sSL -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
+          if [ "$status" = "200" ]; then
+            echo 'active=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'active=false' >> "$GITHUB_OUTPUT"
+            echo "Pages is not enabled (HTTP $status). Vercel site remains available; enable Pages separately if wanted."
+          fi
+      - name: Configure GitHub Pages
+        if: steps.pages_enabled.outputs.active == 'true'
+        uses: actions/configure-pages@v5
+      - name: Upload mobile site
+        if: steps.pages_enabled.outputs.active == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy Pages
+        if: steps.pages_enabled.outputs.active == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4

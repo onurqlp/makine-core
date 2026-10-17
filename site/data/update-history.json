@@ -1,0 +1,24 @@
+[
+  {
+    "build_id": "BUILD-20261017-01",
+    "time_utc": "2026-10-17T14:18:20Z",
+    "source_sha": null,
+    "scan_id": null,
+    "state": "NOT_FETCHED_YET",
+    "models": 57,
+    "published_product_version": "UNASSIGNED",
+    "version_changed": false,
+    "id": "bd49b14bbaf9628e5e"
+  },
+  {
+    "build_id": "BUILD-20261017-01",
+    "time_utc": "2026-10-17T14:11:16Z",
+    "source_sha": null,
+    "scan_id": null,
+    "state": "NOT_FETCHED_YET",
+    "models": 57,
+    "published_product_version": "UNASSIGNED",
+    "version_changed": false,
+    "id": "7de4b2f98aa86fa21e"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "schema":"makine-release-v1",
+  "product_version":"UNASSIGNED",
+  "version_owner":"USER_ONLY",
+  "recommended_version":"1.0.0",
+  "recommended_version_status":"NOT_APPROVED",
+  "build_id":"BUILD-20261017-01",
+  "updated_date":"2026-10-17",
+  "updated_at_utc":null,
+  "change_log":[{"id":"BUILD-20261017-01","date":"2026-10-17","title":"MAKİNE CORE ilk bağımsız araştırma ve ürün platformu","product_version_changed":false}]
+}
