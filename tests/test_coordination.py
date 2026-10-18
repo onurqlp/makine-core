@@ -108,6 +108,7 @@ class CoordinationTests(unittest.TestCase):
             self.assertEqual(json.loads(hist.read_text())["entries"][0]["hour_utc"],
                              "2026-10-18T07")
             self.assertEqual(len(json.loads(hist.read_text())["entries"]), 1)
+            self.assertEqual(json.loads(hist.read_text())["entries"][0]["trigger_type"],"LOCAL_OR_UNKNOWN")
             self.assertEqual(json.loads(out.read_text())["schema"], "makine-coordination-v1")
 
 
