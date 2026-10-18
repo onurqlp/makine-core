@@ -27,7 +27,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: makine-core-publication
+  group: makine-core-coordination-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -43,7 +43,26 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run existing and new safety/contract tests
-        run: python -m unittest discover -s tests -q
+        run: |
+          python -m unittest discover -s tests -q
+          node --check site/app.js
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class JS(HTMLParser):
+              def __init__(self):
+                  super().__init__();self.on=False;self.out=[]
+              def handle_starttag(self,tag,attrs):
+                  if tag=='script' and not dict(attrs).get('src'):self.on=True
+              def handle_endtag(self,tag):
+                  if tag=='script':self.on=False
+              def handle_data(self,data):
+                  if self.on:self.out.append(data)
+          p=JS();p.feed(Path('site/status.html').read_text(encoding='utf-8'))
+          assert p.out and 'function init()' in ''.join(p.out)
+          Path('/tmp/makine-status.js').write_text('\n'.join(p.out))
+          PY
+          node --check /tmp/makine-status.js
       - name: Read immutable COIN.LIVE and ALTI public snapshots and coordinate
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -106,3 +125,51 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
+
+  pages:
+    needs: coordinate
+    if: ${{ needs.coordinate.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: makine-core-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Detect optional GitHub Pages setting
+        id: check_pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          status=$(curl -sSL -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
+          if [ "$status" = "200" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "GitHub Pages is not enabled; no fake public deploy."
+          fi
+      - name: Configure Pages
+        if: steps.check_pages.outputs.active == 'true'
+        uses: actions/configure-pages@v5
+      - name: Upload MAKİNE dashboard and snapshots
+        if: steps.check_pages.outputs.active == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Publish latest MAKİNE to GitHub Pages
+        id: deployment
+        if: steps.check_pages.outputs.active == 'true'
+        uses: actions/deploy-pages@v4
