@@ -140,7 +140,7 @@ def load_alti(now,fetcher=fetch):
             returns=eod.get("observed_return_20d_percent")
             if not (eod.get("status")=="INPUTS_ONLY" and
                     eod.get("data_label")=="PUBLIC_EOD_UNLICENSED" and
-                    eod.get("source")=="YAHOO_CHART_UNOFFICIAL" and
+                    eod.get("source") in ("YAHOO_CHART_UNOFFICIAL","NASDAQ_PUBLIC_HISTORY","MIXED_PUBLIC_EOD") and
                     eod.get("pair")==pair and eod.get("trade_ready") is False and
                     eod.get("raw_licensed_prices_redistributed") is False and
                     eod.get("redistribution_rights_verified") is False and
@@ -153,7 +153,8 @@ def load_alti(now,fetcher=fetch):
                     is_recent(eod.get("last_complete_session","")+"T00:00:00Z",now,7*24*60)):
                 continue
             public[code]={"status":"INPUTS_ONLY",
-                "source":"YAHOO_CHART_UNOFFICIAL",
+                "source":eod["source"],
+                "adjustment_claim":eod.get("adjustment_claim","UNVERIFIED"),
                 "symbols":pair,
                 "last_complete_session":eod["last_complete_session"],
                 "aligned_sessions":eod["aligned_sessions"],
