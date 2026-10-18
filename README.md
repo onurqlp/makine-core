@@ -4,6 +4,16 @@
 
 MAKİNE, COIN.LIVE PRO'nun yerine geçmez, kodunu değiştirmez, otomatik emir/sinyal oluşturmaz. `onurqlp/coin-live-pro` üzerinden **yalnız salt-okunur** kaynak verilerini inceleyen, 57 gelir fikrini beş motor altında yöneten, mobil uyumlu bir araştırma kontrol düzlemidir. Kaynak depo: `https://github.com/onurqlp/makine-core`. Bağımsız Vercel arayüzü: `https://makine-core-lab.vercel.app/`.
 
+## Güncel kullanım ve kurulum
+
+- **Araştırma ana sayfası kaynak dosyası:** [site/index.html](site/index.html)
+- **Otomatik mobil kontrol ekranı:** [site/status.html](site/status.html)
+- **Açık görevlerin gerçek raporu:** [site/data/task-board.json](site/data/task-board.json)
+- **Saatlik koordinasyonun kanıtı:** [GitHub Actions](https://github.com/onurqlp/makine-core/actions/workflows/coordination.yml)
+- **Otomatik ortak görev merkezi:** [Issue #1](https://github.com/onurqlp/makine-core/issues/1)
+- **Yayın için tek hesap ayarı:** [GitHub Pages ayarları](https://github.com/onurqlp/makine-core/settings/pages) → `Build and deployment → Source: GitHub Actions`. Etkinleşene kadar GitHub Pages sitesi aktif kabul edilmez. Vercel'deki eski siteyi yeni sürüm zannetme.
+- **Ücretli yapay zekâ:** İsteğe bağlı ve varsayılan kapalı; [kurulum talimatı](docs/AUTOMATED_COORDINATION.md#3-yapay-zekâ-katmanı-bilinçli-şekilde-kapalı). Bu, arka plandaki diğer ChatGPT/Codex sohbetlerini otomatik çalıştırmaz.
+
 ## İçerik
 
 - **57 modelin tamamı:** Kaynak katalogdaki sabit ID/ad, piyasa ve ticari ürün ayrımı; 30 ana + 27 finansal/arbitraj fikir.
@@ -28,7 +38,7 @@ python -m http.server 8080 --directory site
 
 Siteyi `http://localhost:8080` adresinden açın. Offline modda gerçek kaynak doğrulanmış gibi görünmez. `python -m unittest discover -s tests -q` temel sözleşme ve güvenlik testlerini çalıştırır.
 
-## GitHub, manuel araştırma ve web yayını
+## GitHub, otomatik araştırma ve web yayını
 
 - **Kaynak kod:** [onurqlp/makine-core](https://github.com/onurqlp/makine-core), `main` dalı.
 - **İlk mobil web sitesi:** [makine-core-lab.vercel.app](https://makine-core-lab.vercel.app/). Bu Vercel dağıtımı kaynak depoya otomatik bağlı değildir; sonraki GitHub commit'i kendiliğinden Vercel'i güncellemez.
