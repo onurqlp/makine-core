@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-tasks-v2",
-  "generated_at_utc": "2026-10-18T08:44:28Z",
+  "generated_at_utc": "2026-10-18T08:45:47Z",
   "mission": "INDEPENDENT_COINLIVE_SUPPORT",
   "open_tasks": [
     {
@@ -10,7 +10,7 @@
       "level": "SOURCE_HEALTH",
       "title": "COIN.LIVE sağlık / tazelik kontrolü",
       "next_step": "COIN.LIVE kendi iş akışındaki veri bütünlüğü ve cron durumunu kontrol etmeli.",
-      "reason": "INVALID",
+      "reason": "PARTIAL",
       "requires_approval": true
     },
     {
@@ -65,21 +65,14 @@
     }
   ],
   "changes": {
-    "new": [
-      "COINLIVE_INPUT",
-      "SIX_A1",
-      "SIX_A2",
-      "SIX_A3",
-      "SIX_B2",
-      "SIX_T0"
-    ],
+    "new": [],
     "resolved": []
   },
   "signature": "a54d6f98c629f5a6c563",
   "last_notified_signature": "a54d6f98c629f5a6c563",
   "notification_required": false,
   "notification": {
-    "state": "POSTED"
+    "state": "UNCHANGED"
   },
   "target_issue": "https://github.com/onurqlp/makine-core/issues/1",
   "cross_repo_writes": false,

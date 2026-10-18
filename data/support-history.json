@@ -12,6 +12,18 @@
       ],
       "coin_scan": "6718cf2cf3670af4f329442b",
       "alti_scan": "alti-20261018T0815Z"
+    },
+    {
+      "at_utc": "2026-10-18T08:45:47Z",
+      "run_trigger": "push",
+      "state": "DEGRADED",
+      "alti": "PARTIAL",
+      "coinlive": "PARTIAL",
+      "observing": [
+        "B1"
+      ],
+      "coin_scan": "5699492f217e73a01923aecb",
+      "alti_scan": "alti-20261018T0815Z"
     }
   ]
 }
