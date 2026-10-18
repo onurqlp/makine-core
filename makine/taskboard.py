@@ -156,6 +156,7 @@ def _comment(board):
 def post_update(board, token, *, sender=None):
     if not board["notification_required"]:
         board["issue_delivery"] = {"state": "UNCHANGED", "posted": False}
+        board["notification_required"] = False
         return board
     if not token:
         board["issue_delivery"] = {"state": "TOKEN_UNAVAILABLE", "posted": False}
@@ -189,6 +190,7 @@ def post_update(board, token, *, sender=None):
         return board
     board["last_notified_signature"] = board["transition"]["signature"]
     board["issue_delivery"] = {"state": "POSTED", "posted": True}
+    board["notification_required"] = False
     return board
 
 
