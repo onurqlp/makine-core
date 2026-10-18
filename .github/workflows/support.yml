@@ -1,7 +1,7 @@
 name: MAKİNE — Six Module COIN.LIVE Support
 on:
   schedule:
-    - cron: '23 * * * *'
+    - cron: '13,43 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
