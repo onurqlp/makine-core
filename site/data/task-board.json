@@ -1,7 +1,7 @@
 {
   "schema": "makine-task-board-v1",
-  "generated_at_utc": "2026-10-18T08:05:19Z",
-  "from_coordination_utc": "2026-10-18T08:05:18Z",
+  "generated_at_utc": "2026-10-18T08:18:11Z",
+  "from_coordination_utc": "2026-10-18T08:18:10Z",
   "status": "ATTENTION_REQUIRED",
   "active": [
     {
@@ -14,12 +14,12 @@
       "approval_required": true,
       "source": {
         "source_repo": "onurqlp/alti-quant-lab",
-        "source_state": "STALE",
-        "observed_at_utc": "2026-10-18T03:21:03Z",
-        "scan_id": "alti-20261018T0321Z"
+        "source_state": "PARTIAL",
+        "observed_at_utc": "2026-10-18T08:15:45Z",
+        "scan_id": "alti-20261018T0815Z"
       },
       "first_seen_utc": "2026-10-18T07:59:08Z",
-      "last_seen_utc": "2026-10-18T08:05:19Z",
+      "last_seen_utc": "2026-10-18T08:18:11Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     },
@@ -33,12 +33,31 @@
       "approval_required": true,
       "source": {
         "source_repo": "onurqlp/alti-quant-lab",
-        "source_state": "STALE",
-        "observed_at_utc": "2026-10-18T03:21:03Z",
-        "scan_id": "alti-20261018T0321Z"
+        "source_state": "PARTIAL",
+        "observed_at_utc": "2026-10-18T08:15:45Z",
+        "scan_id": "alti-20261018T0815Z"
       },
       "first_seen_utc": "2026-10-18T07:59:08Z",
-      "last_seen_utc": "2026-10-18T08:05:19Z",
+      "last_seen_utc": "2026-10-18T08:18:11Z",
+      "issue": "https://github.com/onurqlp/makine-core/issues/1",
+      "autonomous_code_execution": false
+    },
+    {
+      "id": "COIN_SOURCE_FRESHNESS",
+      "owner": "COIN.LIVE",
+      "severity": "HIGH",
+      "title": "COIN.LIVE kaynak tazeliği / bütünlüğü kontrolü",
+      "next_step": "Kaynağın gerçek zaman damgasını, health ve manifest bütünlüğünü kendi deposunda incele.",
+      "status": "RESEARCH_REQUIRED",
+      "approval_required": true,
+      "source": {
+        "source_repo": "onurqlp/coin-live-pro",
+        "source_state": "PARTIAL",
+        "observed_at_utc": "2026-10-18T08:14:43.906000+00:00",
+        "scan_id": "8d88b0aada88ef8f9c82c614"
+      },
+      "first_seen_utc": "2026-10-18T08:18:11Z",
+      "last_seen_utc": "2026-10-18T08:18:11Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     }
@@ -50,14 +69,14 @@
     }
   ],
   "transition": {
-    "started": [],
-    "resolved": [
+    "started": [
       "COIN_SOURCE_FRESHNESS"
     ],
+    "resolved": [],
     "changed": true,
-    "signature": "1edf3a2881c6928a"
+    "signature": "956ef9328eeeb3a2"
   },
-  "last_notified_signature": "1edf3a2881c6928a",
+  "last_notified_signature": "956ef9328eeeb3a2",
   "issue_delivery": {
     "state": "POSTED",
     "posted": true

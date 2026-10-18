@@ -21,19 +21,19 @@
     },
     {
       "hour_utc": "2026-10-18T08",
-      "generated_at_utc": "2026-10-18T08:05:18Z",
+      "generated_at_utc": "2026-10-18T08:18:10Z",
       "system_state": "ATTENTION_REQUIRED",
       "source_states": {
-        "coinlive": "FRESH",
-        "alti": "STALE"
+        "coinlive": "PARTIAL",
+        "alti": "PARTIAL"
       },
       "source_shas": {
-        "coinlive": "3116ef78603b50bd697a0e8832c38d9c750b3404",
-        "alti": "b00cf714e8b4dc1a4677b238ad52c3cfaa74ccf4"
+        "coinlive": "241afba59d7d0f9ef1c5103b1756cda3b6d8c338",
+        "alti": "6176dff0830d3a186bedaadff7b49af314f1c723"
       },
       "source_scan_ids": {
-        "coinlive": "0d7defb206c7d008057bf4d9",
-        "alti": "alti-20261018T0321Z"
+        "coinlive": "8d88b0aada88ef8f9c82c614",
+        "alti": "alti-20261018T0815Z"
       },
       "no_orders": true
     }

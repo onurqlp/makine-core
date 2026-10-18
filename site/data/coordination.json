@@ -1,18 +1,18 @@
 {
   "schema": "makine-coordination-v1",
-  "generated_at_utc": "2026-10-18T08:05:18Z",
+  "generated_at_utc": "2026-10-18T08:18:10Z",
   "mode": "AUTOMATED_READ_ONLY",
   "system_state": "ATTENTION_REQUIRED",
   "sources": {
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "commit_sha": "3116ef78603b50bd697a0e8832c38d9c750b3404",
-      "scan_id": "0d7defb206c7d008057bf4d9",
-      "observed_at_utc": "2026-10-18T08:04:43.558000+00:00",
-      "age_minutes": 0.59,
+      "commit_sha": "241afba59d7d0f9ef1c5103b1756cda3b6d8c338",
+      "scan_id": "8d88b0aada88ef8f9c82c614",
+      "observed_at_utc": "2026-10-18T08:14:43.906000+00:00",
+      "age_minutes": 3.45,
       "freshness_limit_minutes": 30,
-      "state": "FRESH",
-      "source_health": "OK",
+      "state": "PARTIAL",
+      "source_health": "DEGRADED_SCHEDULE_GAP",
       "real_scheduled_runs_seen": 12,
       "schedule_proven_in_source": true,
       "partial_hash_verified": true,
@@ -20,19 +20,21 @@
         "v4-radar",
         "v4-paper"
       ],
-      "warnings": [],
+      "warnings": [
+        "HEALTH_NOT_OK"
+      ],
       "market_context_only": true,
       "can_place_orders": false
     },
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "commit_sha": "b00cf714e8b4dc1a4677b238ad52c3cfaa74ccf4",
-      "scan_id": "alti-20261018T0321Z",
-      "observed_at_utc": "2026-10-18T03:21:03Z",
-      "last_successful_scan_utc": "2026-10-18T03:21:03Z",
-      "age_minutes": 284.27,
+      "commit_sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
+      "scan_id": "alti-20261018T0815Z",
+      "observed_at_utc": "2026-10-18T08:15:45Z",
+      "last_successful_scan_utc": "2026-10-18T08:15:45Z",
+      "age_minutes": 2.43,
       "freshness_limit_minutes": 90,
-      "state": "STALE",
+      "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "strategies": {
         "A1": {
@@ -70,7 +72,7 @@
         "ACCESS_BLOCKED",
         "READ_ONLY_LIVE"
       ],
-      "source_hash_sha256": "2212cc151c4ec5c6d7c156adcf82b44c5ec9d25071aad1f50fc9bc4851d79b16",
+      "source_hash_sha256": "a67da57144334543734dda2f70fc256773f1d0ff005cb15e950785ea6c957c56",
       "warnings": [
         "PARTIAL_PROVIDER_ACCESS"
       ],
