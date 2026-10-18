@@ -104,7 +104,10 @@ async function init(){if(loading)return;loading=true;$("refresh").disabled=true;
   }
   if(!map.childElementCount)map.append(newEl("p","Eşleştirmeler bu kaynakta doğrulanamadı.","error"));
   const hist=$("history");hist.replaceChildren();
-  const entries=Array.isArray(history.entries)?history.entries.slice(-12).reverse():[];
+  const allEntries=Array.isArray(history.entries)?history.entries:[];
+  const hasScheduled=allEntries.some(h=>h.trigger_type==="schedule");
+  txt("scheduleProof",hasScheduled?"Son 14 günlük kayıtta gerçek GitHub zamanlayıcı çalışması doğrulandı.":"Son arşivde GitHub zamanlayıcı olayı henüz doğrulanmadı; yalnız kod güncellemesiyle çalışan testler otomatik süreklilik kanıtı değildir.");
+  const entries=allEntries.slice(-12).reverse();
   hist.append(newEl("p","Son "+entries.length+" kayıt · GitHub zamanlayıcısı gerçek çalışma saatinde gecikebilir.","muted"));
   for(const h of entries){
    const row=newEl("div","","audit-row");
