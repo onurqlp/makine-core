@@ -14,7 +14,7 @@ Bütün modüller **kontrol çevriminde çalışır**, ancak mevcut upstream eks
 `ALTI/site/report.json` ve `COIN.LIVE/web/data/v4-manifest.json`, `v4-radar.json`, `health.json`; her depodan immutable commit SHA. V4 manifest'teki radar/health SHA-256 ve scan ID kontrolü uygulanır. Her bağlam gerçek gözlem UTC anına göre yaşlanır. COIN.LIVE 45 dk, ALTI 120 dk; GitHub Actions best-effort.
 
 ## Çıktı
-`site/data/coinlive-support.json` şema `coinlive-external-context-v1`: kaynak SHA/scan ID, `funding_event_context`, `matching_watch_symbols`, `status`, `trade_candidates=[]` ve tüm izin alanları `false`. Görüntüleme ve araştırma **değil**, salt-okunur veri kalitesi/yardım bağlamı.
+`site/data/coinlive-support.json` şema `coinlive-external-context-v1`: kaynak SHA/scan ID, `module_checks` (6 modül), `funding_event_context`, `matching_watch_symbols`, `status`, `trade_candidates=[]` ve tüm izin alanları `false`. Görüntüleme ve araştırma **değil**, salt-okunur veri kalitesi/yardım bağlamı.
 
 COIN.LIVE'ın mevcut pipeline'ı bu paketi henüz otomatik tüketmez. Kontrol merkezi tarafından dışa aktarılması bir **veri köprüsü sunma** işlemidir, kaynak depoya entegrasyon yapıldığı iddiası değildir.
 
