@@ -16,12 +16,12 @@ class AgentTests(unittest.TestCase):
     def test_not_enabled_never_calls_model(self):
         def fail(*args):
             raise AssertionError("Unexpected paid model call")
-        r = analyze(EXAMPLE, sender=fail, api_key="present", model="gpt-5.4-mini")
+        r = analyze(EXAMPLE, sender=fail, api_key="present", model="gpt-5-mini")
         self.assertEqual(r["status"], "DISABLED")
         self.assertFalse(r["can_modify_repositories"])
 
     def test_missing_api_key_no_call(self):
-        r = analyze(EXAMPLE, enabled=True, api_key="", model="gpt-5.4-mini")
+        r = analyze(EXAMPLE, enabled=True, api_key="", model="gpt-5-mini")
         self.assertEqual(r["status"], "MISSING_API_KEY")
 
     def test_model_allowlist_no_call(self):
@@ -41,7 +41,7 @@ class AgentTests(unittest.TestCase):
                                             "source_key": "alti", "priority": "HIGH"}]
                     })}]}]}
         r = analyze(EXAMPLE, enabled=True, api_key="mock",
-                    model="gpt-5.4-mini", sender=mock_send)
+                    model="gpt-5-mini", sender=mock_send)
         self.assertEqual(r["status"], "COMPLETED")
         self.assertEqual(r["proposed_tasks"][0]["approval_state"], "PROPOSED_NOT_APPROVED")
         self.assertTrue(r["requires_user_approval"])
