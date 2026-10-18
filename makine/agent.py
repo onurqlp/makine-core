@@ -148,7 +148,21 @@ def main():
     enabled = os.getenv("MAKINE_AI_ENABLED", "").lower() == "true"
     key = os.getenv("OPENAI_API_KEY", "")
     model = os.getenv("MAKINE_AI_MODEL", "") or "gpt-5-mini"
-    report = analyze(coordinator, enabled=enabled, api_key=key, model=model)
+    try:
+        report = analyze(coordinator, enabled=enabled, api_key=key, model=model)
+    except (OSError, ValueError, TypeError, KeyError, TimeoutError) as exc:
+        # A transient paid-model/API failure must never block free hourly evidence collection.
+        # Do not expose returned API text or secret material in public artifacts.
+        report = {
+            "schema": "makine-ai-research-v1",
+            "generated_at_utc": stamp(utcnow()),
+            "source_coordination_generated_at_utc": coordinator.get("generated_at_utc"),
+            "status": "API_UNAVAILABLE", "failure_class": type(exc).__name__,
+            "model": None, "research_only": True,
+            "requires_user_approval": True, "can_place_orders": False,
+            "can_modify_repositories": False,
+            "summary": None, "risks": [], "proposed_tasks": [],
+        }
     write_json(OUTPUT, report)
     if report["status"] == "COMPLETED":
         coordinator["agent_runtime"] = {
