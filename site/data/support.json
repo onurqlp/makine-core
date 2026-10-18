@@ -1,23 +1,67 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-18T20:15:21Z",
+  "generated_at_utc": "2026-10-18T20:35:08Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
   "module_count": 6,
-  "observing_count": 4,
-  "state": "PARTIAL",
+  "observing_count": 6,
+  "state": "READY",
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "b3cf2f1871916650fa2278a8d9fa8127ff74c2c0",
-      "scan_id": "alti-20261018T2014Z",
-      "observed_at_utc": "2026-10-18T20:14:03Z",
-      "age_minutes": 1.31,
+      "sha": "e71fe1f262fa43e516d8a1c643ee6eecfe94c20e",
+      "scan_id": "alti-20261018T2033Z",
+      "observed_at_utc": "2026-10-18T20:33:21Z",
+      "age_minutes": 1.79,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
       "public_inputs": {
+        "A1": {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "KO",
+            "PEP"
+          ],
+          "last_complete_session": "2026-10-16",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "KO": 6.4023,
+            "PEP": 1.341
+          },
+          "relative_return_20d_pct_points": 5.0613,
+          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-10-16T00:00:00Z",
+          "actionable": false
+        },
+        "A2": {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "IVV",
+            "VOO"
+          ],
+          "last_complete_session": "2026-10-16",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "IVV": 0.2288,
+            "VOO": -0.0242
+          },
+          "relative_return_20d_pct_points": 0.253,
+          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-10-16T00:00:00Z",
+          "actionable": false
+        },
         "B2": {
           "status": "SCREEN_ONLY",
           "venues": [
@@ -26,16 +70,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00108,
-              "ask": 1.00109,
-              "bid_qty_base": 1169450.551589,
-              "ask_qty_base": 663627.219622
+              "bid": 1.00111,
+              "ask": 1.00113,
+              "bid_qty_base": 792948.518664,
+              "ask_qty_base": 1177909.769879
             },
             "KRAKEN": {
-              "bid": 1.001,
-              "ask": 1.0011,
-              "bid_qty_base": 1226209.298,
-              "ask_qty_base": 738498.357
+              "bid": 1.0011,
+              "ask": 1.0012,
+              "bid_qty_base": 235631.324,
+              "ask_qty_base": 938867.653
             }
           },
           "routes": [
@@ -43,9 +87,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00109,
-              "sell_vwap": 1.001,
-              "gross_spread_bps": -0.899,
+              "buy_vwap": 1.00113,
+              "sell_vwap": 1.0011,
+              "gross_spread_bps": -0.3,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -56,9 +100,9 @@
               "buy_venue": "KRAKEN",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.00108,
-              "gross_spread_bps": -0.2,
+              "buy_vwap": 1.0012,
+              "sell_vwap": 1.00111,
+              "gross_spread_bps": -0.899,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -66,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-18T20:14:03Z",
+          "asof_utc": "2026-10-18T20:33:21Z",
           "actionable": false
         },
         "A3": {
@@ -106,16 +150,16 @@
         }
       },
       "warnings": [],
-      "sha256": "54e522d2f92e552b9babd86b267ad7807d5459738214719b17801f3f62c60b26"
+      "sha256": "d72b5201cb3c1e7c96e13f86cb12918d3a5154978440e688586a8d763433e87d"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "428e45c2a185a14e4061b04695a3f039ca38a979",
-      "scan_id": "9f88e79064dfc1759a6f7060",
-      "observed_at_utc": "2026-10-18T20:14:37.467000+00:00",
-      "age_minutes": 0.74,
+      "sha": "82c78ad469c0d23cceed902ef31940128b30271b",
+      "scan_id": "f7a55af2585c69f2a632b46a",
+      "observed_at_utc": "2026-10-18T20:29:42.109000+00:00",
+      "age_minutes": 5.44,
       "state": "PARTIAL",
-      "health": "OK",
+      "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
         "HEALTH_SCAN_LAG"
       ],
@@ -123,9 +167,9 @@
         "spotlight": 0,
         "motion": 12,
         "watch": 40,
-        "recheck_pending": 95,
-        "active_total": 131,
-        "archived_total": 244
+        "recheck_pending": 79,
+        "active_total": 128,
+        "archived_total": 251
       }
     }
   },
@@ -134,13 +178,36 @@
       "id": "A1",
       "name": "Hisse pairs",
       "purpose": "Hisse çifti göreli değer filtresi",
-      "state": "BLOCKED_SOURCE",
-      "strategy_state": "SOURCE_REQUIRED",
-      "data_label": "NOT_CONNECTED",
-      "blocker": "Alpaca EOD market-data API keys and authorized personal research use not configured",
-      "observations": [],
+      "state": "OBSERVING",
+      "strategy_state": "INPUTS_ONLY",
+      "data_label": "PUBLIC_EOD_UNLICENSED",
+      "blocker": null,
+      "observations": [
+        {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "KO",
+            "PEP"
+          ],
+          "last_complete_session": "2026-10-16",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "KO": 6.4023,
+            "PEP": 1.341
+          },
+          "relative_return_20d_pct_points": 5.0613,
+          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-10-16T00:00:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "PUBLIC_UNLICENSED_EOD_INPUTS_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -149,13 +216,36 @@
       "id": "A2",
       "name": "ETF–ETF",
       "purpose": "ETF farkı ve endeks bağlamı filtresi",
-      "state": "BLOCKED_SOURCE",
-      "strategy_state": "NOT_CONNECTED",
-      "data_label": "NOT_CONNECTED",
-      "blocker": "Dayanak endeks, kur, temettü, NAV ve short erişimi doğrulanmadı.",
-      "observations": [],
+      "state": "OBSERVING",
+      "strategy_state": "INPUTS_ONLY",
+      "data_label": "PUBLIC_EOD_UNLICENSED",
+      "blocker": null,
+      "observations": [
+        {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "IVV",
+            "VOO"
+          ],
+          "last_complete_session": "2026-10-16",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "IVV": 0.2288,
+            "VOO": -0.0242
+          },
+          "relative_return_20d_pct_points": 0.253,
+          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-10-16T00:00:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "PUBLIC_UNLICENSED_EOD_INPUTS_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -250,16 +340,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00108,
-              "ask": 1.00109,
-              "bid_qty_base": 1169450.551589,
-              "ask_qty_base": 663627.219622
+              "bid": 1.00111,
+              "ask": 1.00113,
+              "bid_qty_base": 792948.518664,
+              "ask_qty_base": 1177909.769879
             },
             "KRAKEN": {
-              "bid": 1.001,
-              "ask": 1.0011,
-              "bid_qty_base": 1226209.298,
-              "ask_qty_base": 738498.357
+              "bid": 1.0011,
+              "ask": 1.0012,
+              "bid_qty_base": 235631.324,
+              "ask_qty_base": 938867.653
             }
           },
           "routes": [
@@ -267,9 +357,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00109,
-              "sell_vwap": 1.001,
-              "gross_spread_bps": -0.899,
+              "buy_vwap": 1.00113,
+              "sell_vwap": 1.0011,
+              "gross_spread_bps": -0.3,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -280,9 +370,9 @@
               "buy_venue": "KRAKEN",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.00108,
-              "gross_spread_bps": -0.2,
+              "buy_vwap": 1.0012,
+              "sell_vwap": 1.00111,
+              "gross_spread_bps": -0.899,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -290,7 +380,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-18T20:14:03Z",
+          "asof_utc": "2026-10-18T20:33:21Z",
           "actionable": false
         }
       ],
@@ -332,12 +422,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-18T20:15:21Z",
+    "generated_at_utc": "2026-10-18T20:35:08Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "428e45c2a185a14e4061b04695a3f039ca38a979",
-    "coinlive_scan_id": "9f88e79064dfc1759a6f7060",
-    "alti_sha": "b3cf2f1871916650fa2278a8d9fa8127ff74c2c0",
-    "alti_scan_id": "alti-20261018T2014Z",
+    "coinlive_sha": "82c78ad469c0d23cceed902ef31940128b30271b",
+    "coinlive_scan_id": "f7a55af2585c69f2a632b46a",
+    "alti_sha": "e71fe1f262fa43e516d8a1c643ee6eecfe94c20e",
+    "alti_scan_id": "alti-20261018T2033Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {

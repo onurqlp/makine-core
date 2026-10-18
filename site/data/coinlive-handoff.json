@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-18T20:15:21Z",
-  "source_commit_sha": "428e45c2a185a14e4061b04695a3f039ca38a979",
-  "source_scan_id": "9f88e79064dfc1759a6f7060",
+  "generated_at_utc": "2026-10-18T20:35:08Z",
+  "source_commit_sha": "82c78ad469c0d23cceed902ef31940128b30271b",
+  "source_scan_id": "f7a55af2585c69f2a632b46a",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -17,18 +17,18 @@
       "spotlight": 0,
       "motion": 12,
       "watch": 40,
-      "recheck_pending": 95,
-      "active_total": 131,
-      "archived_total": 244
+      "recheck_pending": 79,
+      "active_total": 128,
+      "archived_total": 251
     },
-    "health": "OK",
-    "import_timestamp": "2026-10-18T20:15:21Z",
+    "health": "DEGRADED_SCHEDULE_GAP",
+    "import_timestamp": "2026-10-18T20:35:08Z",
     "alti_source_state": "PARTIAL",
     "funding_watch_matches": [
       "BTCUSDT",
       "ETHUSDT"
     ],
-    "modules_observing": 4,
+    "modules_observing": 6,
     "module_ids": [
       "A1",
       "A2",
@@ -43,8 +43,8 @@
       "id": "SUPPORT-A1",
       "module_id": "A1",
       "title": "Hisse pairs",
-      "state": "BLOCKED_SOURCE",
-      "recommendation": "SOURCE_NOT_READY",
+      "state": "OBSERVING",
+      "recommendation": "OBSERVATION_ONLY",
       "not_executable": true,
       "alti_overlap": "A1"
     },
@@ -52,8 +52,8 @@
       "id": "SUPPORT-A2",
       "module_id": "A2",
       "title": "ETF–ETF",
-      "state": "BLOCKED_SOURCE",
-      "recommendation": "SOURCE_NOT_READY",
+      "state": "OBSERVING",
+      "recommendation": "OBSERVATION_ONLY",
       "not_executable": true,
       "alti_overlap": "A2"
     },
