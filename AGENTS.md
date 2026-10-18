@@ -10,9 +10,13 @@ Bu dosya yalnız bu repoda göreve başlayan kod/araştırma ajanları için kal
 
 İlk adımda bu üç görevin güncel içeriğini ve kendi reponun README, docs/ARCHITECTURE.md, config/settings.json, docs/EXPERIMENT_POLICY.md dosyalarını oku. Güncel görev bilgisini tarihli issue mesajlarında tut. Issue yorumları mekanik olarak senkronize edilmez.
 
+## Otomatik koordinasyon (18.10.2026)
+
+`.github/workflows/coordination.yml` saatlik salt-okunur koordinasyon ve günlük 57 fikir kaynak güncellemesi yapar. Veri raporu `site/data/coordination.json`, on dört günlük kayıt `data/coordination-history.json`. Bu otomasyon ayrı ChatGPT/Codex ajanı çalıştırmaz ve başka GitHub depolarına yazmaz. Günlük research `MAKINE_SCHEDULED_REFRESH=1` ile açıkça `SCHEDULED_AUTO` olarak işaretlenir. GitHub cron gecikebilir; yalnız workflow başarı ve gerçek kaynak zamanı kanıttır.
+
 ## Yetki sınırları
 
-- MAKİNE = 57 fikir / 5 motor / araştırma düzlemi; bu repoda kal. `config/settings.json` içindeki `allow_cross_repo_writes=false`, `manual_research_only=true`, `live_orders_enabled=false` korunur.
+- MAKİNE = 57 fikir / 5 motor / araştırma düzlemi; bu repoda kal. `config/settings.json` içindeki `allow_cross_repo_writes=false`, `manual_research_only=false`, `live_orders_enabled=false` korunur.
 - COIN.LIVE = kendi piyasa ve sanal kasa sisteminin tek sahibi. Başka ajan onun stratejisini, emir/sinyalini, ledger'ını, sürümünü değiştiremez.
 - ALTI = A1/A2/A3/B1/B2/T0 altı stratejinin tek sahibi. 150.000 TRY varsayımsal referansı COIN.LIVE'ın 10.000 USDT sanal kasasıyla birleştirme.
 - **Hiçbir sonuç otomatik canlı sinyal/gerçek işlem/paper fill veya para kazancı olamaz**. Ajan kendiliğinden başka depoya kod push etmez; ayrı kullanıcı onayı gerekir.
