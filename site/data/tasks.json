@@ -1,0 +1,14 @@
+{
+  "schema": "makine-six-tasks-v2",
+  "generated_at_utc": null,
+  "mission": "INDEPENDENT_COINLIVE_SUPPORT",
+  "open_tasks": [],
+  "last_notified_signature": null,
+  "notification_required": false,
+  "notification": {
+    "state": "NOT_STARTED"
+  },
+  "cross_repo_writes": false,
+  "auto_fix_code": false,
+  "auto_trading": false
+}

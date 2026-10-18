@@ -1,0 +1,12 @@
+{
+  "schema": "coinlive-external-context-v1",
+  "source": "MAKINE",
+  "status": "NO_VERIFIED_HANDOFF",
+  "funding_event_context": [],
+  "matching_watch_symbols": [],
+  "trade_candidates": [],
+  "can_change_signal_policy": false,
+  "can_place_orders": false,
+  "can_change_paper_ledger": false,
+  "machine_readable_context_only": true
+}

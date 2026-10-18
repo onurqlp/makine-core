@@ -1,1 +1,1 @@
-"""MAKİNE CORE: read-only venture and quantitative research control plane."""
+"""MAKİNE — COIN.LIVE independent six-module support service."""

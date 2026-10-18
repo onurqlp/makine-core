@@ -1,20 +1,24 @@
 {
-  "schema": "makine-settings-v1",
-  "product_name": "MAKİNE CORE",
-  "source_repo": "onurqlp/coin-live-pro",
-  "version_policy": "USER_APPROVAL_REQUIRED",
-  "manual_research_only": false,
-  "live_orders_enabled": false,
-  "allow_private_api_credentials": false,
-  "allow_cross_repo_writes": false,
-  "trade_signals_from_makine": false,
-  "revenue_reporting": "ACTUAL_VERIFIED_ONLY",
-  "experiment_policy": "APPROVAL_REQUIRED_AND_FORWARD_ONLY",
-  "source_staleness_minutes": 45,
-  "data_max_age_hours_for_live_context": 12,
-  "top_opportunities": 6,
-  "research_only": true,
-  "automatic_research_enabled": true,
-  "coordination_schedule_utc": "hourly_at_minute_17_best_effort",
-  "full_research_schedule_utc": "daily_04:41_best_effort"
+  "schema": "makine-six-support-settings-v2",
+  "mission": "INDEPENDENT_COINLIVE_SUPPORT",
+  "modules": [
+    "A1",
+    "A2",
+    "A3",
+    "B1",
+    "B2",
+    "T0"
+  ],
+  "scan_schedule": "17,47 * * * * UTC BEST_EFFORT",
+  "source_repos": [
+    "onurqlp/alti-quant-lab",
+    "onurqlp/coin-live-pro"
+  ],
+  "output": "site/data/coinlive-support.json",
+  "legacy_business_models_enabled": false,
+  "live_trading_enabled": false,
+  "signals_enabled": false,
+  "source_repo_writes_enabled": false,
+  "paper_fills_enabled": false,
+  "ai_paid_calls_enabled": false
 }

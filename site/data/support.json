@@ -1,0 +1,118 @@
+{
+  "schema": "makine-coinlive-support-v2",
+  "generated_at_utc": null,
+  "mission": "INDEPENDENT_COINLIVE_SUPPORT",
+  "business_models": 0,
+  "research_laboratory": false,
+  "system_state": "NOT_STARTED",
+  "sources": {
+    "alti": {
+      "state": "UNAVAILABLE",
+      "observed_at_utc": null
+    },
+    "coinlive": {
+      "state": "UNAVAILABLE",
+      "observed_at_utc": null
+    }
+  },
+  "modules": [
+    {
+      "id": "A1",
+      "name": "Hisse pairs",
+      "coinlive_support": "Hisse göreli değer stres filtresi",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    },
+    {
+      "id": "A2",
+      "name": "ETF–ETF",
+      "coinlive_support": "ETF risk aktarım filtresi",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    },
+    {
+      "id": "A3",
+      "name": "İstatistiksel sepet",
+      "coinlive_support": "Sepet ayrışma kontrolü",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    },
+    {
+      "id": "B1",
+      "name": "Perpetual funding",
+      "coinlive_support": "Funding gözlem köprüsü",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    },
+    {
+      "id": "B2",
+      "name": "Stablecoin sapması",
+      "coinlive_support": "USDT/USDC sapma kontrolü",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    },
+    {
+      "id": "T0",
+      "name": "Tahvil–repo",
+      "coinlive_support": "Finansman koşulları kontrolü",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "UNAVAILABLE",
+      "data_label": "NOT_CONNECTED",
+      "blocker": "İlk gerçek kontrol henüz tamamlanmadı",
+      "funding_observations": [],
+      "coinlive_watch_symbol_matches": [],
+      "trade_signal": false,
+      "can_modify_coinlive": false
+    }
+  ],
+  "module_count": 6,
+  "modules_observing": 0,
+  "coinlive_feed": {
+    "status": "NO_VERIFIED_HANDOFF",
+    "funding_event_context": [],
+    "matching_watch_symbols": [],
+    "trade_candidates": [],
+    "can_change_signal_policy": false,
+    "can_place_orders": false
+  },
+  "safety": {
+    "allow_source_repo_writes": false,
+    "allow_orders": false,
+    "allow_paper_fills": false,
+    "automatic_trade_signal": false
+  },
+  "runtime": {
+    "mode": "UNATTENDED_RULE_BASED",
+    "trigger": "INITIAL"
+  }
+}
