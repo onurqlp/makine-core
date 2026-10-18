@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-18T13:44:42Z",
+  "generated_at_utc": "2026-10-18T16:36:24Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,34 +10,34 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "56caeeeb47118ac1ea56aa12dcd7f6474f39e101",
-      "scan_id": "alti-20261018T1244Z",
-      "observed_at_utc": "2026-10-18T12:44:19Z",
-      "age_minutes": 60.39,
+      "sha": "29d5decbc860c1e4e06b413a312803dd3dd3adda",
+      "scan_id": "alti-20261018T1623Z",
+      "observed_at_utc": "2026-10-18T16:23:20Z",
+      "age_minutes": 13.08,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 3,
       "warnings": [],
-      "sha256": "c58e5a059846316a3a326933bd647ade28cbbeb2224fae008d1b70bd0dd84de2"
+      "sha256": "eb6233a0e9322401be59cb802bb472e9c01bcd608203c0bee81f9f6fc469615d"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "85da7187caa5db6b1ae78a3c09357b5965ff1888",
-      "scan_id": "67e9dfbf7bc3898d70499eca",
-      "observed_at_utc": "2026-10-18T13:39:54.505000+00:00",
-      "age_minutes": 4.8,
+      "sha": "25f27ce1e285f376331814591ca017cf5b19207e",
+      "scan_id": "fd552932720c9693bb7368d3",
+      "observed_at_utc": "2026-10-18T16:29:43.870000+00:00",
+      "age_minutes": 6.68,
       "state": "PARTIAL",
-      "health": "OK",
+      "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
         "HEALTH_SCAN_LAG"
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 0,
+        "motion": 4,
         "watch": 40,
-        "recheck_pending": 97,
-        "active_total": 112,
-        "archived_total": 194
+        "recheck_pending": 93,
+        "active_total": 131,
+        "archived_total": 218
       }
     }
   },
@@ -96,16 +96,16 @@
         {
           "symbol": "BTCUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": 2.57666375942e-05,
-          "last_realized_time_utc": "2026-10-18T08:00:00Z",
+          "last_realized_rate_fraction_per_event": 6.38064180054e-05,
+          "last_realized_time_utc": "2026-10-18T16:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         },
         {
           "symbol": "ETHUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": 8.5248930619e-05,
-          "last_realized_time_utc": "2026-10-18T08:00:00Z",
+          "last_realized_rate_fraction_per_event": 4.01076517045e-05,
+          "last_realized_time_utc": "2026-10-18T16:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         }
@@ -149,27 +149,27 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-18T13:44:42Z",
+    "generated_at_utc": "2026-10-18T16:36:24Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "85da7187caa5db6b1ae78a3c09357b5965ff1888",
-    "coinlive_scan_id": "67e9dfbf7bc3898d70499eca",
-    "alti_sha": "56caeeeb47118ac1ea56aa12dcd7f6474f39e101",
-    "alti_scan_id": "alti-20261018T1244Z",
+    "coinlive_sha": "25f27ce1e285f376331814591ca017cf5b19207e",
+    "coinlive_scan_id": "fd552932720c9693bb7368d3",
+    "alti_sha": "29d5decbc860c1e4e06b413a312803dd3dd3adda",
+    "alti_scan_id": "alti-20261018T1623Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {
         "symbol": "BTCUSDT",
         "venue": "OKX",
-        "last_realized_rate_fraction_per_event": 2.57666375942e-05,
-        "last_realized_time_utc": "2026-10-18T08:00:00Z",
+        "last_realized_rate_fraction_per_event": 6.38064180054e-05,
+        "last_realized_time_utc": "2026-10-18T16:00:00Z",
         "interval_hours": 8.0,
         "executable": false
       },
       {
         "symbol": "ETHUSDT",
         "venue": "OKX",
-        "last_realized_rate_fraction_per_event": 8.5248930619e-05,
-        "last_realized_time_utc": "2026-10-18T08:00:00Z",
+        "last_realized_rate_fraction_per_event": 4.01076517045e-05,
+        "last_realized_time_utc": "2026-10-18T16:00:00Z",
         "interval_hours": 8.0,
         "executable": false
       }
@@ -193,7 +193,7 @@
     "no_automated_signals": true
   },
   "runtime": {
-    "event": "push",
+    "event": "schedule",
     "mode": "SCHEDULED_READ_ONLY",
     "ai_agent": false
   }
