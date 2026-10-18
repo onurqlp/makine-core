@@ -58,6 +58,8 @@ class BridgeTests(unittest.TestCase):
         self.assertEqual([x["symbol"] for x in r["coinlive_feed"]["funding_event_context"]],["BTCUSDT"])
         self.assertIn("BTCUSDT",r["coinlive_feed"]["matching_watch_symbols"])
         self.assertEqual(r["coinlive_feed"]["trade_candidates"],[])
+        self.assertEqual([m["id"] for m in r["coinlive_feed"]["module_checks"]],["A1","A2","A3","B1","B2","T0"])
+        self.assertTrue(all(x["trade_ready"] is False for x in r["coinlive_feed"]["module_checks"]))
         self.assertFalse(r["coinlive_feed"]["can_change_signal_policy"])
         self.assertFalse(r["safety"]["allow_orders"])
         self.assertEqual(r["business_models"],0)
