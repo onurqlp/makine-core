@@ -1,6 +1,6 @@
 {
   "schema": "makine-coinlive-support-v2",
-  "generated_at_utc": "2026-10-18T08:47:37Z",
+  "generated_at_utc": "2026-10-18T08:48:00Z",
   "mission": "INDEPENDENT_COINLIVE_SUPPORT",
   "business_models": 0,
   "research_laboratory": false,
@@ -11,7 +11,7 @@
       "source_sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
       "scan_id": "alti-20261018T0815Z",
       "observed_at_utc": "2026-10-18T08:15:45Z",
-      "age_minutes": 31.87,
+      "age_minutes": 32.26,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "warnings": [],
@@ -23,7 +23,7 @@
       "source_sha": "df6899b9b1982528150e717300879fa4c44c787a",
       "scan_id": "5699492f217e73a01923aecb",
       "observed_at_utc": "2026-10-18T08:44:32.223000+00:00",
-      "age_minutes": 3.08,
+      "age_minutes": 3.48,
       "state": "PARTIAL",
       "health_status": "DEGRADED_SCHEDULE_GAP",
       "schedule_proven": true,
@@ -52,7 +52,7 @@
       "blocker": "Lisanslı, temettü/split düzeltilmiş hisse verisi ve borrow erişimi doğrulanmadı.",
       "funding_observations": [],
       "coinlive_watch_symbol_matches": [],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -68,7 +68,7 @@
       "blocker": "Dayanak endeks, kur, temettü, NAV ve short erişimi doğrulanmadı.",
       "funding_observations": [],
       "coinlive_watch_symbol_matches": [],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -84,7 +84,7 @@
       "blocker": "Johansen rank, formation-OOS ve çok bacak short erişimi doğrulanmadı.",
       "funding_observations": [],
       "coinlive_watch_symbol_matches": [],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -105,7 +105,7 @@
           "last_realized_fraction_per_event": 2.57666375942e-05,
           "last_realized_time_utc": "2026-10-18T08:00:00Z",
           "interval_hours": 8.0,
-          "event_age_minutes": 47.62,
+          "event_age_minutes": 48.01,
           "trade_ready": false
         },
         {
@@ -114,7 +114,7 @@
           "last_realized_fraction_per_event": 8.5248930619e-05,
           "last_realized_time_utc": "2026-10-18T08:00:00Z",
           "interval_hours": 8.0,
-          "event_age_minutes": 47.62,
+          "event_age_minutes": 48.01,
           "trade_ready": false
         }
       ],
@@ -122,7 +122,7 @@
         "BTCUSDT",
         "ETHUSDT"
       ],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -138,7 +138,7 @@
       "blocker": "No validated two-venue quote screen",
       "funding_observations": [],
       "coinlive_watch_symbol_matches": [],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -154,7 +154,7 @@
       "blocker": "ISIN, dirty price, duration, repo dealer/teminat verisi ve erişim doğrulanmadı.",
       "funding_observations": [],
       "coinlive_watch_symbol_matches": [],
-      "calculated_at_utc": "2026-10-18T08:47:37Z",
+      "calculated_at_utc": "2026-10-18T08:48:00Z",
       "cross_venue_spread_verified": false,
       "verified_execution_edge": false,
       "trade_signal": false,
@@ -166,7 +166,7 @@
   "coinlive_feed": {
     "schema": "coinlive-external-context-v1",
     "source": "MAKINE",
-    "generated_at_utc": "2026-10-18T08:47:37Z",
+    "generated_at_utc": "2026-10-18T08:48:00Z",
     "coinlive_scan_id": "5699492f217e73a01923aecb",
     "coinlive_source_sha": "df6899b9b1982528150e717300879fa4c44c787a",
     "alti_scan_id": "alti-20261018T0815Z",
@@ -179,7 +179,7 @@
         "last_realized_fraction_per_event": 2.57666375942e-05,
         "last_realized_time_utc": "2026-10-18T08:00:00Z",
         "interval_hours": 8.0,
-        "event_age_minutes": 47.62,
+        "event_age_minutes": 48.01,
         "trade_ready": false
       },
       {
@@ -188,7 +188,7 @@
         "last_realized_fraction_per_event": 8.5248930619e-05,
         "last_realized_time_utc": "2026-10-18T08:00:00Z",
         "interval_hours": 8.0,
-        "event_age_minutes": 47.62,
+        "event_age_minutes": 48.01,
         "trade_ready": false
       }
     ],

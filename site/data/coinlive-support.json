@@ -1,7 +1,7 @@
 {
   "schema": "coinlive-external-context-v1",
   "source": "MAKINE",
-  "generated_at_utc": "2026-10-18T08:47:37Z",
+  "generated_at_utc": "2026-10-18T08:48:00Z",
   "coinlive_scan_id": "5699492f217e73a01923aecb",
   "coinlive_source_sha": "df6899b9b1982528150e717300879fa4c44c787a",
   "alti_scan_id": "alti-20261018T0815Z",
@@ -14,7 +14,7 @@
       "last_realized_fraction_per_event": 2.57666375942e-05,
       "last_realized_time_utc": "2026-10-18T08:00:00Z",
       "interval_hours": 8.0,
-      "event_age_minutes": 47.62,
+      "event_age_minutes": 48.01,
       "trade_ready": false
     },
     {
@@ -23,7 +23,7 @@
       "last_realized_fraction_per_event": 8.5248930619e-05,
       "last_realized_time_utc": "2026-10-18T08:00:00Z",
       "interval_hours": 8.0,
-      "event_age_minutes": 47.62,
+      "event_age_minutes": 48.01,
       "trade_ready": false
     }
   ],
