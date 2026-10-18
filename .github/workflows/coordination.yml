@@ -72,7 +72,7 @@ jobs:
               out.write(f"- State: **{d['system_state']}**\n")
               for k,v in d["sources"].items():
                   out.write(f"- {k}: **{v['state']}** · {v.get('observed_at_utc') or 'unavailable'}\n")
-              out.write("- Research only; AI agent runtime **not connected**; no trading or source-repo writes.\n")
+              out.write("- Research only; AI runtime state is documented in coordination.json; no trading or source-repo writes.\n")
           PY
       - name: Commit MAKİNE-only read-only coordination reports
         run: |
@@ -85,6 +85,7 @@ jobs:
           fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.full_refresh }}" = "true" ]; then
             git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
+            if [ -f site/data/agent-analysis.json ]; then git add site/data/agent-analysis.json; fi
           fi
           if ! git diff --cached --quiet; then
             git commit -m "data: unattended MAKİNE evidence snapshot [skip ci]"
