@@ -32,7 +32,7 @@ MAKİNE ↔ ALTI eşleştirmeleri: fikir ID 31→B1, 36→B2, 43→A1, 45→A2, 
 Bağlamak için GitHub deposunda:
 1. `Settings → Secrets and variables → Actions → Secrets → New repository secret`: adı **OPENAI_API_KEY** olan anahtarı GitHub'ın gizli alanına yapıştır. Sohbete veya kod dosyasına yazma.
 2. Aynı ekrandaki `Variables` bölümünde **MAKINE_AI_ENABLED** değerini **true** olarak belirle. Bu olmadan secret tek başına model çağrısı tetiklemez.
-3. İstersen **MAKINE_AI_MODEL** = **gpt-5.4-mini**; izinli alternatifler: `gpt-5.4-nano`, `gpt-4.1-mini`. Kurum/model erişimi ve ücretler platform hesabına bağlıdır. Fiyat, limit ve API bütçesini ayrıca kontrol et.
+3. İstersen **MAKINE_AI_MODEL** = **gpt-5-mini**; izinli alternatifler: `gpt-5-nano`, `gpt-4.1-mini`. Kurum/model erişimi ve ücretler platform hesabına bağlıdır. Fiyat, limit ve API bütçesini ayrıca kontrol et.
 4. İlk denemeyi `Actions → MAKİNE — Autonomous Read-Only Coordination → Run workflow → full_refresh=true` ile yap; sonuç `site/data/agent-analysis.json` olur. Otomatik AI çağrısı yalnız günlük çalışma veya tam yenileme isteğinde tetiklenir, saatlik kontrollerde tetiklenmez.
 
 Yapay zekâ API çağrısı: resmi `POST /v1/responses`, `store:false`, `max_output_tokens:900`, JSON şemalı en fazla 3 araştırma görevi. Model hiçbir GitHub/borsa araç yetkisine sahip değildir. Secret yalnız GitHub Actions görevinde kullanılır; repo, commit, statik sayfa veya rapora yazılmaz. OpenAI kullanım ücretleri API hesabına yansıyabilir.
@@ -57,3 +57,12 @@ MAKINE_AI_ENABLED=true python -m makine.agent
 ```
 
 Local AI denemesine anahtarı terminal geçmişine veya örnek komut içine gömme. Testlerden biri başarısız olursa workflow kayıtlarına bak; eski kayıtları yeni sayma.
+
+## 6. Otonom görev kuyruğu ve GitHub bildirimleri
+
+- `makine/taskboard.py`, saatte bir `site/data/task-board.json` içinde tekrar etmeyen görevler oluşturur.
+- Sadece önemli görev ekleme/çözülme değişiminde `onurqlp/makine-core` issue #1'e GitHub Actions bot hesabıyla otomatik yorum yazar. Kendi deposu dışına yazmaz.
+- İlgili salt-okunur kanıt, sahibi, risk seviyesi, ilk görülme ve son görülme zamanı rapora eklenir.
+- GitHub token sorununda `TOKEN_UNAVAILABLE` / `FAILED_RETRY_NEXT_RUN` yazılır; bildirim başarıyla iletilmiş gibi gösterilmez.
+- İlk doğrulanmış bot yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866
+- Görev tanımlamak, Copilot/cloud agent başlatmak anlamına gelmez. Bunun için desteklenen/izinli ayrı bir agent runtime ve plan gerekir.
