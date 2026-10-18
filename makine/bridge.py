@@ -160,7 +160,7 @@ def load_alti(now,fetcher=fetch):
                 "aligned_sessions":eod["aligned_sessions"],
                 "return_20d_percent":{t:round(float(returns[t]),4) for t in pair},
                 "relative_return_20d_pct_points":eod.get("relative_return_20d_pct_points"),
-                "adjustment":"VENDOR_ADJUSTED_NOT_LICENSED",
+                "adjustment":eod.get("adjustment_claim","UNVERIFIED"),
                 "nav_verified":False,
                 "borrow_verified":False,
                 "redistribution_rights_verified":False,
