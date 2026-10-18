@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-18T20:35:08Z",
+  "generated_at_utc": "2026-10-18T20:39:58Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -13,7 +13,7 @@
       "sha": "e71fe1f262fa43e516d8a1c643ee6eecfe94c20e",
       "scan_id": "alti-20261018T2033Z",
       "observed_at_utc": "2026-10-18T20:33:21Z",
-      "age_minutes": 1.79,
+      "age_minutes": 6.62,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
@@ -33,7 +33,7 @@
             "PEP": 1.341
           },
           "relative_return_20d_pct_points": 5.0613,
-          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
@@ -55,7 +55,7 @@
             "VOO": -0.0242
           },
           "relative_return_20d_pct_points": 0.253,
-          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
@@ -154,10 +154,10 @@
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "82c78ad469c0d23cceed902ef31940128b30271b",
-      "scan_id": "f7a55af2585c69f2a632b46a",
-      "observed_at_utc": "2026-10-18T20:29:42.109000+00:00",
-      "age_minutes": 5.44,
+      "sha": "0d14be70ad84ef8a657ff8378b551b30fa72cfad",
+      "scan_id": "59f1ac2fbaa3f426f6d901f0",
+      "observed_at_utc": "2026-10-18T20:39:43.032000+00:00",
+      "age_minutes": 0.26,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -167,9 +167,9 @@
         "spotlight": 0,
         "motion": 12,
         "watch": 40,
-        "recheck_pending": 79,
-        "active_total": 128,
-        "archived_total": 251
+        "recheck_pending": 83,
+        "active_total": 129,
+        "archived_total": 252
       }
     }
   },
@@ -198,7 +198,7 @@
             "PEP": 1.341
           },
           "relative_return_20d_pct_points": 5.0613,
-          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
@@ -236,7 +236,7 @@
             "VOO": -0.0242
           },
           "relative_return_20d_pct_points": 0.253,
-          "adjustment": "VENDOR_ADJUSTED_NOT_LICENSED",
+          "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
@@ -422,10 +422,10 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-18T20:35:08Z",
+    "generated_at_utc": "2026-10-18T20:39:58Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "82c78ad469c0d23cceed902ef31940128b30271b",
-    "coinlive_scan_id": "f7a55af2585c69f2a632b46a",
+    "coinlive_sha": "0d14be70ad84ef8a657ff8378b551b30fa72cfad",
+    "coinlive_scan_id": "59f1ac2fbaa3f426f6d901f0",
     "alti_sha": "e71fe1f262fa43e516d8a1c643ee6eecfe94c20e",
     "alti_scan_id": "alti-20261018T2033Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
