@@ -60,13 +60,19 @@ jobs:
           assert [m['id'] for m in s['modules']]==['A1','A2','A3','B1','B2','T0']
           assert not f['orders'] and not f['change_signals'] and not f['change_paper_ledger']
           assert f['requires_explicit_coinlive_integration']
+          c=json.loads(Path('site/data/coinlive-handoff.json').read_text())
+          assert len(c['recommendations'])==6
+          assert {x['module_id'] for x in c['recommendations']}=={'A1','A2','A3','B1','B2','T0'}
+          assert c['new_trade_candidates']==[]
+          assert not any((c['can_execute_orders'], c['can_modify_live_policy'], c['can_promote_to_live_signal']))
+          assert c['source_integrity'] in ('VERIFIED','UNVERIFIED')
           assert all(not m['executable'] and not m['signal'] for m in s['modules'])
           PY
       - name: Record MAKİNE-only latest export
         run: |
           git config user.name 'MAKİNE Support Worker'
           git config user.email 'makine-core-bot@users.noreply.github.com'
-          git add site/data/support.json site/data/coinlive-support.json data/support-history.json
+          git add site/data/support.json site/data/coinlive-support.json site/data/coinlive-handoff.json data/support-history.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: six-module COIN.LIVE support export [skip ci]'
             git pull --rebase origin main
