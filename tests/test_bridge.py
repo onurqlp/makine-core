@@ -10,7 +10,7 @@ from makine.bridge import build,pinned,persist,MODULES
 NOW=dt.datetime(2026,10,18,9,tzinfo=dt.timezone.utc)
 SHA="a"*40
 def data(x):return json.dumps(x).encode()
-def source_fixture(*,stale=False,no_alti=False,enriched=False):
+def source_fixture(*,stale=False,no_alti=False,enriched=False,with_eod=False):
     t="2026-10-17T06:00:00Z" if stale else "2026-10-18T08:59:00Z"
     radar={"scan_id":"c1","no_real_orders":True,"watch":[{"symbol":"BTCUSDT"}],"counts":{"watch":1}}
     health={"last_scan_id":"c1","status":"OK","schedule_proven":True}
@@ -49,6 +49,18 @@ def source_fixture(*,stale=False,no_alti=False,enriched=False):
            'date_utc':'2026-10-16','trade_ready':False,
            'yields_percent':{'2Y':3.5,'10Y':4.1},
            'slope_10y_minus_2y_pct_points':0.6}
+    if with_eod:
+        for code,pair in (("A1",["KO","PEP"]),("A2",["IVV","VOO"])):
+            a[code.lower()+"_public_eod"]={
+                "status":"INPUTS_ONLY","data_label":"PUBLIC_EOD_UNLICENSED",
+                "source":"NASDAQ_PUBLIC_HISTORY","adjustment_claim":"UNADJUSTED_OR_MIXED",
+                "pair":pair,"last_complete_session":"2026-10-16",
+                "aligned_sessions":300,"observed_return_20d_percent":{
+                    pair[0]:2.1,pair[1]:1.3},
+                "relative_return_20d_pct_points":0.8,
+                "trade_ready":False,"borrow_verified":False,
+                "redistribution_rights_verified":False,
+                "raw_licensed_prices_redistributed":False}
     blobs={
         ("onurqlp/coin-live-pro","web/data/v4-manifest.json"):data(man),
         ("onurqlp/coin-live-pro","web/data/v4-radar.json"):data(radar),
@@ -91,6 +103,18 @@ class SupportTests(unittest.TestCase):
         self.assertEqual(module['T0']['data_scope'],'TREASURY_YIELD_REFERENCE_ONLY')
         self.assertEqual(module['B2']['observations'][0]['routes'][0]['net_pnl'],None)
         self.assertEqual(x['feed']['trade_candidates'],[])
+    def test_six_modules_have_distinct_price_input_evidence_not_trading_rights(self):
+        x=build(NOW,source_fixture(enriched=True,with_eod=True))
+        m={p["id"]:p for p in x["modules"]}
+        self.assertEqual(x["observing_count"],6)
+        for code in ("A1","A2"):
+            self.assertEqual(m[code]["state"],"OBSERVING")
+            self.assertEqual(m[code]["data_scope"],"PUBLIC_UNLICENSED_EOD_INPUTS_ONLY")
+            self.assertEqual(m[code]["observations"][0]["source"],"NASDAQ_PUBLIC_HISTORY")
+            self.assertEqual(m[code]["observations"][0]["adjustment_claim"],"UNADJUSTED_OR_MIXED")
+            self.assertFalse(m[code]["executable"])
+            self.assertFalse(m[code]["signal"])
+        self.assertEqual(x["feed"]["trade_candidates"],[])
     def test_no_fabricated_data_if_stale(self):
         x=build(NOW,source_fixture(stale=True))
         self.assertEqual(x["observing_count"],0)

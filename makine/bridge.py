@@ -132,6 +132,40 @@ def load_alti(now,fetcher=fetch):
     # Source read-only is not evidence of borrow, settlement, fees or edge.
     public={}
     if state in ("FRESH","PARTIAL"):
+        # Public unofficial EOD inputs are descriptive only; licensing/NAV/borrow
+        # cannot be inferred from a successful unauthenticated HTTP response.
+        for code,pair in (("A1",["KO","PEP"]),("A2",["IVV","VOO"])):
+            eod=report.get(code.lower()+"_public_eod")
+            if not isinstance(eod,dict):continue
+            returns=eod.get("observed_return_20d_percent")
+            if not (eod.get("status")=="INPUTS_ONLY" and
+                    eod.get("data_label")=="PUBLIC_EOD_UNLICENSED" and
+                    eod.get("source") in ("YAHOO_CHART_UNOFFICIAL","NASDAQ_PUBLIC_HISTORY","MIXED_PUBLIC_EOD") and
+                    eod.get("pair")==pair and eod.get("trade_ready") is False and
+                    eod.get("raw_licensed_prices_redistributed") is False and
+                    eod.get("redistribution_rights_verified") is False and
+                    eod.get("borrow_verified") is False and
+                    eod.get("aligned_sessions",0)>=260 and
+                    isinstance(returns,dict) and
+                    all(isinstance(returns.get(t),(int,float)) and
+                        not isinstance(returns.get(t),bool) and
+                        -100<=returns[t]<=1000 for t in pair) and
+                    is_recent(eod.get("last_complete_session","")+"T00:00:00Z",now,7*24*60)):
+                continue
+            public[code]={"status":"INPUTS_ONLY",
+                "source":eod["source"],
+                "adjustment_claim":eod.get("adjustment_claim","UNVERIFIED"),
+                "symbols":pair,
+                "last_complete_session":eod["last_complete_session"],
+                "aligned_sessions":eod["aligned_sessions"],
+                "return_20d_percent":{t:round(float(returns[t]),4) for t in pair},
+                "relative_return_20d_pct_points":eod.get("relative_return_20d_pct_points"),
+                "adjustment":"VENDOR_ADJUSTED_NOT_LICENSED",
+                "nav_verified":False,
+                "borrow_verified":False,
+                "redistribution_rights_verified":False,
+                "asof_utc":eod["last_complete_session"]+"T00:00:00Z",
+                "actionable":False}
         b2=report.get("stablecoin")
         if (isinstance(b2,dict) and b2.get("data_label")=="READ_ONLY_LIVE" and
             b2.get("actionable") is False and b2.get("eligible_for_paper_fill") is False and
@@ -201,7 +235,8 @@ def build(now=None,fetcher=fetch):
               "blocker":None if state=="OBSERVING" else
                         str(s.get("reason") or "Gerçek ve uygun kaynak henüz doğrulanmadı")[:200],
               "observations":observations,"coinlive_watch_matches":matches,
-              "data_scope":("TREASURY_YIELD_REFERENCE_ONLY" if id_=="T0" and observations else
+              "data_scope":("PUBLIC_UNLICENSED_EOD_INPUTS_ONLY" if id_ in ("A1","A2") and observations else
+                            "TREASURY_YIELD_REFERENCE_ONLY" if id_=="T0" and observations else
                             "DAILY_SPOT_INPUTS_ONLY" if id_=="A3" and observations else
                             "CROSS_VENUE_BOOK_SCREEN_ONLY" if id_=="B2" and observations else
                             "REALIZED_FUNDING_ONLY" if id_=="B1" and observations else
