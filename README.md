@@ -13,7 +13,7 @@ MAKİNE, COIN.LIVE PRO'nun yerine geçmez, kodunu değiştirmez, otomatik emir/s
 - **Kaynak sabitleme:** Public GitHub source commit SHA, SHA-256 ve scan manifest doğrulaması, tarih, 45 dakika tazelik eşiği.
 - **Gelir matematiği:** Müşteri, aylık ücret, değişken ve sabit gider senaryoları; gerçek gelir NULL.
 - **Çıkış raporu:** `site/data/coinlive-handoff.json` — hiçbir strateji otomatik terfi etmez, sinyal göndermez, emir yetkisi yok.
-- **Manuel GitHub Actions:** Kullanıcı tetiklemedikçe araştırma yenilenmez; kod güncellemesi veri taraması yapmaz. Pages mobil site yayınlar.
+- **Otomatik GitHub Actions:** Saatlik read-only ALTI + COIN.LIVE koordinasyonu ve günlük tam 57 fikir araştırması planlıdır. GitHub cron best-effort, asla canlı emir yok.
 - **Version governance:** `config/release.json` ürün sürümü `UNASSIGNED`, öneri `1.0.0`; sadece kullanıcı onayıyla değişebilir; build ID tarihli.
 
 ## Çalıştırma
@@ -32,8 +32,8 @@ Siteyi `http://localhost:8080` adresinden açın. Offline modda gerçek kaynak d
 
 - **Kaynak kod:** [onurqlp/makine-core](https://github.com/onurqlp/makine-core), `main` dalı.
 - **İlk mobil web sitesi:** [makine-core-lab.vercel.app](https://makine-core-lab.vercel.app/). Bu Vercel dağıtımı kaynak depoya otomatik bağlı değildir; sonraki GitHub commit'i kendiliğinden Vercel'i güncellemez.
-- **Manuel gerçek veri araştırması:** `Actions → MAKİNE CORE — Research & Optional Pages → Run workflow → refresh_source=true`. Alternatif olarak GitHub üzerinde `main` dalına yalnız isteğe bağlı `[refresh-source]` işaretli commit yapılması da aynı görevi başlatır.
-- **Kod push'u kendi başına piyasa taraması başlatmaz.** Yeni kaynak verisi yalnız yukarıdaki açık talep üzerine okunur.
+- **Ek manuel tam veri araştırması:** `Actions → MAKİNE CORE — Research & Optional Pages → Run workflow → refresh_source=true`. Alternatif olarak GitHub üzerinde `main` dalına yalnız isteğe bağlı `[refresh-source]` işaretli commit yapılması da aynı görevi başlatır.
+- **Tam 57 fikir veri yenilemesi** günlük planlı iş veya açık manuel istekle çalışır. Koordinasyon kodunun ilk push'u ayrıca ilk kontrolü başlatır.
 - **Opsiyonel GitHub Pages:** `Settings → Pages → Build and deployment → Source: GitHub Actions` seçilirse dağıtım işi `https://onurqlp.github.io/makine-core/` adresini yayınlamayı dener. Bu ayar yapılmadıysa Pages adımı güvenli şekilde atlanır; `research` çalışmaya devam eder. Pages başarısı doğrulanmadan bu URL'nin aktif olduğu varsayılmaz.
 - **Veri gecikmesi:** Kaynağın 45 dakika üzerindeki anlık verisi eski olarak işaretlenir. Kaynak taraması başarısızsa geçmiş veriler yeni gibi gösterilmez.
 
@@ -52,3 +52,14 @@ COIN.LIVE için planlanan değişiklikleri sadece [`docs/COINLIVE_GUNCELLEME_PRO
 - `docs/`: mimari, ayrı COIN.LIVE promptu, deney ve gelir doğrulama politikası.
 
 **Güvenlik:** Piyasa ve kripto gözlemleri gerçek işlem veya kâr garantisi değildir. Public kaynaklara erişim, üçüncü taraf verinin ticari dağıtım lisansı değildir. API/hesap/ödeme anahtarlarını GitHub Pages üzerinde bulundurmayın. Ücretli servis için ayrıca güvenli sunucu ve mevzuat incelemesi gerekir.
+
+
+## Otomatik MAKİNE koordinatörü — 18 Ekim 2026
+
+- **Saatlik:** `17 * * * *` UTC (GitHub cron best-effort) ile `python -m makine.coordinator` COIN.LIVE manifest/health + radar/paper SHA doğrulaması ve ALTI altı strateji durumunu immutable commit'lerden salt-okunur alır.
+- **Günlük:** `41 4 * * *` UTC ile ayrıca `python -m makine refresh` ve 57 model kataloğunun kaynak bütünlüğü yenilenir. Araştırma otomatik; ticaret ve model/sürüm değişiklikleri otomatik değildir.
+- **Durum:** [koordinasyon raporu](site/data/coordination.json) ve [14 günlük kayıt](data/coordination-history.json). Eski, kısmi, erişilemez veya geçersiz kaynaklar açık durum bayrağıyla saklanır.
+- **Test:** `python -m unittest discover -s tests -q`; ilk canlı GitHub çalışması [39108496959](https://github.com/onurqlp/makine-core/actions/runs/39108496959) başarılıdır.
+- **Ajan sınırı:** GitHub saatlik iş akışı kural tabanlı koordinatördür; kendiliğinden diğer ChatGPT/Codex sohbetlerini açmaz, ayrı bir LLM çalışma servisi henüz bağlı değildir.
+- **Yayın sınırı:** Vercel mevcut GitHub'a otomatik bağlanmış değildir; GitHub JSON'larının yenilenmesi tek başına `makine-core-lab.vercel.app` adresini güncellemez.
+- **Güvenlik:** Kaynak depolara yazma / işlem / sanal pozisyon / sürüm terfisi yok; yalnız MAKİNE çıktıları commit edilir. GitHub Actions schedule kesin SLA değildir.
