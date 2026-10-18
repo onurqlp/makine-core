@@ -67,3 +67,7 @@ COIN.LIVE için planlanan değişiklikleri sadece [`docs/COINLIVE_GUNCELLEME_PRO
 ## İleri koordinasyon — görev kuyruğu
 
 `makine/taskboard.py` raporlardan yalnız kurala dayalı görev çıkarır ve aynı sorun için GitHub'a tekrar tekrar yorum göndermemeye çalışır. İlk doğrulanan otomatik yorum: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866. [Canlı görev raporu](site/data/task-board.json); [ayrıntılı otomasyon kılavuzu](docs/AUTOMATED_COORDINATION.md). Sadece MAKİNE issue #1'e yorum yazılır, ALTI/COIN.LIVE depolarına değişiklik yapılmaz. API modeli yoksa veya kullanıcı etkinleştirme yapmadıysa yapay zekâ agent'i bağlı değildir.
+
+### Mobil durum ekranı
+
+`site/status.html` telefon öncelikli koordinasyon panelidir; kamuya açık GitHub main JSON kaynaklarını no-cache okuyarak kaynak zamanı, açık görev ve AI durumunu gösterir. URL yalnız site GitHub Pages ya da Vercel'e yayımlandıktan sonra kullanılabilir. GitHub Pages ayarı varsa `https://onurqlp.github.io/makine-core/status.html` adresine dağıtılır. Eski Vercel projesi henüz GitHub'a bağlı değildir.
