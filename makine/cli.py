@@ -28,6 +28,9 @@ def manual_refresh(mode='online'):
         except Exception as exc:
             message=f'{type(exc).__name__}: {str(exc)[:180]}'
     snap=build(source)
+    automated=os.getenv('MAKINE_SCHEDULED_REFRESH')=='1'
+    snap['manual_refresh']=not automated
+    snap['refresh_trigger']='SCHEDULED_AUTO' if automated else 'MANUAL_CLI'
     if message:
         snap['source']={'state':'REFRESH_FAILED','message':message,
              'last_verified_source_snapshot_utc':(prev or {}).get('source',{}).get('snapshot_finished_at_utc')}
