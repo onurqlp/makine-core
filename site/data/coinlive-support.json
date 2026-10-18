@@ -1,8 +1,17 @@
 {
+  "schema": "makine-coinlive-support-feed-v2",
+  "generated_at_utc": "2026-10-18T08:54:14Z",
+  "source": "onurqlp/makine-core",
+  "coinlive_sha": "4d5c3798b063e369e9974bda18ce15d36cf569dd",
+  "coinlive_scan_id": "127d1067fca468bcc834d773",
+  "alti_sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
+  "alti_scan_id": "alti-20261018T0815Z",
   "status": "NO_VERIFIED_CONTEXT",
-  "orders": false,
+  "funding_observations": [],
+  "watched_funding_matches": [],
   "trade_candidates": [],
   "change_signals": false,
+  "orders": false,
   "change_paper_ledger": false,
   "requires_explicit_coinlive_integration": true
 }

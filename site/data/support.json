@@ -1,31 +1,55 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": null,
+  "generated_at_utc": "2026-10-18T08:54:14Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
   "module_count": 6,
-  "observing_count": 0,
-  "state": "AWAITING_FIRST_RUN",
+  "observing_count": 1,
+  "state": "PARTIAL",
   "sources": {
     "alti": {
-      "state": "UNVERIFIED",
-      "observed_at_utc": null
+      "repo": "onurqlp/alti-quant-lab",
+      "sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
+      "scan_id": "alti-20261018T0815Z",
+      "observed_at_utc": "2026-10-18T08:15:45Z",
+      "age_minutes": 38.49,
+      "state": "PARTIAL",
+      "scan_status": "PARTIAL_LIVE",
+      "provider_error_count": 3,
+      "warnings": [],
+      "sha256": "a67da57144334543734dda2f70fc256773f1d0ff005cb15e950785ea6c957c56"
     },
     "coinlive": {
-      "state": "UNVERIFIED",
-      "observed_at_utc": null
+      "repo": "onurqlp/coin-live-pro",
+      "sha": "4d5c3798b063e369e9974bda18ce15d36cf569dd",
+      "scan_id": "127d1067fca468bcc834d773",
+      "observed_at_utc": "2026-10-18T08:49:34.173000+00:00",
+      "age_minutes": 4.67,
+      "state": "INVALID",
+      "health": "OK",
+      "warnings": [
+        "SCAN_MISMATCH"
+      ],
+      "counts": {
+        "spotlight": 0,
+        "motion": 0,
+        "watch": 40,
+        "recheck_pending": 84,
+        "active_total": 114,
+        "archived_total": 172
+      }
     }
   },
   "modules": [
     {
       "id": "A1",
       "name": "Hisse pairs",
-      "purpose": "Kaynak kontrolü bekleniyor",
+      "purpose": "Hisse çifti göreli değer filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
+      "strategy_state": "NOT_CONNECTED",
       "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
+      "blocker": "Lisanslı, temettü/split düzeltilmiş hisse verisi ve borrow erişimi doğrulanmadı.",
       "observations": [],
       "coinlive_watch_matches": [],
       "signal": false,
@@ -35,11 +59,11 @@
     {
       "id": "A2",
       "name": "ETF–ETF",
-      "purpose": "Kaynak kontrolü bekleniyor",
+      "purpose": "ETF farkı ve endeks bağlamı filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
+      "strategy_state": "NOT_CONNECTED",
       "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
+      "blocker": "Dayanak endeks, kur, temettü, NAV ve short erişimi doğrulanmadı.",
       "observations": [],
       "coinlive_watch_matches": [],
       "signal": false,
@@ -49,11 +73,11 @@
     {
       "id": "A3",
       "name": "İstatistiksel sepet",
-      "purpose": "Kaynak kontrolü bekleniyor",
+      "purpose": "Cointegration/sepet sapması filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
+      "strategy_state": "NOT_CONNECTED",
       "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
+      "blocker": "Johansen rank, formation-OOS ve çok bacak short erişimi doğrulanmadı.",
       "observations": [],
       "coinlive_watch_matches": [],
       "signal": false,
@@ -63,13 +87,33 @@
     {
       "id": "B1",
       "name": "Perpetual funding",
-      "purpose": "Kaynak kontrolü bekleniyor",
-      "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
-      "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
-      "observations": [],
-      "coinlive_watch_matches": [],
+      "purpose": "Funding gözlem ve COIN.LIVE eşleme filtresi",
+      "state": "OBSERVING",
+      "strategy_state": "WATCH_ONLY",
+      "data_label": "READ_ONLY_LIVE",
+      "blocker": null,
+      "observations": [
+        {
+          "symbol": "BTCUSDT",
+          "venue": "OKX",
+          "last_realized_rate_fraction_per_event": 2.57666375942e-05,
+          "last_realized_time_utc": "2026-10-18T08:00:00Z",
+          "interval_hours": 8.0,
+          "executable": false
+        },
+        {
+          "symbol": "ETHUSDT",
+          "venue": "OKX",
+          "last_realized_rate_fraction_per_event": 8.5248930619e-05,
+          "last_realized_time_utc": "2026-10-18T08:00:00Z",
+          "interval_hours": 8.0,
+          "executable": false
+        }
+      ],
+      "coinlive_watch_matches": [
+        "BTCUSDT",
+        "ETHUSDT"
+      ],
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -77,11 +121,11 @@
     {
       "id": "B2",
       "name": "Stablecoin sapması",
-      "purpose": "Kaynak kontrolü bekleniyor",
+      "purpose": "USDC/USDT çift-borsa sapma filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
+      "strategy_state": "SOURCE_ERROR",
       "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
+      "blocker": "No validated two-venue quote screen",
       "observations": [],
       "coinlive_watch_matches": [],
       "signal": false,
@@ -91,11 +135,11 @@
     {
       "id": "T0",
       "name": "Tahvil–repo",
-      "purpose": "Kaynak kontrolü bekleniyor",
+      "purpose": "Tahvil/repo finansman filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "UNVERIFIED",
+      "strategy_state": "ACCESS_UNVERIFIED",
       "data_label": "NOT_CONNECTED",
-      "blocker": "İlk çalışma bekleniyor",
+      "blocker": "ISIN, dirty price, duration, repo dealer/teminat verisi ve erişim doğrulanmadı.",
       "observations": [],
       "coinlive_watch_matches": [],
       "signal": false,
@@ -104,10 +148,19 @@
     }
   ],
   "feed": {
+    "schema": "makine-coinlive-support-feed-v2",
+    "generated_at_utc": "2026-10-18T08:54:14Z",
+    "source": "onurqlp/makine-core",
+    "coinlive_sha": "4d5c3798b063e369e9974bda18ce15d36cf569dd",
+    "coinlive_scan_id": "127d1067fca468bcc834d773",
+    "alti_sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
+    "alti_scan_id": "alti-20261018T0815Z",
     "status": "NO_VERIFIED_CONTEXT",
-    "orders": false,
+    "funding_observations": [],
+    "watched_funding_matches": [],
     "trade_candidates": [],
     "change_signals": false,
+    "orders": false,
     "change_paper_ledger": false,
     "requires_explicit_coinlive_integration": true
   },
@@ -120,7 +173,7 @@
     "no_automated_signals": true
   },
   "runtime": {
-    "event": "BOOTSTRAP",
+    "event": "push",
     "mode": "SCHEDULED_READ_ONLY",
     "ai_agent": false
   }

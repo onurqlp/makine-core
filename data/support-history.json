@@ -1,4 +1,13 @@
 {
   "schema": "makine-six-history-v2",
-  "entries": []
+  "entries": [
+    {
+      "generated_at_utc": "2026-10-18T08:54:14Z",
+      "event": "push",
+      "state": "PARTIAL",
+      "alti": "PARTIAL",
+      "coinlive": "INVALID",
+      "observing_count": 1
+    }
+  ]
 }
