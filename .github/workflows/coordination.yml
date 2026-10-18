@@ -79,6 +79,8 @@ jobs:
           assert t["schema"]=="makine-task-board-v1"
           assert t["automation"]["cross_repository_writes"] is False
           assert t["automation"]["allow_trading"] is False
+          assert pathlib.Path("site/status.html").is_file()
+          assert t["issue_delivery"]["state"] in ("POSTED", "UNCHANGED", "TOKEN_UNAVAILABLE", "REPO_SCOPE_REJECTED", "FAILED_RETRY_NEXT_RUN")
           with open(__import__("os").environ["GITHUB_STEP_SUMMARY"],"a") as out:
               out.write("## MAKİNE coordinated snapshot\n")
               out.write(f"- State: **{d['system_state']}**\n")
