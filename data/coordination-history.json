@@ -1,0 +1,23 @@
+{
+  "schema": "makine-coordination-history-v1",
+  "entries": [
+    {
+      "hour_utc": "2026-10-18T07",
+      "generated_at_utc": "2026-10-18T07:40:03Z",
+      "system_state": "ATTENTION_REQUIRED",
+      "source_states": {
+        "coinlive": "PARTIAL",
+        "alti": "STALE"
+      },
+      "source_shas": {
+        "coinlive": "2788b229e86664eda098edc2c790ee2623c79216",
+        "alti": "b00cf714e8b4dc1a4677b238ad52c3cfaa74ccf4"
+      },
+      "source_scan_ids": {
+        "coinlive": "d2890ded1872882a48c38328",
+        "alti": "alti-20261018T0321Z"
+      },
+      "no_orders": true
+    }
+  ]
+}
