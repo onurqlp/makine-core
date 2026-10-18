@@ -128,11 +128,47 @@ def load_alti(now,fetcher=fetch):
                 "last_realized_time_utc":f["last_realized_time_utc"],
                 "interval_hours":f.get("interval_hours"),
                 "executable":False})
+    # Use only source-validated, non-executable public fields.
+    # Source read-only is not evidence of borrow, settlement, fees or edge.
+    public={}
+    if state in ("FRESH","PARTIAL"):
+        b2=report.get("stablecoin")
+        if (isinstance(b2,dict) and b2.get("data_label")=="READ_ONLY_LIVE" and
+            b2.get("actionable") is False and b2.get("eligible_for_paper_fill") is False and
+            isinstance(b2.get("best_quotes"),dict) and len(b2["best_quotes"])>=2 and
+            isinstance(b2.get("okx_book_age_seconds"),(int,float)) and
+            -60<=b2["okx_book_age_seconds"]<=15):
+            public["B2"]={"status":"SCREEN_ONLY","venues":b2.get("venues",[]),
+                "best_quotes":b2["best_quotes"],"routes":b2.get("routes",[]),
+                "asof_utc":report.get("generated_at_utc"),"actionable":False}
+        a3=report.get("a3_basket")
+        if (isinstance(a3,dict) and a3.get("data_label")=="READ_ONLY_LIVE" and
+            a3.get("trade_ready") is False and
+            isinstance(a3.get("aligned_closed_days"),int) and a3["aligned_closed_days"]>=50 and
+            is_recent(a3.get("source_last_closed_day_utc"),now,7*24*60)):
+            public["A3"]={"status":"INPUTS_ONLY","source":a3.get("market"),
+                "symbols":a3.get("symbols",[]),
+                "latest_close_usdt":a3.get("observed_last_close_usdt",{}),
+                "return_20d_percent":a3.get("observed_return_20d_percent",{}),
+                "aligned_closed_days":a3["aligned_closed_days"],
+                "asof_utc":a3["source_last_closed_day_utc"],"actionable":False}
+        t0=report.get("t0_treasury")
+        if (isinstance(t0,dict) and t0.get("source")=="US_TREASURY_OFFICIAL" and
+            t0.get("trade_ready") is False and
+            isinstance(t0.get("date_utc"),str) and
+            is_recent(t0.get("date_utc")+"T00:00:00Z",now,10*24*60) and
+            isinstance(t0.get("yields_percent"),dict) and
+            isinstance(t0["yields_percent"].get("10Y"),(int,float))):
+            public["T0"]={"status":"REFERENCE_ONLY",
+                "date_utc":t0["date_utc"],"yields_percent":t0["yields_percent"],
+                "slope_10y_minus_2y_pct_points":t0.get("slope_10y_minus_2y_pct_points"),
+                "actionable":False}
     return {"repo":SOURCES["alti"],"sha":sha,"scan_id":report.get("scan_id"),
         "observed_at_utc":report.get("generated_at_utc"),"age_minutes":a,
         "state":state,"scan_status":report.get("scan_status"),
         "provider_error_count":len(report.get("errors") or []),
         "strategies":strategies,"funding":funding[:20],
+        "public_inputs":public,
         "warnings":warnings,"sha256":hashes["site/report.json"]}
 
 def unavailable(repo,e):
@@ -153,15 +189,23 @@ def build(now=None,fetcher=fetch):
         s=strategy_rows.get(id_) or {}
         valid=(alti.get("state") in ("FRESH","PARTIAL") and
                s.get("data_label")=="READ_ONLY_LIVE")
+        inputs=(alti.get("public_inputs") or {}).get(id_)
         observations=alti.get("funding",[]) if id_=="B1" and valid else []
+        if id_!="B1" and isinstance(inputs,dict) and not inputs.get("actionable"):
+            observations=[inputs]
         state="OBSERVING" if observations else "BLOCKED_SOURCE"
-        matches=sorted({f["symbol"] for f in observations if f["symbol"] in watchers})
+        matches=sorted({f["symbol"] for f in observations if "symbol" in f and f["symbol"] in watchers})
         item={"id":id_,"name":title,"purpose":mission,"state":state,
               "strategy_state":s.get("status","UNAVAILABLE"),
               "data_label":s.get("data_label","NOT_CONNECTED"),
               "blocker":None if state=="OBSERVING" else
                         str(s.get("reason") or "Gerçek ve uygun kaynak henüz doğrulanmadı")[:200],
               "observations":observations,"coinlive_watch_matches":matches,
+              "data_scope":("TREASURY_YIELD_REFERENCE_ONLY" if id_=="T0" and observations else
+                            "DAILY_SPOT_INPUTS_ONLY" if id_=="A3" and observations else
+                            "CROSS_VENUE_BOOK_SCREEN_ONLY" if id_=="B2" and observations else
+                            "REALIZED_FUNDING_ONLY" if id_=="B1" and observations else
+                            "NOT_CONNECTED"),
               "signal":False,"executable":False,"source_repo_write":False}
         items.append(item);seen.add(id_)
     assert seen=={x[0] for x in MODULES}

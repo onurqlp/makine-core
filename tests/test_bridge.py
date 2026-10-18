@@ -10,7 +10,7 @@ from makine.bridge import build,pinned,persist,MODULES
 NOW=dt.datetime(2026,10,18,9,tzinfo=dt.timezone.utc)
 SHA="a"*40
 def data(x):return json.dumps(x).encode()
-def source_fixture(*,stale=False,no_alti=False):
+def source_fixture(*,stale=False,no_alti=False,enriched=False):
     t="2026-10-17T06:00:00Z" if stale else "2026-10-18T08:59:00Z"
     radar={"scan_id":"c1","no_real_orders":True,"watch":[{"symbol":"BTCUSDT"}],"counts":{"watch":1}}
     health={"last_scan_id":"c1","status":"OK","schedule_proven":True}
@@ -28,6 +28,27 @@ def source_fixture(*,stale=False,no_alti=False):
          "last_realized_time_utc":"2026-10-18T08:00:00Z",
          "data_label":"READ_ONLY_LIVE","rate_unit":"SIGNED_FRACTION_PER_EVENT",
          "interval_hours":8}]}
+    if enriched:
+        for s in strategies:
+            if s['id'] in ('A3','B2'):s['data_label']='READ_ONLY_LIVE'
+            if s['id']=='T0':s['data_label']='REFERENCE_ONLY'
+        a['a3_basket']={
+           'data_label':'READ_ONLY_LIVE','trade_ready':False,
+           'aligned_closed_days':60,'source_last_closed_day_utc':'2026-10-17T00:00:00Z',
+           'market':'OKX_SPOT','symbols':['BTCUSDT','ETHUSDT','SOLUSDT'],
+           'observed_last_close_usdt':{'BTC':100000.,'ETH':4000.,'SOL':200.},
+           'observed_return_20d_percent':{'BTC':2.,'ETH':1.,'SOL':-1.}}
+        a['stablecoin']={
+           'data_label':'READ_ONLY_LIVE','actionable':False,
+           'eligible_for_paper_fill':False,'okx_book_age_seconds':2,
+           'best_quotes':{'OKX':{'bid':1.0,'ask':1.0001},
+                          'KRAKEN':{'bid':1.0002,'ask':1.0003}},
+           'venues':['OKX','KRAKEN'],'routes':[{'gross_spread_bps':1.0,
+                'net_spread_bps':None,'net_pnl':None}]}
+        a['t0_treasury']={'source':'US_TREASURY_OFFICIAL',
+           'date_utc':'2026-10-16','trade_ready':False,
+           'yields_percent':{'2Y':3.5,'10Y':4.1},
+           'slope_10y_minus_2y_pct_points':0.6}
     blobs={
         ("onurqlp/coin-live-pro","web/data/v4-manifest.json"):data(man),
         ("onurqlp/coin-live-pro","web/data/v4-radar.json"):data(radar),
@@ -56,6 +77,20 @@ class SupportTests(unittest.TestCase):
         self.assertEqual(x["feed"]["trade_candidates"],[])
         self.assertFalse(x["safety"]["no_orders"] is False)
         self.assertFalse(x["feed"]["orders"])
+    def test_enriched_inputs_remain_read_only(self):
+        x=build(NOW,source_fixture(enriched=True))
+        module={m['id']:m for m in x['modules']}
+        self.assertEqual(x['observing_count'],4)
+        for id in ('B2','A3','T0'):
+            self.assertEqual(module[id]['state'],'OBSERVING')
+            self.assertEqual(len(module[id]['observations']),1)
+            self.assertFalse(module[id]['signal'])
+            self.assertFalse(module[id]['executable'])
+        self.assertEqual(module['A1']['state'],'BLOCKED_SOURCE')
+        self.assertEqual(module['A2']['state'],'BLOCKED_SOURCE')
+        self.assertEqual(module['T0']['data_scope'],'TREASURY_YIELD_REFERENCE_ONLY')
+        self.assertEqual(module['B2']['observations'][0]['routes'][0]['net_pnl'],None)
+        self.assertEqual(x['feed']['trade_candidates'],[])
     def test_no_fabricated_data_if_stale(self):
         x=build(NOW,source_fixture(stale=True))
         self.assertEqual(x["observing_count"],0)
