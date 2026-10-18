@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09131e">
+<title>MAKİNE — Otomatik Görev Merkezi</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#08121c;color:#ecf2f7}
+*{box-sizing:border-box}body{margin:0;line-height:1.5}main{width:min(980px,100%);margin:auto;padding:24px 18px 76px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:850;letter-spacing:.08em}.brand span{color:#6ce0bc}a{color:#9ac7ff;text-decoration:none}a:hover{text-decoration:underline}
+small,.muted{color:#9bacbc}h1{font-size:clamp(28px,6vw,44px);letter-spacing:-.045em;line-height:1.1;margin:35px 0 11px}
+.intro{max-width:690px;color:#b7c7d6;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{border:1px solid #26394a;background:#111f2e;border-radius:18px;padding:18px;min-width:0}
+.card small{display:block;font-size:12px}.number{font-size:24px;font-weight:800;letter-spacing:-.04em;margin-top:6px}
+.section{margin-top:26px}h2{font-size:19px;margin:0 0 12px}.row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#283545;color:#e5ebef;font-size:12px;font-weight:700}
+.pill.ok{background:#173a30;color:#91edc9}.pill.warn{background:#4a341f;color:#ffcd93}
+ul{padding-left:19px;margin:12px 0 0}li+li{margin-top:8px}
+.task{border-left:3px solid #d6a971;padding-left:14px;margin-top:13px}.task h3{font-size:15px;margin:0}
+.task p{margin:5px 0;color:#c2d0da;font-size:14px}
+.task .meta{font-size:12px;color:#a9bcca}
+.links{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.links a{border:1px solid #35536d;padding:10px 13px;border-radius:10px;background:#132b3a}
+.notice{margin-top:19px;padding:13px 15px;border:1px solid #2f4357;border-radius:12px;color:#bdcede;font-size:13px}
+.error{color:#ffbdaf}
+@media(max-width:740px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.card{padding:16px}}
+</style></head><body><main>
+<div class="top"><a class="brand" href="./index.html">M<span>·</span> MAKİNE CORE</a><span class="pill" id="synced">VERİ BEKLENİYOR</span></div>
+<h1>Otomatik görev merkezi</h1>
+<p class="intro">COIN.LIVE ve ALTI'nın bağımsız verilerini izleyen MAKİNE koordinatörü. Görevler araştırma içindir; gerçek işlem, otomatik strateji değiştirme veya kendi kendine çalışan kod ajanı değildir.</p>
+<div class="grid">
+  <div class="card"><small>COIN.LIVE · kaynak</small><div class="number" id="coinstate">—</div><small id="coinwhen">Henüz doğrulanmadı</small></div>
+  <div class="card"><small>ALTI Quant · kaynak</small><div class="number" id="altistate">—</div><small id="altiwhen">Henüz doğrulanmadı</small></div>
+  <div class="card"><small>Açık araştırma görevleri</small><div class="number" id="openCount">—</div><small id="lastCheck">Kontrol kaydı bekleniyor</small></div>
+</div>
+<section class="section"><div class="row"><h2>Açık görevler</h2><span class="pill" id="taskState">BEKLENİYOR</span></div><div id="tasks" class="card"><span class="muted">Görevler alınıyor…</span></div></section>
+<section class="section"><h2>Yapay zekâ ajanı</h2><div class="card"><div class="row"><strong id="aiState">Henüz bağlanmadı</strong><span class="pill">ONAYLI ARAŞTIRMA</span></div><p class="muted" id="aiInfo">Sadece araştırma önerisi üretebilir. API erişimi ve açık etkinleştirme olmadan ücretli AI çağrısı yapılmaz.</p></div></section>
+<div class="notice">Kaynak zaman damgaları gerçek piyasa veri zamanı olarak gösterilir. GitHub Actions zamanlayıcısı kesin zaman garantisi vermez. Görev raporu ve yapay zekâ araştırması, diğer sohbetlerdeki ajanlara otomatik mesaj anlamına gelmez.</div>
+<div class="links">
+<a href="https://github.com/onurqlp/makine-core/issues/1" target="_blank" rel="noopener">Ortak görev merkezi ↗</a>
+<a href="https://github.com/onurqlp/makine-core/actions/workflows/coordination.yml" target="_blank" rel="noopener">GitHub çalışmalar ↗</a>
+<a href="https://github.com/onurqlp/makine-core/blob/main/site/data/task-board.json" target="_blank" rel="noopener">Kanıt JSON ↗</a>
+</div>
+</main><script>
+"use strict";
+const $=id=>document.getElementById(id);
+const root="https://raw.githubusercontent.com/onurqlp/makine-core/main/site/data/";
+const fmt=val=>{if(!val)return "Zaman doğrulanmadı";const d=new Date(val);return Number.isFinite(d.getTime())?new Intl.DateTimeFormat("tr-TR",{timeZone:"Europe/Istanbul",dateStyle:"medium",timeStyle:"short"}).format(d):"Geçersiz zaman"};
+const txt=(id,v)=>$(id).textContent=String(v??"—");
+async function get(name){let u=root+name+"?v="+Date.now();let r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);return r.json()}
+function badge(el,state){el.className="pill"+(state==="FRESH"||state==="CLEAR"?" ok":state==="STALE"||state==="ATTENTION_REQUIRED"||state==="PARTIAL"?" warn":"")}
+async function init(){
+ try{
+  const [c,b,ai]=await Promise.all([get("coordination.json"),get("task-board.json"),get("agent-analysis.json").catch(()=>null)]);
+  txt("synced",c.system_state==="FRESH"?"KAYNAKLAR GÜNCEL":"İNCELEME GEREKLİ");badge($("synced"),c.system_state);
+  for(const [key,label,time] of [["coinlive","coinstate","coinwhen"],["alti","altistate","altiwhen"]]){
+   let s=c.sources?.[key]??{};txt(label,s.state??"UNKNOWN");txt(time,fmt(s.observed_at_utc));}
+  txt("openCount",b.active?.length??0);txt("lastCheck","MAKİNE: "+fmt(c.generated_at_utc));
+  txt("taskState",b.status||"BELİRSİZ");badge($("taskState"),b.status);
+  let el=$("tasks");el.replaceChildren();const active=Array.isArray(b.active)?b.active:[];
+  if(!active.length){const p=document.createElement("p");p.textContent="Şu anda açık veri kalitesi görevi yok. Bu sonuç yatırım tavsiyesi değildir.";el.append(p);}
+  for(const t of active){
+   let wrap=document.createElement("div");wrap.className="task";
+   let h=document.createElement("h3");h.textContent=t.title||t.id;
+   let m=document.createElement("div");m.className="meta";m.textContent=(t.owner||"") + " · " + (t.severity||"") + " · İlk tespit: "+fmt(t.first_seen_utc);
+   let p=document.createElement("p");p.textContent=t.next_step||"";
+   wrap.append(h,m,p);el.append(wrap);
+  }
+  txt("aiState",ai?.status==="COMPLETED"?"Son yapay zekâ araştırması tamamlandı":"Yapay zekâ etkin değil");
+  txt("aiInfo",ai?.status==="COMPLETED"?(ai.summary||"Son raporda özet yok."):"AI modeli ancak güvenli API anahtarı ve etkinleştirme tanımıyla çalışır; bağımsız kod ajanları bağlı değildir.");
+ }catch(err){txt("synced","KAYNAK HATASI");$("synced").className="pill warn";txt("openCount","—");txt("lastCheck","Canlı durum yüklenemedi");$("tasks").textContent="GitHub kaynaklarına erişilemedi. Sonuç uydurulmuyor. GitHub Actions geçmişini kontrol edin.";console.error("MAKINE status",err);}
+}
+init();
+</script></body></html>
