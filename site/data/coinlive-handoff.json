@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-18T13:21:15Z",
-  "source_commit_sha": "d2128de37df729abe10ec1e71360207a89cec426",
-  "source_scan_id": "92f061c2119dae78ec3d3d3b",
+  "generated_at_utc": "2026-10-18T13:44:42Z",
+  "source_commit_sha": "85da7187caa5db6b1ae78a3c09357b5965ff1888",
+  "source_scan_id": "67e9dfbf7bc3898d70499eca",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -17,14 +17,15 @@
       "spotlight": 0,
       "motion": 0,
       "watch": 40,
-      "recheck_pending": 88,
+      "recheck_pending": 97,
       "active_total": 112,
-      "archived_total": 191
+      "archived_total": 194
     },
     "health": "OK",
-    "import_timestamp": "2026-10-18T13:21:15Z",
+    "import_timestamp": "2026-10-18T13:44:42Z",
     "alti_source_state": "PARTIAL",
     "funding_watch_matches": [
+      "BTCUSDT",
       "ETHUSDT"
     ],
     "modules_observing": 1,

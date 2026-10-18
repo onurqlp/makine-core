@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-18T13:21:15Z",
+  "generated_at_utc": "2026-10-18T13:44:42Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -13,7 +13,7 @@
       "sha": "56caeeeb47118ac1ea56aa12dcd7f6474f39e101",
       "scan_id": "alti-20261018T1244Z",
       "observed_at_utc": "2026-10-18T12:44:19Z",
-      "age_minutes": 36.95,
+      "age_minutes": 60.39,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 3,
@@ -22,10 +22,10 @@
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "d2128de37df729abe10ec1e71360207a89cec426",
-      "scan_id": "92f061c2119dae78ec3d3d3b",
-      "observed_at_utc": "2026-10-18T13:14:42.011000+00:00",
-      "age_minutes": 6.56,
+      "sha": "85da7187caa5db6b1ae78a3c09357b5965ff1888",
+      "scan_id": "67e9dfbf7bc3898d70499eca",
+      "observed_at_utc": "2026-10-18T13:39:54.505000+00:00",
+      "age_minutes": 4.8,
       "state": "PARTIAL",
       "health": "OK",
       "warnings": [
@@ -35,9 +35,9 @@
         "spotlight": 0,
         "motion": 0,
         "watch": 40,
-        "recheck_pending": 88,
+        "recheck_pending": 97,
         "active_total": 112,
-        "archived_total": 191
+        "archived_total": 194
       }
     }
   },
@@ -111,6 +111,7 @@
         }
       ],
       "coinlive_watch_matches": [
+        "BTCUSDT",
         "ETHUSDT"
       ],
       "signal": false,
@@ -148,10 +149,10 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-18T13:21:15Z",
+    "generated_at_utc": "2026-10-18T13:44:42Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "d2128de37df729abe10ec1e71360207a89cec426",
-    "coinlive_scan_id": "92f061c2119dae78ec3d3d3b",
+    "coinlive_sha": "85da7187caa5db6b1ae78a3c09357b5965ff1888",
+    "coinlive_scan_id": "67e9dfbf7bc3898d70499eca",
     "alti_sha": "56caeeeb47118ac1ea56aa12dcd7f6474f39e101",
     "alti_scan_id": "alti-20261018T1244Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
@@ -174,6 +175,7 @@
       }
     ],
     "watched_funding_matches": [
+      "BTCUSDT",
       "ETHUSDT"
     ],
     "trade_candidates": [],
@@ -191,7 +193,7 @@
     "no_automated_signals": true
   },
   "runtime": {
-    "event": "schedule",
+    "event": "push",
     "mode": "SCHEDULED_READ_ONLY",
     "ai_agent": false
   }
