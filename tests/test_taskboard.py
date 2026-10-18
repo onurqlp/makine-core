@@ -72,6 +72,19 @@ class TaskBoardTests(unittest.TestCase):
         self.assertEqual(b["issue_delivery"]["state"], "FAILED_RETRY_NEXT_RUN")
         self.assertIsNone(b["last_notified_signature"])
 
+    def test_partial_recent_alti_is_not_falsely_called_stale(self):
+        report = build_board(snap(alti="PARTIAL"), now=T)
+        ids = [x["id"] for x in report["active"]]
+        self.assertIn("ALTI_PROVIDER_ACCESS", ids)
+        self.assertNotIn("ALTI_SOURCE_FRESHNESS", ids)
+        self.assertNotIn("ALTI_SOURCE_QUALITY", ids)
+
+    def test_unexplained_alti_partial_has_separate_quality_task(self):
+        report = build_board(snap(alti="PARTIAL", warnings=[]), now=T)
+        ids = [x["id"] for x in report["active"]]
+        self.assertIn("ALTI_SOURCE_QUALITY", ids)
+        self.assertNotIn("ALTI_SOURCE_FRESHNESS", ids)
+
     def test_cross_repository_api_absent(self):
         self.assertEqual(POST_URL,
                          "https://api.github.com/repos/onurqlp/makine-core/issues/1/comments")
