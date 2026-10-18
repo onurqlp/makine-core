@@ -14,6 +14,9 @@ on:
       - 'site/data/report.json'
       - 'site/data/coinlive-handoff.json'
       - 'site/data/update-history.json'
+      - 'site/data/coordination.json'
+      - 'site/data/task-board.json'
+      - 'site/data/agent-analysis.json'
 
 concurrency:
   group: makine-core-publication
@@ -52,6 +55,7 @@ jobs:
         run: |
           test -s site/index.html
           test -s site/app.js
+          test -s site/status.html
           test -s site/style.css
           test -s site/data/report.json
           test -s site/data/release.json
