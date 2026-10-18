@@ -1,7 +1,7 @@
 {
   "schema": "coinlive-external-context-v1",
   "source": "MAKINE",
-  "generated_at_utc": "2026-10-18T08:45:47Z",
+  "generated_at_utc": "2026-10-18T08:47:37Z",
   "coinlive_scan_id": "5699492f217e73a01923aecb",
   "coinlive_source_sha": "df6899b9b1982528150e717300879fa4c44c787a",
   "alti_scan_id": "alti-20261018T0815Z",
@@ -14,7 +14,7 @@
       "last_realized_fraction_per_event": 2.57666375942e-05,
       "last_realized_time_utc": "2026-10-18T08:00:00Z",
       "interval_hours": 8.0,
-      "event_age_minutes": 45.79,
+      "event_age_minutes": 47.62,
       "trade_ready": false
     },
     {
@@ -23,13 +23,69 @@
       "last_realized_fraction_per_event": 8.5248930619e-05,
       "last_realized_time_utc": "2026-10-18T08:00:00Z",
       "interval_hours": 8.0,
-      "event_age_minutes": 45.79,
+      "event_age_minutes": 47.62,
       "trade_ready": false
     }
   ],
   "matching_watch_symbols": [
     "BTCUSDT",
     "ETHUSDT"
+  ],
+  "module_checks": [
+    {
+      "id": "A1",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "NOT_CONNECTED",
+      "data_label": "NOT_CONNECTED",
+      "input_blocker": "Lisanslı, temettü/split düzeltilmiş hisse verisi ve borrow erişimi doğrulanmadı.",
+      "coinlive_support": "Hisse göreli değer stres filtresi",
+      "trade_ready": false
+    },
+    {
+      "id": "A2",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "NOT_CONNECTED",
+      "data_label": "NOT_CONNECTED",
+      "input_blocker": "Dayanak endeks, kur, temettü, NAV ve short erişimi doğrulanmadı.",
+      "coinlive_support": "ETF risk aktarım filtresi",
+      "trade_ready": false
+    },
+    {
+      "id": "A3",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "NOT_CONNECTED",
+      "data_label": "NOT_CONNECTED",
+      "input_blocker": "Johansen rank, formation-OOS ve çok bacak short erişimi doğrulanmadı.",
+      "coinlive_support": "Sepet ayrışma kontrolü",
+      "trade_ready": false
+    },
+    {
+      "id": "B1",
+      "state": "OBSERVING",
+      "source_strategy_status": "WATCH_ONLY",
+      "data_label": "READ_ONLY_LIVE",
+      "input_blocker": null,
+      "coinlive_support": "Funding gözlem köprüsü",
+      "trade_ready": false
+    },
+    {
+      "id": "B2",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "SOURCE_ERROR",
+      "data_label": "NOT_CONNECTED",
+      "input_blocker": "No validated two-venue quote screen",
+      "coinlive_support": "USDT/USDC sapma kontrolü",
+      "trade_ready": false
+    },
+    {
+      "id": "T0",
+      "state": "BLOCKED_SOURCE",
+      "source_strategy_status": "ACCESS_UNVERIFIED",
+      "data_label": "NOT_CONNECTED",
+      "input_blocker": "ISIN, dirty price, duration, repo dealer/teminat verisi ve erişim doğrulanmadı.",
+      "coinlive_support": "Finansman koşulları kontrolü",
+      "trade_ready": false
+    }
   ],
   "trade_candidates": [],
   "can_change_signal_policy": false,
