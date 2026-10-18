@@ -240,6 +240,7 @@ def persist(report, output=TARGET, history_path=HISTORY):
         "hour_utc": report["generated_at_utc"][:13],
         "generated_at_utc": report["generated_at_utc"],
         "system_state": report["system_state"],
+        "trigger_type": report.get("runtime_event", "LOCAL_OR_UNKNOWN"),
         "source_states": {k: v["state"] for k, v in report["sources"].items()},
         "source_shas": {k: v.get("commit_sha") for k, v in report["sources"].items()},
         "source_scan_ids": {k: v.get("scan_id") for k, v in report["sources"].items()},
@@ -253,6 +254,9 @@ def persist(report, output=TARGET, history_path=HISTORY):
 
 def main():
     snapshot = build_snapshot()
+    event = os.getenv("GITHUB_EVENT_NAME", "LOCAL_OR_UNKNOWN")
+    snapshot["runtime_event"] = event if event in ("push", "schedule", "workflow_dispatch") else "LOCAL_OR_UNKNOWN"
+    snapshot["schedule_proven_this_run"] = snapshot["runtime_event"] == "schedule"
     persist(snapshot)
     print(json.dumps({"state": snapshot["system_state"],
                       "sources": {k: v["state"] for k, v in snapshot["sources"].items()},
