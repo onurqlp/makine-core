@@ -1,0 +1,83 @@
+name: MAKİNE — Autonomous Read-Only Coordination
+
+on:
+  schedule:
+    - cron: '17 * * * *'      # Hourly source coordination, best effort UTC
+    - cron: '41 4 * * *'      # Daily full 57-model source research, best effort UTC
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: 'Also refresh the full 57-model source catalogue'
+        required: false
+        default: false
+        type: boolean
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/coordination.yml'
+      - 'makine/coordinator.py'
+      - 'tests/test_coordination.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: makine-core-publication
+  cancel-in-progress: false
+
+jobs:
+  coordinate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run existing and new safety/contract tests
+        run: python -m unittest discover -s tests -q
+      - name: Read immutable COIN.LIVE and ALTI public snapshots and coordinate
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m makine.coordinator
+      - name: Daily/explicit broader 57-model market research (never trades)
+        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '41 4 * * *') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
+        env:
+          MAKINE_SCHEDULED_REFRESH: '1'
+        run: python -m makine refresh
+      - name: Check outputs and keep an auditable hourly log
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          d=json.loads(pathlib.Path("site/data/coordination.json").read_text())
+          h=json.loads(pathlib.Path("data/coordination-history.json").read_text())
+          assert d["schema"]=="makine-coordination-v1"
+          assert d["mode"]=="AUTOMATED_READ_ONLY"
+          assert not any((d["controls"][k] for k in ("place_real_orders", "place_paper_orders", "source_repo_writes", "promote_live_signals")))
+          assert h["entries"] and len(h["entries"]) <= 336
+          with open(__import__("os").environ["GITHUB_STEP_SUMMARY"],"a") as out:
+              out.write("## MAKİNE coordinated snapshot\n")
+              out.write(f"- State: **{d['system_state']}**\n")
+              for k,v in d["sources"].items():
+                  out.write(f"- {k}: **{v['state']}** · {v.get('observed_at_utc') or 'unavailable'}\n")
+              out.write("- Research only; AI agent runtime **not connected**; no trading or source-repo writes.\n")
+          PY
+      - name: Commit MAKİNE-only read-only coordination reports
+        run: |
+          git config user.name "MAKİNE Research Worker"
+          git config user.email "makine-core-bot@users.noreply.github.com"
+          git add site/data/coordination.json data/coordination-history.json
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "41 4 * * *" ]; then
+            git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
+          fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.full_refresh }}" = "true" ]; then
+            git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "data: unattended MAKİNE evidence snapshot [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
