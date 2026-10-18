@@ -19,9 +19,12 @@ on:
       - 'tests/test_coordination.py'
       - 'makine/agent.py'
       - 'tests/test_agent.py'
+      - 'makine/taskboard.py'
+      - 'tests/test_taskboard.py'
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: makine-core-publication
@@ -57,6 +60,11 @@ jobs:
           MAKINE_AI_MODEL: ${{ vars.MAKINE_AI_MODEL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python -m makine.agent
+      - name: Build deduplicated task board and comment only on state transitions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python -m makine.taskboard
       - name: Check outputs and keep an auditable hourly log
         run: |
           python - <<'PY'
@@ -67,6 +75,10 @@ jobs:
           assert d["mode"]=="AUTOMATED_READ_ONLY"
           assert not any((d["controls"][k] for k in ("place_real_orders", "place_paper_orders", "source_repo_writes", "promote_live_signals")))
           assert h["entries"] and len(h["entries"]) <= 336
+          t=json.loads(pathlib.Path("site/data/task-board.json").read_text())
+          assert t["schema"]=="makine-task-board-v1"
+          assert t["automation"]["cross_repository_writes"] is False
+          assert t["automation"]["allow_trading"] is False
           with open(__import__("os").environ["GITHUB_STEP_SUMMARY"],"a") as out:
               out.write("## MAKİNE coordinated snapshot\n")
               out.write(f"- State: **{d['system_state']}**\n")
@@ -78,7 +90,7 @@ jobs:
         run: |
           git config user.name "MAKİNE Research Worker"
           git config user.email "makine-core-bot@users.noreply.github.com"
-          git add site/data/coordination.json data/coordination-history.json
+          git add site/data/coordination.json data/coordination-history.json site/data/task-board.json
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "41 4 * * *" ]; then
             git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
             if [ -f site/data/agent-analysis.json ]; then git add site/data/agent-analysis.json; fi
