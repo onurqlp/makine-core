@@ -1,4 +1,17 @@
 {
   "schema": "makine-six-support-history-v2",
-  "entries": []
+  "entries": [
+    {
+      "at_utc": "2026-10-18T08:44:28Z",
+      "run_trigger": "push",
+      "state": "DEGRADED",
+      "alti": "PARTIAL",
+      "coinlive": "INVALID",
+      "observing": [
+        "B1"
+      ],
+      "coin_scan": "6718cf2cf3670af4f329442b",
+      "alti_scan": "alti-20261018T0815Z"
+    }
+  ]
 }

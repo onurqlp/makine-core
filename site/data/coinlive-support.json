@@ -1,6 +1,11 @@
 {
   "schema": "coinlive-external-context-v1",
   "source": "MAKINE",
+  "generated_at_utc": "2026-10-18T08:44:28Z",
+  "coinlive_scan_id": "6718cf2cf3670af4f329442b",
+  "coinlive_source_sha": "0c524676c051aa290790a98667685ede1ee3b971",
+  "alti_scan_id": "alti-20261018T0815Z",
+  "alti_source_sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
   "status": "NO_VERIFIED_HANDOFF",
   "funding_event_context": [],
   "matching_watch_symbols": [],
