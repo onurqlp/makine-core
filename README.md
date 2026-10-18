@@ -63,3 +63,7 @@ COIN.LIVE için planlanan değişiklikleri sadece [`docs/COINLIVE_GUNCELLEME_PRO
 - **Ajan sınırı:** GitHub saatlik iş akışı kural tabanlı koordinatördür; kendiliğinden diğer ChatGPT/Codex sohbetlerini açmaz, ayrı bir LLM çalışma servisi henüz bağlı değildir.
 - **Yayın sınırı:** Vercel mevcut GitHub'a otomatik bağlanmış değildir; GitHub JSON'larının yenilenmesi tek başına `makine-core-lab.vercel.app` adresini güncellemez.
 - **Güvenlik:** Kaynak depolara yazma / işlem / sanal pozisyon / sürüm terfisi yok; yalnız MAKİNE çıktıları commit edilir. GitHub Actions schedule kesin SLA değildir.
+
+## İleri koordinasyon — görev kuyruğu
+
+`makine/taskboard.py` raporlardan yalnız kurala dayalı görev çıkarır ve aynı sorun için GitHub'a tekrar tekrar yorum göndermemeye çalışır. İlk doğrulanan otomatik yorum: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866. [Canlı görev raporu](site/data/task-board.json); [ayrıntılı otomasyon kılavuzu](docs/AUTOMATED_COORDINATION.md). Sadece MAKİNE issue #1'e yorum yazılır, ALTI/COIN.LIVE depolarına değişiklik yapılmaz. API modeli yoksa veya kullanıcı etkinleştirme yapmadıysa yapay zekâ agent'i bağlı değildir.
