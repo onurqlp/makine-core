@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-18T12:30:34Z",
+  "generated_at_utc": "2026-10-18T12:31:00Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -13,7 +13,7 @@
       "sha": "6176dff0830d3a186bedaadff7b49af314f1c723",
       "scan_id": "alti-20261018T0815Z",
       "observed_at_utc": "2026-10-18T08:15:45Z",
-      "age_minutes": 254.82,
+      "age_minutes": 255.25,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 3,
@@ -25,7 +25,7 @@
       "sha": "3f377170e8bec91d369cb93b2e08b909bd769161",
       "scan_id": "982b732c0845ff60424f9a42",
       "observed_at_utc": "2026-10-18T12:29:43.512000+00:00",
-      "age_minutes": 0.85,
+      "age_minutes": 1.27,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -129,7 +129,7 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-18T12:30:34Z",
+    "generated_at_utc": "2026-10-18T12:31:00Z",
     "source": "onurqlp/makine-core",
     "coinlive_sha": "3f377170e8bec91d369cb93b2e08b909bd769161",
     "coinlive_scan_id": "982b732c0845ff60424f9a42",

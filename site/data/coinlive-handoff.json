@@ -1,0 +1,95 @@
+{
+  "schema": "makine-coinlive-research-handoff-v1",
+  "generator": "MAKINE_CORE",
+  "generated_at_utc": "2026-10-18T12:31:00Z",
+  "source_commit_sha": "3f377170e8bec91d369cb93b2e08b909bd769161",
+  "source_scan_id": "982b732c0845ff60424f9a42",
+  "source_integrity": "VERIFIED",
+  "source_fresh_at_import": true,
+  "can_promote_to_live_signal": false,
+  "can_modify_live_policy": false,
+  "can_execute_orders": false,
+  "can_modify_coins_live_ledger": false,
+  "new_trade_candidates": [],
+  "market_context": {
+    "status": "NO_VERIFIED_CONTEXT",
+    "radar_counts": {
+      "spotlight": 0,
+      "motion": 0,
+      "watch": 40,
+      "recheck_pending": 87,
+      "active_total": 110,
+      "archived_total": 185
+    },
+    "health": "DEGRADED_SCHEDULE_GAP",
+    "import_timestamp": "2026-10-18T12:31:00Z",
+    "alti_source_state": "STALE",
+    "funding_watch_matches": [],
+    "modules_observing": 0,
+    "module_ids": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "T0"
+    ]
+  },
+  "recommendations": [
+    {
+      "id": "SUPPORT-A1",
+      "module_id": "A1",
+      "title": "Hisse pairs",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "A1"
+    },
+    {
+      "id": "SUPPORT-A2",
+      "module_id": "A2",
+      "title": "ETF–ETF",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "A2"
+    },
+    {
+      "id": "SUPPORT-A3",
+      "module_id": "A3",
+      "title": "İstatistiksel sepet",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "A3"
+    },
+    {
+      "id": "SUPPORT-B1",
+      "module_id": "B1",
+      "title": "Perpetual funding",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "B1"
+    },
+    {
+      "id": "SUPPORT-B2",
+      "module_id": "B2",
+      "title": "Stablecoin sapması",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "B2"
+    },
+    {
+      "id": "SUPPORT-T0",
+      "module_id": "T0",
+      "title": "Tahvil–repo",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
+      "not_executable": true,
+      "alti_overlap": "T0"
+    }
+  ],
+  "usage": "V5 compatibility endpoint for six independent support modules. No retired revenue ideas, trading signals, model promotion, or orders."
+}
