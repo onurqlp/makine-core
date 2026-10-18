@@ -1,11 +1,11 @@
 {
   "schema": "makine-coinlive-support-feed-v2",
-  "generated_at_utc": "2026-10-18T16:36:24Z",
+  "generated_at_utc": "2026-10-18T19:27:39Z",
   "source": "onurqlp/makine-core",
-  "coinlive_sha": "25f27ce1e285f376331814591ca017cf5b19207e",
-  "coinlive_scan_id": "fd552932720c9693bb7368d3",
-  "alti_sha": "29d5decbc860c1e4e06b413a312803dd3dd3adda",
-  "alti_scan_id": "alti-20261018T1623Z",
+  "coinlive_sha": "9637204268eb896399b4b82386a9386c9ac78334",
+  "coinlive_scan_id": "81b5388ec61067d8ca082aee",
+  "alti_sha": "7b3892cc699ae3fae51caff54087b50963dc985c",
+  "alti_scan_id": "alti-20261018T1847Z",
   "status": "LIMITED_READ_ONLY_CONTEXT",
   "funding_observations": [
     {
@@ -25,10 +25,7 @@
       "executable": false
     }
   ],
-  "watched_funding_matches": [
-    "BTCUSDT",
-    "ETHUSDT"
-  ],
+  "watched_funding_matches": [],
   "trade_candidates": [],
   "change_signals": false,
   "orders": false,
