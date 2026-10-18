@@ -77,3 +77,7 @@ Local AI denemesine anahtarı terminal geçmişine veya örnek komut içine göm
 - Sonrasında GitHub Actions `MAKİNE — Autonomous Read-Only Coordination` işinin `pages` adımını ve gerçek URL'yi doğrula. `Settings → Pages` sayfasındaki **Visit site** bağlantısı yalnız yayın tamamlandıysa kullanılmalı.
 - Vercel üretim projesi kaynak repoya otomatik bağlı değildir; Vercel eski sürümüyle GitHub yeni sürümünü birbiriyle karıştırma.
 - İki GitHub Actions workflow'u ayrılmış concurrency gruplarıyla koordinasyon veya yayın güncellemelerinin birbirini gereksiz yere iptal etmesini azaltır.
+
+## 8. Gerçek otomasyonun kanıtı
+
+`site/data/coordination.json` içindeki `runtime_event` ve `data/coordination-history.json` içindeki `trigger_type` artık GitHub'ın gerçek `push`, `schedule` veya `workflow_dispatch` olayını ayrı gösterir. Push ile başarılı olan testin gerçek otomatik cron olduğunu iddia etmek yasaktır. Mobil durum ekranı son 14 günlük arşivde en az bir `schedule` kaydı varsa bunu açıkça söyler. GitHub kron gecikirse bağımsız zaman garantisi yoktur.
