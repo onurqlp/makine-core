@@ -196,9 +196,54 @@ def write(path,obj):
     temp.write_text(json.dumps(obj,ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     os.replace(temp,path)
 
+def v5_compatibility(result):
+    """Adapt the SIX modules to the fixed legacy URI hard-coded in V5 preview.
+
+    This is an API compatibility facade, NOT restoration of the retired
+    57 model catalog or research workflow.
+    """
+    coin=result["sources"]["coinlive"]
+    clean=coin.get("state") in ("FRESH","PARTIAL")
+    fresh=coin.get("age_minutes")
+    generated=result["generated_at_utc"]
+    return {
+        "schema":"makine-coinlive-research-handoff-v1",
+        "generator":"MAKINE_CORE",
+        "generated_at_utc":generated,
+        "source_commit_sha":coin.get("sha"),
+        "source_scan_id":coin.get("scan_id"),
+        "source_integrity":"VERIFIED" if clean else "UNVERIFIED",
+        "source_fresh_at_import":bool(clean and isinstance(fresh,(int,float)) and -5<=fresh<=45),
+        "can_promote_to_live_signal":False,
+        "can_modify_live_policy":False,
+        "can_execute_orders":False,
+        "can_modify_coins_live_ledger":False,
+        "new_trade_candidates":[],
+        "market_context":{
+            "status": "SIX_MODULE_LIMITED_CONTEXT" if result["feed"]["status"]=="LIMITED_READ_ONLY_CONTEXT" else "NO_VERIFIED_CONTEXT",
+            "radar_counts":coin.get("counts",{}),
+            "health":coin.get("health"),
+            "import_timestamp":generated,
+            "alti_source_state":result["sources"]["alti"]["state"],
+            "funding_watch_matches":result["feed"]["watched_funding_matches"],
+            "modules_observing":result["observing_count"],
+            "module_ids":[x["id"] for x in result["modules"]],
+        },
+        "recommendations":[{
+            "id":"SUPPORT-"+m["id"],"module_id":m["id"],
+            "title":m["name"],
+            "state":m["state"],
+            "recommendation":"OBSERVATION_ONLY" if m["state"]=="OBSERVING" else "SOURCE_NOT_READY",
+            "not_executable":True,
+            "alti_overlap":m["id"],
+        } for m in result["modules"]],
+        "usage":"V5 compatibility endpoint for six independent support modules. No retired revenue ideas, trading signals, model promotion, or orders."
+    }
+
 def persist(result,root=ROOT):
     write(root/"site/data/support.json",result)
     write(root/"site/data/coinlive-support.json",result["feed"])
+    write(root/"site/data/coinlive-handoff.json",v5_compatibility(result))
     path=root/"data/support-history.json"
     try:previous=json.loads(path.read_text("utf-8")).get("entries",[])
     except (ValueError,OSError):previous=[]
