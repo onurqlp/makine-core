@@ -38,6 +38,11 @@ TASK_DEFINITIONS = {
         "title": "ALTI sağlayıcı erişimi kısmen başarısız",
         "next_step": "Sağlayıcı hata durumlarını ve alternatif kamuya açık veri erişimini araştır; işlem yapma.",
     },
+    "ALTI_SOURCE_QUALITY": {
+        "owner": "ALTI", "severity": "MEDIUM",
+        "title": "ALTI kaynak verisi kısmi, veri kalitesini incele",
+        "next_step": "Kısmi verinin gerçek gerekçesini kontrol et; kaynaktaki eksikleri tamamlanmış gibi işaretleme.",
+    },
 }
 
 
@@ -47,8 +52,10 @@ def _issue_codes(snapshot):
     alti = (snapshot.get("sources") or {}).get("alti") or {}
     if coin.get("state") != "FRESH":
         result.append("COIN_SOURCE_FRESHNESS")
-    if alti.get("state") != "FRESH":
+    if alti.get("state") in ("STALE", "UNAVAILABLE", "INVALID", "INVALID_TIME", None):
         result.append("ALTI_SOURCE_FRESHNESS")
+    if alti.get("state") == "PARTIAL" and "PARTIAL_PROVIDER_ACCESS" not in (alti.get("warnings") or []):
+        result.append("ALTI_SOURCE_QUALITY")
     if "PARTIAL_PROVIDER_ACCESS" in (alti.get("warnings") or []):
         result.append("ALTI_PROVIDER_ACCESS")
     return sorted(result)
