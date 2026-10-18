@@ -3,18 +3,18 @@
   "entries": [
     {
       "hour_utc": "2026-10-18T07",
-      "generated_at_utc": "2026-10-18T07:40:03Z",
+      "generated_at_utc": "2026-10-18T07:46:57Z",
       "system_state": "ATTENTION_REQUIRED",
       "source_states": {
-        "coinlive": "PARTIAL",
+        "coinlive": "FRESH",
         "alti": "STALE"
       },
       "source_shas": {
-        "coinlive": "2788b229e86664eda098edc2c790ee2623c79216",
+        "coinlive": "cb541b47515cac083a7bfdd515126dfc5fb4ab6f",
         "alti": "b00cf714e8b4dc1a4677b238ad52c3cfaa74ccf4"
       },
       "source_scan_ids": {
-        "coinlive": "d2890ded1872882a48c38328",
+        "coinlive": "0458b54e7a26a08523190fe5",
         "alti": "alti-20261018T0321Z"
       },
       "no_orders": true
