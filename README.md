@@ -11,7 +11,7 @@ MAKİNE, COIN.LIVE PRO'nun yerine geçmez, kodunu değiştirmez, otomatik emir/s
 - **Açık görevlerin gerçek raporu:** [site/data/task-board.json](site/data/task-board.json)
 - **Saatlik koordinasyonun kanıtı:** [GitHub Actions](https://github.com/onurqlp/makine-core/actions/workflows/coordination.yml)
 - **Otomatik ortak görev merkezi:** [Issue #1](https://github.com/onurqlp/makine-core/issues/1)
-- **Yayın için tek hesap ayarı:** [GitHub Pages ayarları](https://github.com/onurqlp/makine-core/settings/pages) → `Build and deployment → Source: GitHub Actions`. Etkinleşene kadar GitHub Pages sitesi aktif kabul edilmez. Vercel'deki eski siteyi yeni sürüm zannetme.
+- **GitHub Pages yayını: etkin ve başarılı (18.10.2026).** [MAKİNE ana sayfası](https://onurqlp.github.io/makine-core/) · [mobil görev merkezi](https://onurqlp.github.io/makine-core/status.html) · [başarılı yayın kanıtı](https://github.com/onurqlp/makine-core/actions/runs/39111561162). GitHub yayın adımı başarılıdır; dış tarayıcı HTTP erişimi ayrı doğrulanmamıştır. Vercel'deki önceki site bağımsızdır.
 - **Ücretli yapay zekâ:** İsteğe bağlı ve varsayılan kapalı; [kurulum talimatı](docs/AUTOMATED_COORDINATION.md#3-yapay-zekâ-katmanı-bilinçli-şekilde-kapalı). Bu, arka plandaki diğer ChatGPT/Codex sohbetlerini otomatik çalıştırmaz.
 
 ## İçerik
@@ -81,3 +81,6 @@ COIN.LIVE için planlanan değişiklikleri sadece [`docs/COINLIVE_GUNCELLEME_PRO
 ### Mobil durum ekranı
 
 `site/status.html` telefon öncelikli koordinasyon panelidir; kamuya açık GitHub main JSON kaynaklarını no-cache okuyarak kaynak zamanı, açık görev ve AI durumunu gösterir. URL yalnız site GitHub Pages ya da Vercel'e yayımlandıktan sonra kullanılabilir. GitHub Pages ayarı varsa `https://onurqlp.github.io/makine-core/status.html` adresine dağıtılır. Eski Vercel projesi henüz GitHub'a bağlı değildir.
+
+
+**Güncel üretim adresi (18.10.2026):** https://onurqlp.github.io/makine-core/ · Otomatik görev ekranı: https://onurqlp.github.io/makine-core/status.html · GitHub Pages deploy başarılı: https://github.com/onurqlp/makine-core/actions/runs/39111561162
