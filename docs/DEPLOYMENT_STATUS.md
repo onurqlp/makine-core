@@ -63,3 +63,21 @@ Bu tarihli kaydın `fresh_at_import` durumu, ilerleyen günlerde de verinin hâl
 - Koordinatör kodu, testler, site ve Pages tespit işi başarılı: https://github.com/onurqlp/makine-core/actions/runs/39110910481
 - Saatlik botun ilk gerçek görev yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866
 - Değişen duruma göre takip yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247441307
+
+
+## GitHub Pages ilk gerçek yayın — 18 Ekim 2026
+
+**Kullanıcı GitHub Pages'i etkinleştirdi; başarı doğrulandı.**
+
+- Repo `has_pages=true` (GitHub public repository API).
+- Kullanıcı onayı sonrası ilk dağıtımı tetiklemek için `site/.nojekyll` dosyası eklendi.
+- Yayın workflow run: https://github.com/onurqlp/makine-core/actions/runs/39111561162
+- Commit: `fc9908e18674cff6221461d7b6d7856cbb13c109`
+- `research` işi **success**, sözleşme testleri **success**; `pages` işi **success** ve `Deploy Pages` adımı **success**.
+- Deploy logu doğrudan `Reported success!` kaydetti; GitHub tarafından atanan üretim URL'si: **https://onurqlp.github.io/makine-core/**. Mobil panel: **https://onurqlp.github.io/makine-core/status.html**.
+- Repo `site/` klasörü Pages artifact olarak yüklenir; GitHub Actions koordinasyon workflow'u her başarılı saatlik/günlük çalışmadan sonra yeniden Pages deploy etmeyi dener.
+- Dış HTTP/telefon tarayıcısıyla bağımsız uçtan uca açılış testi bu oturumda tamamlanmadı; Pages API ve yayın logları ile doğrulanan nokta **dağıtım başarılı** durumudur.
+- **AI araştırma modülü hâlen varsayılan kapalıdır**. GitHub Pages etkinleştirmek OpenAI API anahtarını, diğer sohbetlerdeki ajanları veya piyasa işlemlerini etkinleştirmez.
+- Eski Vercel URL'si otomatik GitHub entegre değildir; güncel site adresi olarak Pages kullanılmalıdır.
+
+> Önceki bölümlerdeki GitHub Pages kapalı/etkin değil ifadeleri, bu tarihli başarıdan **önceki** durumu anlatır.
