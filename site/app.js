@@ -75,5 +75,18 @@
     }catch(err){$('modelGrid').innerHTML='<div class="empty">Araştırma raporu yüklenemedi. İnternet bağlantısı veya site yayınını kontrol edin. Sahte veri gösterilmiyor.</div>';
        $('engineGrid').innerHTML='<div class="empty">Motor durumları rapordan yüklenemedi.</div>';console.error('MAKİNE source unavailable:',err);
     }}
+  const elapsed=v=>{const x=Date.parse(v||'');return Number.isFinite(x)?(Date.now()-x)/60000:Infinity};
+  const statusNow=(s,threshold)=>{const age=elapsed(s?.observed_at_utc);return age>threshold?'ESKİ':age<-5?'TARİH HATALI':({FRESH:'GÜNCEL',PARTIAL:'KISMİ',STALE:'ESKİ',UNAVAILABLE:'ULAŞILAMIYOR',INVALID:'GEÇERSİZ'})[s?.state]||'BELİRSİZ'};
+  async function liveOverview(){try{
+    const root='https://raw.githubusercontent.com/onurqlp/makine-core/main/site/data/';
+    const [c,t]=await Promise.all([getJSON(root+'coordination.json?ts='+Date.now()),getJSON(root+'task-board.json?ts='+Date.now())]);
+    const labels=[['coinlive','liveCoinState','liveCoinTime',30],['alti','liveAltiState','liveAltiTime',90]];
+    for(const [key,label,timeId,maxAge] of labels){const src=c.sources?.[key]||{};$(label).textContent=statusNow(src,maxAge);$(timeId).textContent='Kaynak: '+time(src.observed_at_utc);}
+    $('liveTaskCount').textContent=elapsed(t.generated_at_utc)>120?'ESKİ RAPOR':(t.active?.length??'—')+' açık görev';
+    $('liveRunTime').textContent='MAKİNE son kontrol: '+time(c.generated_at_utc);
+  }catch(e){for(const id of ['liveCoinState','liveAltiState'])$(id).textContent='DOĞRULANAMADI';
+    $('liveTaskCount').textContent='—';$('liveRunTime').textContent='Kaynak bağlantısı kontrol edilemedi';}
+  }
+  liveOverview();
   init();
 })();
