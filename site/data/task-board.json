@@ -1,7 +1,7 @@
 {
   "schema": "makine-task-board-v1",
-  "generated_at_utc": "2026-10-18T08:24:28Z",
-  "from_coordination_utc": "2026-10-18T08:24:26Z",
+  "generated_at_utc": "2026-10-18T08:24:47Z",
+  "from_coordination_utc": "2026-10-18T08:24:46Z",
   "status": "ATTENTION_REQUIRED",
   "active": [
     {
@@ -19,7 +19,7 @@
         "scan_id": "alti-20261018T0815Z"
       },
       "first_seen_utc": "2026-10-18T07:59:08Z",
-      "last_seen_utc": "2026-10-18T08:24:28Z",
+      "last_seen_utc": "2026-10-18T08:24:47Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     },
@@ -38,7 +38,7 @@
         "scan_id": "8d88b0aada88ef8f9c82c614"
       },
       "first_seen_utc": "2026-10-18T08:18:11Z",
-      "last_seen_utc": "2026-10-18T08:24:28Z",
+      "last_seen_utc": "2026-10-18T08:24:47Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     }
@@ -55,16 +55,14 @@
   ],
   "transition": {
     "started": [],
-    "resolved": [
-      "ALTI_SOURCE_FRESHNESS"
-    ],
-    "changed": true,
+    "resolved": [],
+    "changed": false,
     "signature": "178cf27c112726cb"
   },
   "last_notified_signature": "178cf27c112726cb",
   "issue_delivery": {
-    "state": "POSTED",
-    "posted": true
+    "state": "UNCHANGED",
+    "posted": false
   },
   "notification_required": false,
   "master_issue": "https://github.com/onurqlp/makine-core/issues/1",
