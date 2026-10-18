@@ -75,8 +75,10 @@ def load_coin(now,fetcher=fetch):
     manifest,radar,health=[docs[p] for p in paths]
     reasons=[]
     scan=manifest.get("scan_id")
-    if not scan or scan!=radar.get("scan_id") or scan!=health.get("last_scan_id"):
+    if not scan or scan!=radar.get("scan_id"):
         reasons.append("SCAN_MISMATCH")
+    if scan!=health.get("last_scan_id"):
+        reasons.append("HEALTH_SCAN_LAG")
     for key,path in (("v4-radar",paths[1]),("health",paths[2])):
         expected=(manifest.get("sources",{}).get(key) or {}).get("sha256")
         if not expected or expected!=hashes[path]:reasons.append("HASH_MISMATCH_"+key)
@@ -85,8 +87,8 @@ def load_coin(now,fetcher=fetch):
         reasons.append("SOURCE_SAFETY_UNVERIFIED")
     a=age(manifest.get("finished_at_utc"),now)
     status="FRESH" if a is not None and -5<=a<=45 else "STALE"
-    if reasons:status="INVALID"
-    elif status=="FRESH" and health.get("status")!="OK":status="PARTIAL"
+    if any(r.startswith(("SCAN_MISMATCH","HASH_MISMATCH","SOURCE_SAFETY_UNVERIFIED")) for r in reasons):status="INVALID"
+    elif status=="FRESH" and (health.get("status")!="OK" or reasons):status="PARTIAL"
     if health.get("schedule_proven") is not True:reasons.append("CRON_NOT_PROVEN")
     watches=sorted({x["symbol"] for x in (radar.get("watch") or [])
                     if isinstance(x,dict) and isinstance(x.get("symbol"),str)})[:150]
