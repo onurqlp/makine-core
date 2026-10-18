@@ -1,18 +1,18 @@
 {
   "schema": "makine-coordination-v1",
-  "generated_at_utc": "2026-10-18T07:59:07Z",
+  "generated_at_utc": "2026-10-18T08:05:18Z",
   "mode": "AUTOMATED_READ_ONLY",
   "system_state": "ATTENTION_REQUIRED",
   "sources": {
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "commit_sha": "638afef42b49470d770161abbc75113d3a8b478d",
-      "scan_id": "67cf8e185c9f091d2ab98d9f",
-      "observed_at_utc": "2026-10-18T07:54:33.133000+00:00",
-      "age_minutes": 4.57,
+      "commit_sha": "3116ef78603b50bd697a0e8832c38d9c750b3404",
+      "scan_id": "0d7defb206c7d008057bf4d9",
+      "observed_at_utc": "2026-10-18T08:04:43.558000+00:00",
+      "age_minutes": 0.59,
       "freshness_limit_minutes": 30,
-      "state": "PARTIAL",
-      "source_health": "DEGRADED_SCHEDULE_GAP",
+      "state": "FRESH",
+      "source_health": "OK",
       "real_scheduled_runs_seen": 12,
       "schedule_proven_in_source": true,
       "partial_hash_verified": true,
@@ -20,9 +20,7 @@
         "v4-radar",
         "v4-paper"
       ],
-      "warnings": [
-        "HEALTH_NOT_OK"
-      ],
+      "warnings": [],
       "market_context_only": true,
       "can_place_orders": false
     },
@@ -32,7 +30,7 @@
       "scan_id": "alti-20261018T0321Z",
       "observed_at_utc": "2026-10-18T03:21:03Z",
       "last_successful_scan_utc": "2026-10-18T03:21:03Z",
-      "age_minutes": 278.07,
+      "age_minutes": 284.27,
       "freshness_limit_minutes": 90,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
