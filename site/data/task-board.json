@@ -1,7 +1,7 @@
 {
   "schema": "makine-task-board-v1",
-  "generated_at_utc": "2026-10-18T08:22:54Z",
-  "from_coordination_utc": "2026-10-18T08:22:53Z",
+  "generated_at_utc": "2026-10-18T08:23:27Z",
+  "from_coordination_utc": "2026-10-18T08:23:26Z",
   "status": "ATTENTION_REQUIRED",
   "active": [
     {
@@ -19,7 +19,7 @@
         "scan_id": "alti-20261018T0815Z"
       },
       "first_seen_utc": "2026-10-18T07:59:08Z",
-      "last_seen_utc": "2026-10-18T08:22:54Z",
+      "last_seen_utc": "2026-10-18T08:23:27Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     },
@@ -38,7 +38,7 @@
         "scan_id": "alti-20261018T0815Z"
       },
       "first_seen_utc": "2026-10-18T07:59:08Z",
-      "last_seen_utc": "2026-10-18T08:22:54Z",
+      "last_seen_utc": "2026-10-18T08:23:27Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     },
@@ -57,7 +57,7 @@
         "scan_id": "8d88b0aada88ef8f9c82c614"
       },
       "first_seen_utc": "2026-10-18T08:18:11Z",
-      "last_seen_utc": "2026-10-18T08:22:54Z",
+      "last_seen_utc": "2026-10-18T08:23:27Z",
       "issue": "https://github.com/onurqlp/makine-core/issues/1",
       "autonomous_code_execution": false
     }
