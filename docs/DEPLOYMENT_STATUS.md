@@ -36,3 +36,30 @@ Yalnız `onurqlp/makine-core` üzerinde değişiklik ve manuel salt-okunur kayna
 - **GitHub Pages:** İlk doğrulamada henüz etkin değildi; bu yüzden opsiyonel yayın adımı atlandı. Vercel yayını aktif.
 
 Bu tarihli kaydın `fresh_at_import` durumu, ilerleyen günlerde de verinin hâlâ güncel olduğunu **göstermez**; kaynak zamanları her yeni araştırmada tekrar kontrol edilir. Vercel, GitHub'a otomatik bağlı değildir. COIN.LIVE veya ALTI deposuna hiçbir yazma yapılmadı.
+
+
+## MAKİNE son ürünleştirme denetimi — 18 Ekim 2026
+
+**Kaynak gerçekliği:** Depo kodu ve Actions raporları başarılı, ancak bu durumun otomatik olarak Vercel üretim alanına dağıtıldığını gösteren kanıt **yok**. Vercel'in daha eski `READY` dağıtım kaydı, yeni kodun o adreste çalıştığı anlamına gelmez.
+
+**Otomatik motor (doğrulandı):**
+- 57 fikir + 5 motor ve salt-okunur COIN.LIVE → MAKİNE köprüsü muhafaza edildi.
+- ALTI altı modülün kimlik/status eşleşmesi korunuyor; makine paper/live işlem üretmez.
+- Saatlik rapor + günlük daha geniş katalog okuması `.github/workflows/coordination.yml` içinde tanımlı; GitHub cron kesin zamanda çalışmayabilir.
+- Otomatik durum değişikliği GitHub issue #1 yorumlarıyla test edildi; aynı durum değişmeden gereksiz bildirim yapmaz.
+- Mobil `site/status.html`: mevcut kaynak yaşını tarayıcıda hesaplar, açık görevleri, 6 eşleşmeyi, geçmiş kaydı ve AI durumunu gösterir.
+- Ana sayfa `site/index.html`: canlı kaynak ve görev özet paneli eklendi.
+- Kaynaklar eskiyse panel `FRESH` göstermemeli; boş veya erişilemeyen kaynaklar hiçbir zaman kâr veya işlem doğruluğu olarak yorumlanmamalı.
+- Javascript ve Python testleri GitHub üzerinde geçti.
+
+**Yayın (eksik kullanıcı hesabı ayarı):**
+- `onurqlp/makine-core` GitHub repo API `has_pages=false` gösteriyor. GitHub Actions sayfa işinin `configure/upload/deploy` adımları **bilerek atlandı**. Siteye açık/dogrulanmış yeni URL ilan edilmedi.
+- Kullanıcı GitHub'da **Settings → Pages → Build and deployment → Source = GitHub Actions** seçtiğinde, kaynak değişikliklerinde `publish.yml`, saatlik güncellemelerde `coordination.yml` Pages'e güncel `site/` içeriğini yayınlayacak. Yayın ancak `deploy-pages` adımı başarılı ve sayfa erişilebilir olduğunda onaylanabilir.
+- Vercel bağlantısı erişim yetkisi yüzünden burada yapılandırılamadı; daha önce bildirilen `https://makine-core-lab.vercel.app/` yeni sürüm için doğrulanmış URL değildir.
+
+**Ücretli AI araştırma:** `makine/agent.py` kodu + sınırlandırılmış çıktı şeması hazır fakat `MAKINE_AI_ENABLED=true` Actions variable ve `OPENAI_API_KEY` Actions secret olmadan açılmaz. Gizli değeri sohbet, dosya veya siteyle paylaşma. AI açık olsa da diğer ChatGPT/Codex oturumları başlatılmaz ve kaynak repo değişikliği, sinyal veya emir üretilmez.
+
+**GitHub kanıtlar:**
+- Koordinatör kodu, testler, site ve Pages tespit işi başarılı: https://github.com/onurqlp/makine-core/actions/runs/39110910481
+- Saatlik botun ilk gerçek görev yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866
+- Değişen duruma göre takip yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247441307
