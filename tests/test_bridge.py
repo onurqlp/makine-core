@@ -1,116 +1,80 @@
-"""Offline gates for the six-module support-only production contract."""
+"""Six-module read-only support contract; offline deterministic tests."""
 import datetime as dt
 import hashlib
 import json
+import pathlib
 import tempfile
 import unittest
-from pathlib import Path
-from makine.bridge import SPECS,build,pinned,persist,modules
-from makine.tasks import make_board,notify
+from makine.bridge import build,pinned,persist,MODULES
 
-NOW=dt.datetime(2026,10,18,8,30,tzinfo=dt.timezone.utc)
+NOW=dt.datetime(2026,10,18,9,tzinfo=dt.timezone.utc)
 SHA="a"*40
-def j(x):return json.dumps(x,ensure_ascii=False).encode()
-
-def sample(*,alti_old=False,coin_old=False,provider_error=True):
-    coin_time="2026-10-18T04:00:00Z" if coin_old else "2026-10-18T08:25:00Z"
-    radar={"scan_id":"coin-id-1","no_real_orders":True,"counts":{"watch":2},
-        "watch":[{"symbol":"BTCUSDT"},{"symbol":"SOLUSDT"}]}
-    health={"status":"DEGRADED_SCHEDULE_GAP","last_scan_id":"coin-id-1",
-        "updated_at":coin_time,"schedule_proven":True}
-    manifest={"scan_id":"coin-id-1","finished_at_utc":coin_time,
-       "publication_valid":True,"no_real_orders":True,
-       "sources":{"v4-radar":{"sha256":hashlib.sha256(j(radar)).hexdigest()},
-                  "health":{"sha256":hashlib.sha256(j(health)).hexdigest()}}}
-    strategies=[{"id":code,"status":"WATCH_ONLY" if code=="B1" else "NOT_CONNECTED",
-                 "data_label":"READ_ONLY_LIVE" if code=="B1" else "NOT_CONNECTED",
-                 "reason":"No verified required source"} for code,*_ in SPECS]
-    alti={"generated_at_utc":"2026-10-18T04:00:00Z" if alti_old else "2026-10-18T08:24:00Z",
-          "scan_id":"alti-id","scan_status":"PARTIAL_LIVE","live_orders_enabled":False,
-          "synthetic_data_in_report":False,"strategies":strategies,
-          "errors":[{"status":"ACCESS_BLOCKED"}] if provider_error else [],
-          "funding_records":[{"venue":"OKX","symbol":"BTCUSDT","rate_unit":"SIGNED_FRACTION_PER_EVENT",
-            "data_label":"READ_ONLY_LIVE","last_realized_rate_fraction":0.0001,
-            "last_realized_time_utc":"2026-10-18T08:00:00Z","interval_hours":8}]}
-    rows={
-       ("onurqlp/coin-live-pro","web/data/v4-manifest.json"):j(manifest),
-       ("onurqlp/coin-live-pro","web/data/v4-radar.json"):j(radar),
-       ("onurqlp/coin-live-pro","web/data/health.json"):j(health),
-       ("onurqlp/alti-quant-lab","site/report.json"):j(alti),
+def data(x):return json.dumps(x).encode()
+def source_fixture(*,stale=False,no_alti=False):
+    t="2026-10-17T06:00:00Z" if stale else "2026-10-18T08:59:00Z"
+    radar={"scan_id":"c1","no_real_orders":True,"watch":[{"symbol":"BTCUSDT"}],"counts":{"watch":1}}
+    health={"last_scan_id":"c1","status":"OK","schedule_proven":True}
+    man={"scan_id":"c1","finished_at_utc":t,"publication_valid":True,"no_real_orders":True,
+         "sources":{"v4-radar":{"sha256":hashlib.sha256(data(radar)).hexdigest()},
+                    "health":{"sha256":hashlib.sha256(data(health)).hexdigest()}}}
+    strategies=[{"id":id,"status":"WATCH_ONLY" if id=="B1" else "NOT_CONNECTED",
+                "data_label":"READ_ONLY_LIVE" if id=="B1" else "NOT_CONNECTED"}
+                for id,_,_ in MODULES]
+    a={"generated_at_utc":t,"scan_id":"a1","scan_status":"PARTIAL_LIVE",
+       "live_orders_enabled":False,"synthetic_data_in_report":False,
+       "errors":[{"status":"ACCESS_BLOCKED"}],"strategies":strategies,
+       "funding_records":[{"venue":"OKX","symbol":"BTCUSDT",
+         "last_realized_rate_fraction":0.0001,
+         "last_realized_time_utc":"2026-10-18T08:00:00Z",
+         "data_label":"READ_ONLY_LIVE","rate_unit":"SIGNED_FRACTION_PER_EVENT",
+         "interval_hours":8}]}
+    blobs={
+        ("onurqlp/coin-live-pro","web/data/v4-manifest.json"):data(man),
+        ("onurqlp/coin-live-pro","web/data/v4-radar.json"):data(radar),
+        ("onurqlp/coin-live-pro","web/data/health.json"):data(health),
     }
-    def fake(url):
-        for repo in ["onurqlp/coin-live-pro","onurqlp/alti-quant-lab"]:
+    if not no_alti:blobs[("onurqlp/alti-quant-lab","site/report.json")]=data(a)
+    def fetch(url):
+        for repo in ("onurqlp/alti-quant-lab","onurqlp/coin-live-pro"):
             if url=="https://api.github.com/repos/"+repo+"/git/ref/heads/main":
-                return j({"object":{"sha":SHA}})
+                return data({"object":{"sha":SHA}})
             prefix="https://raw.githubusercontent.com/"+repo+"/"+SHA+"/"
             if url.startswith(prefix):
-                return rows[(repo,url[len(prefix):])]
-        raise AssertionError("Unexpected URL: "+url)
-    return fake
+                key=(repo,url[len(prefix):])
+                if key not in blobs:raise OSError("unavailable")
+                return blobs[key]
+        raise ValueError("unapproved url")
+    return fetch
 
-class BridgeTests(unittest.TestCase):
-    def test_six_modules_only_one_with_available_market_context(self):
-        r=build(NOW,sample())
-        self.assertEqual(r["schema"],"makine-coinlive-support-v2")
-        self.assertEqual(r["module_count"],6)
-        self.assertEqual([m["id"] for m in r["modules"]],[x[0] for x in SPECS])
-        self.assertEqual(r["modules_observing"],1)
-        self.assertEqual([x["symbol"] for x in r["coinlive_feed"]["funding_event_context"]],["BTCUSDT"])
-        self.assertIn("BTCUSDT",r["coinlive_feed"]["matching_watch_symbols"])
-        self.assertEqual(r["coinlive_feed"]["trade_candidates"],[])
-        self.assertEqual([m["id"] for m in r["coinlive_feed"]["module_checks"]],["A1","A2","A3","B1","B2","T0"])
-        self.assertTrue(all(x["trade_ready"] is False for x in r["coinlive_feed"]["module_checks"]))
-        self.assertFalse(r["coinlive_feed"]["can_change_signal_policy"])
-        self.assertFalse(r["safety"]["allow_orders"])
-        self.assertEqual(r["business_models"],0)
-        self.assertEqual(r["sources"]["coinlive"]["state"],"PARTIAL")
-    def test_stale_coin_prevents_context_export(self):
-        r=build(NOW,sample(coin_old=True))
-        self.assertEqual(r["sources"]["coinlive"]["state"],"STALE")
-        self.assertEqual(r["coinlive_feed"]["status"],"NO_VERIFIED_HANDOFF")
-        self.assertEqual(r["coinlive_feed"]["funding_event_context"],[])
-    def test_stale_alti_never_exports_old_funding(self):
-        r=build(NOW,sample(alti_old=True))
-        self.assertEqual(r["sources"]["alti"]["state"],"STALE")
-        self.assertEqual(r["modules_observing"],0)
-        self.assertEqual(r["coinlive_feed"]["funding_event_context"],[])
-    def test_rejects_other_repo_and_invalid_paths(self):
-        with self.assertRaises(ValueError):
-            pinned("unknown/repo",("site/report.json",),sample())
-        with self.assertRaises(ValueError):
-            pinned("onurqlp/alti-quant-lab",("../secret.json",),sample())
-    def test_provider_block_is_visible_and_not_execution_auth(self):
-        r=build(NOW,sample(provider_error=True))
-        self.assertEqual(r["sources"]["alti"]["provider_error_count"],1)
-        self.assertTrue(all(m["trade_signal"] is False for m in r["modules"]))
-    def test_fails_closed_per_source(self):
-        r=build(NOW,lambda url: (_ for _ in ()).throw(OSError("simulated down")))
-        self.assertEqual(r["modules_observing"],0)
-        self.assertEqual(r["coinlive_feed"]["status"],"NO_VERIFIED_HANDOFF")
-        self.assertTrue(all(x["state"]=="BLOCKED_SOURCE" for x in r["modules"]))
-    def test_atomic_output_and_history(self):
-        r=build(NOW,sample())
-        with tempfile.TemporaryDirectory() as t:
-            p=Path(t);persist(r,p);persist(r,p)
-            self.assertEqual(json.loads((p/"site/data/support.json").read_text())["module_count"],6)
-            self.assertEqual(len(json.loads((p/"data/support-history.json").read_text())["entries"]),1)
-    def test_task_notification_deduplication(self):
-        report=build(NOW,sample())
-        board=make_board(report)
-        self.assertEqual(len(board["open_tasks"]),6)
-        calls=[]
-        def fake_send(payload):
-            calls.append(payload)
-            return {"id":100}
-        posted=notify(board,"test",sender=fake_send)
-        self.assertEqual(posted["notification"]["state"],"POSTED")
-        again=notify(make_board(report,posted),"test",sender=fake_send)
-        self.assertEqual(again["notification"]["state"],"UNCHANGED")
-        self.assertEqual(len(calls),1)
-        self.assertFalse(any("COIN.LIVE" in str(x.get("can_place_orders")) for x in report["modules"]))
-    def test_task_notification_missing_token_no_false_claim(self):
-        r=build(NOW,sample())
-        b=notify(make_board(r),"")
-        self.assertEqual(b["notification"]["state"],"TOKEN_OR_SCOPE_MISSING")
-        self.assertTrue(b["notification_required"])
+class SupportTests(unittest.TestCase):
+    def test_six_only_and_funding_context(self):
+        x=build(NOW,source_fixture())
+        self.assertEqual([m["id"] for m in x["modules"]],["A1","A2","A3","B1","B2","T0"])
+        self.assertEqual(x["observing_count"],1)
+        self.assertEqual(x["modules"][3]["state"],"OBSERVING")
+        self.assertEqual(x["feed"]["watched_funding_matches"],["BTCUSDT"])
+        self.assertEqual(x["feed"]["trade_candidates"],[])
+        self.assertFalse(x["safety"]["no_orders"] is False)
+        self.assertFalse(x["feed"]["orders"])
+    def test_no_fabricated_data_if_stale(self):
+        x=build(NOW,source_fixture(stale=True))
+        self.assertEqual(x["observing_count"],0)
+        self.assertEqual(x["feed"]["status"],"NO_VERIFIED_CONTEXT")
+        self.assertEqual(x["feed"]["funding_observations"],[])
+    def test_unavailable_source_fail_closed(self):
+        x=build(NOW,source_fixture(no_alti=True))
+        self.assertEqual(x["sources"]["alti"]["state"],"UNAVAILABLE")
+        self.assertEqual(x["observing_count"],0)
+    def test_repo_and_path_allowlists(self):
+        with self.assertRaises(ValueError):pinned("someone/other",("site/report.json",),source_fixture())
+        with self.assertRaises(ValueError):pinned("onurqlp/alti-quant-lab",("../secret.json",),source_fixture())
+    def test_persist_only_six_and_bounded_history(self):
+        x=build(NOW,source_fixture())
+        with tempfile.TemporaryDirectory() as d:
+            root=pathlib.Path(d);persist(x,root);persist(x,root)
+            report=json.loads((root/"site/data/support.json").read_text())
+            hist=json.loads((root/"data/support-history.json").read_text())
+            self.assertEqual(report["module_count"],6)
+            self.assertEqual(len(hist["entries"]),1)
+            self.assertFalse((root/"site/data/report.json").exists())
 if __name__=="__main__":unittest.main()

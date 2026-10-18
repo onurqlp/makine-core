@@ -1,9 +1,8 @@
-"""MAKİNE · six-module ALTI → COIN.LIVE support service.
+"""MAKİNE · production-safe six-module COIN.LIVE support bridge.
 
-All six module gates execute; they do not fake missing upstream data.
-Read-only immutable GitHub inputs. Output never authorizes signals or orders.
+Six independent data gates; absence of evidence never produces a signal.
+Only public immutable GitHub JSON; never executes imported code or orders.
 """
-from __future__ import annotations
 import datetime as dt
 import hashlib
 import json
@@ -14,213 +13,205 @@ import urllib.request
 
 ROOT=Path(__file__).resolve().parents[1]
 MAX_BYTES=2_000_000
+SHA_PATTERN=re.compile(r"[0-9a-f]{40}")
 SOURCES={"alti":"onurqlp/alti-quant-lab","coinlive":"onurqlp/coin-live-pro"}
-SPECS=(
- ("A1","Hisse pairs","Hisse göreli değer stres filtresi","Lisanslı ve düzeltilmiş hisse çiftleri doğrulanmadı"),
- ("A2","ETF–ETF","ETF risk aktarım filtresi","Endeks/NAV/kur ve ETF fiyatları doğrulanmadı"),
- ("A3","İstatistiksel sepet","Sepet ayrışma kontrolü","Formation/OOS ve cointegration kanıtı yok"),
- ("B1","Perpetual funding","Funding gözlem köprüsü","İkinci doğrulanmış borsa ve işlem erişimi yok"),
- ("B2","Stablecoin sapması","USDT/USDC sapma kontrolü","Çift borsa fiyat kotasyonu doğrulanmadı"),
- ("T0","Tahvil–repo","Finansman koşulları kontrolü","ISIN ve repo veri erişimi doğrulanmadı"),
+MODULES=(
+    ("A1","Hisse pairs","Hisse çifti göreli değer filtresi"),
+    ("A2","ETF–ETF","ETF farkı ve endeks bağlamı filtresi"),
+    ("A3","İstatistiksel sepet","Cointegration/sepet sapması filtresi"),
+    ("B1","Perpetual funding","Funding gözlem ve COIN.LIVE eşleme filtresi"),
+    ("B2","Stablecoin sapması","USDC/USDT çift-borsa sapma filtresi"),
+    ("T0","Tahvil–repo","Tahvil/repo finansman filtresi"),
 )
-STAMP=lambda d:d.astimezone(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00","Z")
+
 def now_utc():return dt.datetime.now(dt.timezone.utc)
-def parsed(v):
-    if not isinstance(v,str):return None
+def iso(t):return t.astimezone(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00","Z")
+def parse_time(value):
+    if not isinstance(value,str):return None
     try:
-        d=dt.datetime.fromisoformat(v.replace("Z","+00:00"))
-        return d.astimezone(dt.timezone.utc) if d.tzinfo else None
-    except (TypeError,ValueError,OverflowError):return None
-def age_minutes(v,now):
-    d=parsed(v)
-    return round((now-d).total_seconds()/60,2) if d else None
-def freshness(v,now,max_minutes):
-    age=age_minutes(v,now)
-    if age is None or age < -5:return "INVALID_TIME",age
-    return ("STALE" if age>max_minutes else "FRESH"),age
+        value=dt.datetime.fromisoformat(value.replace("Z","+00:00"))
+        return value.astimezone(dt.timezone.utc) if value.tzinfo else None
+    except (ValueError,OverflowError):return None
+def age(value,now):
+    v=parse_time(value)
+    return round((now-v).total_seconds()/60,2) if v else None
+def is_recent(value,now,limit):
+    a=age(value,now)
+    return a is not None and -5<=a<=limit
 
 def fetch(url):
-    allowed=("https://api.github.com/repos/onurqlp/",
-             "https://raw.githubusercontent.com/onurqlp/")
-    if not url.startswith(allowed):raise ValueError("SOURCE_NOT_ALLOWED")
-    req=urllib.request.Request(url,headers={"User-Agent":"MakineSixSupport/1.0","Accept":"application/json"})
-    with urllib.request.urlopen(req,timeout=18) as r:raw=r.read(MAX_BYTES+1)
-    if len(raw)>MAX_BYTES:raise ValueError("SOURCE_TOO_LARGE")
+    if not (url.startswith("https://api.github.com/repos/onurqlp/") or
+            url.startswith("https://raw.githubusercontent.com/onurqlp/")):
+        raise ValueError("UNAPPROVED_URL")
+    headers={"User-Agent":"MakineSixSupport/2.0","Accept":"application/json"}
+    token=os.getenv("GITHUB_TOKEN","")
+    if token and url.startswith("https://api.github.com/"):
+        headers["Authorization"]="Bearer "+token
+    req=urllib.request.Request(url,headers=headers)
+    with urllib.request.urlopen(req,timeout=18) as response:
+        raw=response.read(MAX_BYTES+1)
+    if len(raw)>MAX_BYTES:raise ValueError("MAX_BYTES_EXCEEDED")
     return raw
 
 def pinned(repo,paths,fetcher=fetch):
-    if repo not in SOURCES.values():raise ValueError("REPO_NOT_ALLOWED")
-    ref=json.loads(fetcher("https://api.github.com/repos/"+repo+"/git/ref/heads/main"))
-    sha=(ref.get("object") or {}).get("sha")
-    if not isinstance(sha,str) or not re.fullmatch("[a-f0-9]{40}",sha):
-        raise ValueError("MISSING_IMMUTABLE_SHA")
-    out={};hashes={}
+    if repo not in SOURCES.values():raise ValueError("REPO_DENIED")
+    obj=json.loads(fetcher("https://api.github.com/repos/"+repo+"/git/ref/heads/main"))
+    sha=(obj.get("object") or {}).get("sha")
+    if not isinstance(sha,str) or not SHA_PATTERN.fullmatch(sha):
+        raise ValueError("INVALID_IMMUTABLE_SHA")
+    docs={};hashes={}
     for path in paths:
         if not re.fullmatch(r"[a-z0-9_./-]+\.json",path) or ".." in path:
-            raise ValueError("PATH_NOT_ALLOWED")
-        blob=fetcher("https://raw.githubusercontent.com/"+repo+"/"+sha+"/"+path)
-        if len(blob)>MAX_BYTES:raise ValueError("SOURCE_TOO_LARGE")
-        out[path]=json.loads(blob)
-        hashes[path]=hashlib.sha256(blob).hexdigest()
-    return sha,out,hashes
+            raise ValueError("PATH_DENIED")
+        content=fetcher("https://raw.githubusercontent.com/"+repo+"/"+sha+"/"+path)
+        if len(content)>MAX_BYTES:raise ValueError("MAX_BYTES_EXCEEDED")
+        docs[path]=json.loads(content)
+        hashes[path]=hashlib.sha256(content).hexdigest()
+    return sha,docs,hashes
 
-def coin_input(now,fetcher=fetch):
-    repo=SOURCES["coinlive"]
+def load_coin(now,fetcher=fetch):
     paths=("web/data/v4-manifest.json","web/data/v4-radar.json","web/data/health.json")
-    sha,docs,h=pinned(repo,paths,fetcher)
-    m,r,health=(docs[x] for x in paths)
+    sha,docs,hashes=pinned(SOURCES["coinlive"],paths,fetcher)
+    manifest,radar,health=[docs[p] for p in paths]
     reasons=[]
-    scan=m.get("scan_id")
-    if not isinstance(scan,str) or not scan or r.get("scan_id")!=scan:reasons.append("SCAN_ID_MISMATCH")
-    for path,key in ((paths[1],"v4-radar"),(paths[2],"health")):
-        expected=(m.get("sources",{}).get(key) or {}).get("sha256")
-        if not expected or expected!=h[path]:reasons.append("HASH_MISMATCH_"+key.upper())
-    if m.get("publication_valid") is not True or m.get("no_real_orders") is not True or r.get("no_real_orders") is not True:
-        reasons.append("UNVERIFIED_MANIFEST_SAFETY")
-    fresh,age=freshness(m.get("finished_at_utc"),now,45)
-    healthy=health.get("status")=="OK"
-    # The health payload is manifest-hash-pinned, but its last_scan_id can
-    # refer to a different scheduler slot than the publication manifest.
-    # Flag that discrepancy separately; it is not a radar integrity failure.
-    health_differs=health.get("last_scan_id")!=scan
-    if health_differs:reasons.append("HEALTH_SCAN_REFERENCE_DIFFERS")
-    st=fresh
-    if any(x.startswith("HASH_MISMATCH") or x in ("SCAN_ID_MISMATCH","UNVERIFIED_MANIFEST_SAFETY") for x in reasons):
-        st="INVALID"
-    elif fresh=="FRESH" and (not healthy or health_differs):st="PARTIAL"
-    if health.get("schedule_proven") is not True:reasons.append("SCHEDULE_NOT_PROVEN")
-    return {"repo":repo,"source_sha":sha,"scan_id":scan,"observed_at_utc":m.get("finished_at_utc"),
-            "age_minutes":age,"state":st,"health_status":health.get("status"),
-            "schedule_proven":health.get("schedule_proven") is True,
-            "counts":{k:v for k,v in (r.get("counts") or {}).items() if isinstance(v,int)},
-            "watch_symbols":sorted({x.get("symbol") for x in r.get("watch",[])
-                                     if isinstance(x,dict) and isinstance(x.get("symbol"),str)})[:150],
-            "warnings":reasons,"verified_market_context":st in ("FRESH","PARTIAL")}
-
-def alti_input(now,fetcher=fetch):
-    repo=SOURCES["alti"];sha,docs,h=pinned(repo,("site/report.json",),fetcher)
-    p=docs["site/report.json"]
-    reasons=[]
-    strategies={x.get("id"):x for x in p.get("strategies",[]) if isinstance(x,dict) and x.get("id") in [a[0] for a in SPECS]}
-    if set(strategies)!={x[0] for x in SPECS}:reasons.append("SIX_MODULES_MISSING")
-    if p.get("live_orders_enabled") is not False:reasons.append("ORDER_GUARD_NOT_VERIFIED")
-    if p.get("synthetic_data_in_report") is True:reasons.append("SYNTHETIC_INPUT")
-    fresh,age=freshness(p.get("generated_at_utc"),now,120)
-    status=fresh
+    scan=manifest.get("scan_id")
+    if not scan or scan!=radar.get("scan_id") or scan!=health.get("last_scan_id"):
+        reasons.append("SCAN_MISMATCH")
+    for key,path in (("v4-radar",paths[1]),("health",paths[2])):
+        expected=(manifest.get("sources",{}).get(key) or {}).get("sha256")
+        if not expected or expected!=hashes[path]:reasons.append("HASH_MISMATCH_"+key)
+    if (manifest.get("publication_valid") is not True or
+        manifest.get("no_real_orders") is not True or radar.get("no_real_orders") is not True):
+        reasons.append("SOURCE_SAFETY_UNVERIFIED")
+    a=age(manifest.get("finished_at_utc"),now)
+    status="FRESH" if a is not None and -5<=a<=45 else "STALE"
     if reasons:status="INVALID"
-    elif fresh=="FRESH" and (p.get("errors") or p.get("scan_status")!="OK"):
-        status="PARTIAL"
-    rec=[]
-    if status in ("FRESH","PARTIAL"):
-        for f in p.get("funding_records",[]):
+    elif status=="FRESH" and health.get("status")!="OK":status="PARTIAL"
+    if health.get("schedule_proven") is not True:reasons.append("CRON_NOT_PROVEN")
+    watches=sorted({x["symbol"] for x in (radar.get("watch") or [])
+                    if isinstance(x,dict) and isinstance(x.get("symbol"),str)})[:150]
+    return {"repo":SOURCES["coinlive"],"sha":sha,"scan_id":scan,
+            "observed_at_utc":manifest.get("finished_at_utc"),"age_minutes":a,
+            "state":status,"health":health.get("status"),"warnings":reasons,
+            "watched_symbols":watches,"counts":radar.get("counts") or {}}
+
+def load_alti(now,fetcher=fetch):
+    sha,docs,hashes=pinned(SOURCES["alti"],("site/report.json",),fetcher)
+    report=docs["site/report.json"];names={m[0] for m in MODULES}
+    strategies={s.get("id"):s for s in (report.get("strategies") or [])
+                if isinstance(s,dict) and s.get("id") in names}
+    warnings=[]
+    if set(strategies)!=names:warnings.append("MODULE_REGISTRY_MISMATCH")
+    if report.get("live_orders_enabled") is not False:warnings.append("LIVE_ORDERS_GUARD_UNVERIFIED")
+    if report.get("synthetic_data_in_report") is True:warnings.append("SYNTHETIC_DATA")
+    a=age(report.get("generated_at_utc"),now)
+    state="FRESH" if a is not None and -5<=a<=120 else "STALE"
+    if warnings:state="INVALID"
+    elif state=="FRESH" and (report.get("errors") or report.get("scan_status")!="OK"):
+        state="PARTIAL"
+    funding=[]
+    if state in ("FRESH","PARTIAL"):
+        for f in report.get("funding_records") or []:
             if not isinstance(f,dict):continue
-            if (f.get("venue")!="OKX" or f.get("rate_unit")!="SIGNED_FRACTION_PER_EVENT"
-                or f.get("data_label")!="READ_ONLY_LIVE"):continue
-            sym=f.get("symbol");rate=f.get("last_realized_rate_fraction")
-            fstate,fage=freshness(f.get("last_realized_time_utc"),now,24*60)
-            if not re.fullmatch(r"[A-Z0-9]{2,24}",str(sym)) or not isinstance(rate,(int,float)) or isinstance(rate,bool) or not -1<=rate<=1 or fstate!="FRESH":continue
-            rec.append({"symbol":sym,"venue":"OKX","last_realized_fraction_per_event":rate,
-                        "last_realized_time_utc":f["last_realized_time_utc"],
-                        "interval_hours":f.get("interval_hours"),
-                        "event_age_minutes":fage,"trade_ready":False})
-    return {"repo":repo,"source_sha":sha,"scan_id":p.get("scan_id"),
-            "observed_at_utc":p.get("generated_at_utc"),"age_minutes":age,"state":status,
-            "scan_status":p.get("scan_status"),"strategy_data":strategies,
-            "funding":rec[:20],"warnings":reasons,
-            "provider_error_count":len(p.get("errors") or []),
-            "source_hash":h["site/report.json"]}
+            rate=f.get("last_realized_rate_fraction");sym=f.get("symbol")
+            if not (f.get("venue")=="OKX" and
+                    f.get("data_label")=="READ_ONLY_LIVE" and
+                    f.get("rate_unit")=="SIGNED_FRACTION_PER_EVENT" and
+                    isinstance(sym,str) and re.fullmatch(r"[A-Z0-9]{3,24}",sym) and
+                    isinstance(rate,(float,int)) and not isinstance(rate,bool) and
+                    -1<=rate<=1 and is_recent(f.get("last_realized_time_utc"),now,24*60)):
+                continue
+            funding.append({"symbol":sym,"venue":"OKX",
+                "last_realized_rate_fraction_per_event":rate,
+                "last_realized_time_utc":f["last_realized_time_utc"],
+                "interval_hours":f.get("interval_hours"),
+                "executable":False})
+    return {"repo":SOURCES["alti"],"sha":sha,"scan_id":report.get("scan_id"),
+        "observed_at_utc":report.get("generated_at_utc"),"age_minutes":a,
+        "state":state,"scan_status":report.get("scan_status"),
+        "provider_error_count":len(report.get("errors") or []),
+        "strategies":strategies,"funding":funding[:20],
+        "warnings":warnings,"sha256":hashes["site/report.json"]}
 
-def absent(repo,exc):
-    return {"repo":repo,"source_sha":None,"scan_id":None,"observed_at_utc":None,
-            "age_minutes":None,"state":"UNAVAILABLE","warnings":["FETCH_"+type(exc).__name__]}
-
-def modules(alti,coin,now):
-    result=[];strategies=alti.get("strategy_data") or {}
-    for code,title,service,why in SPECS:
-        s=strategies.get(code) or {}
-        inputs_valid=(alti.get("state") in ("FRESH","PARTIAL") and s.get("data_label")=="READ_ONLY_LIVE")
-        records=[]
-        if code=="B1" and inputs_valid:records=alti.get("funding",[])
-        operational="OBSERVING" if code=="B1" and records else "BLOCKED_SOURCE"
-        coin_watch=set(coin.get("watch_symbols") or [])
-        matches=sorted({f["symbol"] for f in records if f["symbol"] in coin_watch})
-        result.append({
-            "id":code,"name":title,"coinlive_support":service,"state":operational,
-            "source_strategy_status":s.get("status","UNAVAILABLE"),
-            "data_label":s.get("data_label","NOT_CONNECTED"),
-            "blocker":None if operational=="OBSERVING" else (s.get("reason") or why)[:220],
-            "funding_observations":records if code=="B1" else [],
-            "coinlive_watch_symbol_matches":matches if code=="B1" else [],
-            "calculated_at_utc":STAMP(now),"cross_venue_spread_verified":False,
-            "verified_execution_edge":False,"trade_signal":False,"can_modify_coinlive":False,
-        })
-    return result
+def unavailable(repo,e):
+    return {"repo":repo,"sha":None,"scan_id":None,"observed_at_utc":None,
+            "age_minutes":None,"state":"UNAVAILABLE",
+            "warnings":["READ_FAILED_"+type(e).__name__]}
 
 def build(now=None,fetcher=fetch):
     now=now or now_utc()
-    try:c=coin_input(now,fetcher)
-    except (OSError,ValueError,KeyError,TypeError,TimeoutError) as exc:c=absent(SOURCES["coinlive"],exc)
-    try:a=alti_input(now,fetcher)
-    except (OSError,ValueError,KeyError,TypeError,TimeoutError) as exc:a=absent(SOURCES["alti"],exc)
-    six=modules(a,c,now)
-    active=sum(x["state"]=="OBSERVING" for x in six)
-    system="DEGRADED" if any(x["state"] not in ("FRESH","PARTIAL") for x in (a,c)) or active<6 else "HEALTHY"
-    report={
-        "schema":"makine-coinlive-support-v2","generated_at_utc":STAMP(now),
-        "mission":"INDEPENDENT_COINLIVE_SUPPORT","business_models":0,"research_laboratory":False,
-        "system_state":system,"sources":{"alti":{k:v for k,v in a.items() if k not in ("strategy_data","funding")},
-                                         "coinlive":{k:v for k,v in c.items() if k!="watch_symbols"}},
-        "modules":six,"module_count":6,"modules_observing":active,
-        "coinlive_feed":{"schema":"coinlive-external-context-v1",
-             "source":"MAKINE","generated_at_utc":STAMP(now),
-             "coinlive_scan_id":c.get("scan_id"),"coinlive_source_sha":c.get("source_sha"),
-             "alti_scan_id":a.get("scan_id"),"alti_source_sha":a.get("source_sha"),
-             "status":"LIMITED_CONTEXT" if active and c.get("verified_market_context") else "NO_VERIFIED_HANDOFF",
-             "funding_event_context":next((x["funding_observations"] for x in six if x["id"]=="B1"),[])
-                 if c.get("verified_market_context") else [],
-             "matching_watch_symbols":next((x["coinlive_watch_symbol_matches"] for x in six if x["id"]=="B1"),[])
-                 if c.get("verified_market_context") else [],
-             "module_checks":[{"id":m["id"],"state":m["state"],
-                               "source_strategy_status":m["source_strategy_status"],
-                               "data_label":m["data_label"],
-                               "input_blocker":m["blocker"],
-                               "coinlive_support":m["coinlive_support"],
-                               "trade_ready":False} for m in six],
-             "trade_candidates":[],"can_change_signal_policy":False,"can_place_orders":False,
-             "can_change_paper_ledger":False,"machine_readable_context_only":True},
-        "safety":{"allow_source_repo_writes":False,"allow_orders":False,"allow_paper_fills":False,
-                  "automatic_trade_signal":False,"allow_model_promotion":False,
-                  "combine_virtual_portfolios":False,
-                  "verified_income":None,"verified_profit":None},
-        "runtime":{"mode":"UNATTENDED_RULE_BASED","external_coding_agents_running":False,
-                   "ai_api_required":False,"trigger":os.getenv("GITHUB_EVENT_NAME","LOCAL")},
-    }
-    return report
+    try:coin=load_coin(now,fetcher)
+    except (OSError,ValueError,KeyError,TypeError,TimeoutError) as e:coin=unavailable(SOURCES["coinlive"],e)
+    try:alti=load_alti(now,fetcher)
+    except (OSError,ValueError,KeyError,TypeError,TimeoutError) as e:alti=unavailable(SOURCES["alti"],e)
+    items=[];seen=set()
+    strategy_rows=alti.get("strategies") or {}
+    watchers=set(coin.get("watched_symbols") or [])
+    for id_,title,mission in MODULES:
+        s=strategy_rows.get(id_) or {}
+        valid=(alti.get("state") in ("FRESH","PARTIAL") and
+               s.get("data_label")=="READ_ONLY_LIVE")
+        observations=alti.get("funding",[]) if id_=="B1" and valid else []
+        state="OBSERVING" if observations else "BLOCKED_SOURCE"
+        matches=sorted({f["symbol"] for f in observations if f["symbol"] in watchers})
+        item={"id":id_,"name":title,"purpose":mission,"state":state,
+              "strategy_state":s.get("status","UNAVAILABLE"),
+              "data_label":s.get("data_label","NOT_CONNECTED"),
+              "blocker":None if state=="OBSERVING" else
+                        str(s.get("reason") or "Gerçek ve uygun kaynak henüz doğrulanmadı")[:200],
+              "observations":observations,"coinlive_watch_matches":matches,
+              "signal":False,"executable":False,"source_repo_write":False}
+        items.append(item);seen.add(id_)
+    assert seen=={x[0] for x in MODULES}
+    observing=sum(x["state"]=="OBSERVING" for x in items)
+    nowstr=iso(now)
+    context_ok=coin.get("state") in ("FRESH","PARTIAL")
+    alti_ok=alti.get("state") in ("FRESH","PARTIAL")
+    feed={"schema":"makine-coinlive-support-feed-v2",
+        "generated_at_utc":nowstr,"source":"onurqlp/makine-core",
+        "coinlive_sha":coin.get("sha"),"coinlive_scan_id":coin.get("scan_id"),
+        "alti_sha":alti.get("sha"),"alti_scan_id":alti.get("scan_id"),
+        "status":"LIMITED_READ_ONLY_CONTEXT" if context_ok and alti_ok and observing else "NO_VERIFIED_CONTEXT",
+        "funding_observations":items[3]["observations"] if context_ok and alti_ok else [],
+        "watched_funding_matches":items[3]["coinlive_watch_matches"] if context_ok and alti_ok else [],
+        "trade_candidates":[],"change_signals":False,"orders":False,
+        "change_paper_ledger":False,"requires_explicit_coinlive_integration":True}
+    return {"schema":"makine-six-support-v2","generated_at_utc":nowstr,
+        "mission":"COINLIVE_INDEPENDENT_SUPPORT","retired_idea_count":57,
+        "ideas_in_active_service":0,"module_count":6,"observing_count":observing,
+        "state":"PARTIAL" if any(x["state"]!="OBSERVING" for x in items) else "READY",
+        "sources":{"alti":{k:v for k,v in alti.items() if k not in ("strategies","funding")},
+                   "coinlive":{k:v for k,v in coin.items() if k!="watched_symbols"}},
+        "modules":items,"feed":feed,"safety":{"no_orders":True,"no_paper_fills":True,
+        "no_source_repo_writes":True,"no_external_strategy_updates":True,
+        "no_virtual_portfolio_merger":True,"no_automated_signals":True},
+        "runtime":{"event":os.getenv("GITHUB_EVENT_NAME","LOCAL"),
+                   "mode":"SCHEDULED_READ_ONLY","ai_agent":False}}
 
-def save_json(path,obj):
+def write(path,obj):
     path.parent.mkdir(parents=True,exist_ok=True)
     temp=path.with_suffix(path.suffix+".tmp")
-    temp.write_text(json.dumps(obj,ensure_ascii=False,allow_nan=False,indent=2)+"\n",encoding="utf-8")
+    temp.write_text(json.dumps(obj,ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     os.replace(temp,path)
 
-def persist(report,root=ROOT):
-    save_json(root/"site/data/support.json",report)
-    save_json(root/"site/data/coinlive-support.json",report["coinlive_feed"])
-    history=root/"data/support-history.json"
-    try:rows=json.loads(history.read_text("utf-8"))["entries"]
-    except (ValueError,OSError,KeyError,TypeError):rows=[]
-    entry={"at_utc":report["generated_at_utc"],"run_trigger":report["runtime"]["trigger"],
-           "state":report["system_state"],
-           "alti":report["sources"]["alti"]["state"],"coinlive":report["sources"]["coinlive"]["state"],
-           "observing":[m["id"] for m in report["modules"] if m["state"]=="OBSERVING"],
-           "coin_scan":report["sources"]["coinlive"].get("scan_id"),
-           "alti_scan":report["sources"]["alti"].get("scan_id")}
-    key=entry["at_utc"][:16]
-    rows=[r for r in rows if str(r.get("at_utc",""))[:16]!=key]
-    rows.append(entry)
-    save_json(history,{"schema":"makine-six-support-history-v2","entries":rows[-672:]})
+def persist(result,root=ROOT):
+    write(root/"site/data/support.json",result)
+    write(root/"site/data/coinlive-support.json",result["feed"])
+    path=root/"data/support-history.json"
+    try:previous=json.loads(path.read_text("utf-8")).get("entries",[])
+    except (ValueError,OSError):previous=[]
+    item={"generated_at_utc":result["generated_at_utc"],
+          "event":result["runtime"]["event"],"state":result["state"],
+          "alti":result["sources"]["alti"]["state"],
+          "coinlive":result["sources"]["coinlive"]["state"],
+          "observing_count":result["observing_count"]}
+    entries=[x for x in previous if x.get("generated_at_utc","")[:16]!=item["generated_at_utc"][:16]]
+    entries.append(item);write(path,{"schema":"makine-six-history-v2","entries":entries[-672:]})
+
 def main():
-    r=build();persist(r)
-    print(json.dumps({"state":r["system_state"],"modules":6,"observing":r["modules_observing"],
-                      "handoff":r["coinlive_feed"]["status"],"no_orders":True},ensure_ascii=False))
+    result=build();persist(result)
+    print(json.dumps({"modules":6,"observing":result["observing_count"],
+                      "alti":result["sources"]["alti"]["state"],
+                      "coinlive":result["sources"]["coinlive"]["state"],
+                      "orders":False},ensure_ascii=False))
 if __name__=="__main__":main()

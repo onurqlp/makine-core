@@ -1,20 +1,12 @@
-# MAKİNE — Altı Modül Yardım Motoru
+# MAKİNE — Altı Modül Üretim Sınırları
 
-Bu repo artık yalnız **COIN.LIVE bağımsız altı strateji destek servisidir**. Başka iş modeli veya genel araştırma kataloğu ekleme. Kullanıcının yönlendirmesiyle bunlar kaldırıldı.
+Bu depo, COIN.LIVE için ayrı ve salt-okunur destek hizmetidir; genel gelir fikri laboratuvarı değildir.
 
-Kaynak depolar **salt-okunur**:
-- ALTI: https://github.com/onurqlp/alti-quant-lab
-- COIN.LIVE: https://github.com/onurqlp/coin-live-pro
+Tek izinli çalışma kümesi **A1, A2, A3, B1, B2, T0**. `makine/bridge.py` her birini kontrol eder, `site/data/support.json` üretir ve destek paketini `site/data/coinlive-support.json` olarak yayımlar.
 
-Görev kimlikleri: **A1 / A2 / A3 / B1 / B2 / T0**. Bu kimlikleri veya ALTI'nın strateji anlamlarını değiştirme.
-Sahibi MAKİNE olan ve yalnız bu depoda çalışan dosyalar `makine/bridge.py`, `makine/tasks.py`, `site/`, `.github/workflows/support.yml`, `data/support-history.json`.
-
-Sert güvenlik:
-- Sinyal, entry/exit, paper fill, gerçek alım-satım, API key sızıntısı, çapraz depoya kod yazma, kasaları birleştirme **yasak**.
-- Her kaynak immutable 40 karakter SHA ile sabitlenmeli; hash, scan ID ve gerçek UTC kaynak zamanı gerekir. Stale veya yarım kaynak eyleme yükseltilemez.
-- B1'de yalnız **gerçekleşmiş** funding oranı bağlam olabilir, tek borsa farkı arbitraj kanıtı sayılamaz. Finansal kazanç iddiası yok.
-- Altı modülün veri sağlamadığını saklama; ALTI'nın gerçek statüsüne sadık kal.
-- MAKiNE'nin üretimi COIN.LIVE'ı otomatik değiştirmez. COIN.LIVE tarafındaki tüketici değişiklikleri o projenin yetkili ajanının ayrı çalışmasıdır.
-- Görev kayıtları yalnız MAKİNE issue #1'e durum değişiminde yazılabilir; başka repo/issue otomatik değiştirilmez.
-
-Test: `python -m unittest discover -s tests -q`. Yayın GitHub Actions ve GitHub Pages ile. Tüm finansal/strateji taslakları eski yapıya ait ve bu depoda tekrar yer almamalıdır.
+- ALTI ve COIN.LIVE kaynak depolarına **yazma**; yalnız izinli kamuya açık JSON GET.
+- Sinyal, trade, real/paper order, para transferi, sanal pozisyon, PnL, otomatik model terfisi, strateji policy veya kasa birleştirme **yasak**.
+- Kontroller veri yoksa BLOCKED_SOURCE üretir, uydurma olumlu gözlem yapmaz.
+- Yardım dosyasının yayımlanması COIN.LIVE'ın onu kendiliğinden kullandığı anlamına gelmez; tüketici adaptörünü yalnız ayrı proje onayıyla ekle.
+- GitHub Actions gerçek schedule çalışmasının kanıtı `event=schedule` olmalıdır; push tetikleri bu değildir.
+- Ürün/strateji sürümleri onaysız değiştirilemez. Gizli anahtarlar asla GitHub Pages'e çıkmaz.

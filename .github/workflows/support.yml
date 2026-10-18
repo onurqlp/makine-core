@@ -1,97 +1,79 @@
-name: MAKİNE · SIX → COIN.LIVE Support
-
+name: MAKİNE — Six Module COIN.LIVE Support
 on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/support.yml'
-      - 'makine/**'
-      - 'site/index.html'
-      - 'site/app.js'
-      - 'site/style.css'
-      - 'site/status.html'
-      - 'tests/**'
-  schedule:
-    - cron: '17,47 * * * *'
-  workflow_dispatch:
-
+    paths-ignore:
+      - 'site/data/**'
+      - 'data/**'
 permissions:
   contents: write
-  issues: write
   pages: write
   id-token: write
-
 concurrency:
-  group: makine-six-support-main
+  group: makine-six-support
   cancel-in-progress: false
-
 jobs:
-  six-support:
-    name: Six input gates · verified context
+  support:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Six support contracts
+      - name: Six-module contract tests
         run: |
           python -m unittest discover -s tests -q
-          node --check site/app.js
-          test -s site/index.html
-          test -s site/style.css
-      - name: Refresh six independent read-only source checks
-        run: python -m makine.bridge
-      - name: Build deduplicated support blocker queue
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class P(HTMLParser):
+              def __init__(self):super().__init__();self.collect=False;self.s=[]
+              def handle_starttag(self,t,a):
+                  if t=='script' and not dict(a).get('src'):self.collect=True
+              def handle_endtag(self,t):
+                  if t=='script':self.collect=False
+              def handle_data(self,d):
+                  if self.collect:self.s.append(d)
+          p=P();p.feed(Path('site/index.html').read_text())
+          assert p.s
+          Path('/tmp/makine.js').write_text('\n'.join(p.s))
+          PY
+          node --check /tmp/makine.js
+      - name: Build six source-gated support modules (read only)
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python -m makine.tasks
-      - name: Validate no legacy catalog and no orders
+        run: python -m makine.bridge
+      - name: Verify only nonexecutable support exports
         run: |
           python - <<'PY'
-          import json,pathlib
-          root=pathlib.Path('.')
-          report=json.loads((root/'site/data/support.json').read_text())
-          feed=json.loads((root/'site/data/coinlive-support.json').read_text())
-          tasks=json.loads((root/'site/data/tasks.json').read_text())
-          assert report['module_count']==6
-          assert [x['id'] for x in report['modules']]==['A1','A2','A3','B1','B2','T0']
-          assert report['business_models']==0 and report['research_laboratory'] is False
-          assert not report['safety']['allow_orders']
-          assert not report['safety']['allow_source_repo_writes']
-          assert feed['trade_candidates']==[]
-          assert not feed['can_change_signal_policy'] and not feed['can_place_orders']
-          assert not tasks['cross_repo_writes'] and not tasks['auto_trading']
-          for unused in ['makine/catalog.py','makine/engine.py','makine/agent.py',
-                         'site/data/report.json','site/data/coinlive-handoff.json']:
-              assert not (root/unused).exists(),unused
-          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:
-              f.write('## MAKİNE six support\n')
-              f.write('Six gates: 6/6 executed; observing: '+str(report['modules_observing'])+'\n')
-              f.write('ALTI: '+report['sources']['alti']['state']+'\n')
-              f.write('COIN.LIVE: '+report['sources']['coinlive']['state']+'\n')
-              f.write('External feed: '+feed['status']+'\n')
-              f.write('No orders, no trading signals, no cross-repo changes.\n')
+          import json
+          from pathlib import Path
+          s=json.loads(Path('site/data/support.json').read_text())
+          f=json.loads(Path('site/data/coinlive-support.json').read_text())
+          assert s['module_count']==6
+          assert [m['id'] for m in s['modules']]==['A1','A2','A3','B1','B2','T0']
+          assert not f['orders'] and not f['change_signals'] and not f['change_paper_ledger']
+          assert f['requires_explicit_coinlive_integration']
+          assert all(not m['executable'] and not m['signal'] for m in s['modules'])
           PY
-      - name: Commit own verified support snapshots only
+      - name: Record MAKİNE-only latest export
         run: |
-          git config user.name 'MAKİNE Six Support Bot'
+          git config user.name 'MAKİNE Support Worker'
           git config user.email 'makine-core-bot@users.noreply.github.com'
-          git add site/data/support.json site/data/coinlive-support.json site/data/tasks.json data/support-history.json
+          git add site/data/support.json site/data/coinlive-support.json data/support-history.json
           if ! git diff --cached --quiet; then
-            git commit -m 'data: six-module COIN.LIVE support snapshot [skip ci]'
+            git commit -m 'data: six-module COIN.LIVE support export [skip ci]'
             git pull --rebase origin main
             git push origin HEAD:main
           fi
-
   pages:
-    needs: six-support
-    if: ${{ needs.six-support.result == 'success' }}
+    needs: support
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:

@@ -1,19 +1,19 @@
-# MAKİNE · COIN.LIVE Bağımsız Yardım Motoru
+# MAKİNE — Bağımsız COIN.LIVE Destek Motoru
 
-**Tek görev:** ALTI Quant'ın **A1, A2, A3, B1, B2, T0** modüllerini her çevrimde bağımsız kontrol etmek ve güvenli bağlam çıktısını COIN.LIVE'a sunmak.
+MAKİNE yalnız **ALTI A1, A2, A3, B1, B2, T0** modüllerini ve COIN.LIVE'a salt-okunur destek veri paketini yönetir. Eski 57 gelir fikri, beş genel araştırma motoru, gelir hesaplayıcısı, AI deneyleri ve genel amaçlı iş laboratuvarı kaldırılmıştır.
 
-Üretim arayüzü: https://onurqlp.github.io/makine-core/
+**Site:** https://onurqlp.github.io/makine-core/
 
-- Altı modül her 30 dakikalık hedef çevrimde **ayrı kaynak uygunluk denetimi** çalıştırır. GitHub Actions gecikebilir.
-- Geçerli ve güncel ALTI funding olayları, COIN.LIVE'ın mevcut watch sembolleriyle eşleştirilir.
-- Fiyat/strateji uygulama emirleri **üretilmez**. Kaynak depo ALTI ve COIN.LIVE kodlarına **yazılmaz**.
-- Kaynaklar: `onurqlp/alti-quant-lab` ve `onurqlp/coin-live-pro`. İkisi ayrı sistemlerdir.
-- Şu an yalnız B1 salt-okunur funding verisi sağlayabiliyor; diğer beş modül eksik veriyi açıkça gösterir. Altı modülün **denetimi** çalışıyor olması altısının **piyasa sinyali** ürettiği anlamına gelmez.
-- MAKİNE'nin dışa aktarımı: [coinlive-support.json](site/data/coinlive-support.json). Bu, COIN.LIVE'ın kendiliğinden okuduğu/uyguladığı anlamına gelmez. COIN.LIVE tarafında salt-okunur tüketici bağlantısı ayrı bir değişiklik ve onay gerektirir.
-- Güncel kaynak/hata raporu: [support.json](site/data/support.json).
-- Engellerin takip kaydı: [tasks.json](site/data/tasks.json) ve [GitHub Issue #1](https://github.com/onurqlp/makine-core/issues/1).
-- Otomasyon: [MAKİNE Six Support](.github/workflows/support.yml). CLI: `python -m makine`.
+**Canlı olmayan kaynaklar çalışma sonucu gibi gösterilmez.** Modüller çalıştırılır; veri yeterliyse gözlem, yoksa BLOCKED_SOURCE üretir. B1, OKX doğrulanmış geçmiş funding gözlemlerini çevrimiçi kaynak uygun olduğunda aktarabilir. Kârlılık, sinyal, emir, spread avantajı veya hedge güvenliği asla varsayılmaz.
 
-**Sınır:** Sinyal, işlem, gerçek/paper PnL, sanal kasa transferi, sürüm terfisi ve yeni strateji uygulaması yoktur. Destek modülü doğrulanmadığında `BLOCKED_SOURCE` olur; varsayımsal değer gösterilmez.
+## İşletim
+- Saatlik: `.github/workflows/support.yml` GitHub Actions; cron best-effort.
+- Kaynaklar: `onurqlp/alti-quant-lab/site/report.json` ve `onurqlp/coin-live-pro/web/data/{v4-manifest,v4-radar,health}.json` — immutable commit ve SHA doğrulaması.
+- Ekran: `site/index.html`.
+- Durum: `site/data/support.json`.
+- COIN.LIVE'ın **ayrıca okuyup bağlaması gereken** aktarım: `site/data/coinlive-support.json`. Bu çıktının varlığı COIN.LIVE'ın onu tükettiğini kanıtlamaz.
+- Tarihli son 672 saatlik (maksimum) çalışma kaydı: `data/support-history.json`.
+- Yerel test: `python -m unittest discover -s tests -q`.
+- Gerçek emir, sanal emir, kaynak repo güncellemesi, farklı kasa birleştirme, otomatik işlem sinyali ve otomatik kod ajanı yok.
 
-Kapsam ve testler: [docs/CONTRACT.md](docs/CONTRACT.md), [docs/OPERATIONS.md](docs/OPERATIONS.md).
+Değişiklikler yalnız MAKİNE deposunda gerçekleştirilir. ALTI ve COIN.LIVE strateji/sinyal/ledger/sürüm kodları değişmez. Kaynak erişim hatası `UNAVAILABLE` olarak korunur. Çıktı istatistiksel strateji doğrulaması veya finansal tavsiye değildir.

@@ -1,1 +1,1 @@
-"""MAKİNE — COIN.LIVE independent six-module support service."""
+"""MAKİNE six-module COIN.LIVE support service."""

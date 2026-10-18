@@ -1,21 +1,81 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071522"><meta name="description" content="MAKİNE — ALTI'nın altı modülünden COIN.LIVE'a bağımsız veri kalitesi ve funding desteği.">
-<title>MAKİNE · COIN.LIVE Yardım Motoru</title><link rel="stylesheet" href="./style.css?v=2"><script src="./app.js?v=2" defer></script></head>
-<body><div class="topbar"><span class="top-dot"></span> MAKİNE / SIX SUPPORT ENGINE <span class="topright">READ-ONLY · NO ORDERS</span></div>
-<div class="shell">
-<header class="header"><a href="./" class="brand"><span class="mark">M<span>·</span></span><span class="brandcopy"><b>MAKİNE <em>CORE</em></b><small>COIN.LIVE INDEPENDENT SUPPORT</small></span></a><nav><a href="#motorlar">6 MODÜL</a><a href="#finansman">FUNDING</a><a href="#gorev">DURUM</a></nav><button type="button" id="refresh" class="refresh">↻ Yenile</button></header>
-<main><section class="hero"><div class="intro"><span class="kicker"><i class="dot"></i> BAĞIMSIZ DESTEK SERVİSİ / SÜRÜM 2</span>
-<h1>Altı modül.<br><em>Tek hedef: COIN.LIVE.</em></h1>
-<p>MAKİNE, ALTI'nın altı ayrı stratejisinin veri durumunu denetler, doğrulanabilen bağlamı COIN.LIVE için salt-okunur çıktıya dönüştürür. Burası COIN.LIVE'ın işlem sisteminden ayrı, yalnız destek verisi üreten bağımsız bir platformdur.</p>
-<div class="actions"><a class="btn primary" href="#motorlar">Altı modülü görüntüle ↘</a><a class="btn secondary" href="https://github.com/onurqlp/makine-core/blob/main/site/data/coinlive-support.json" target="_blank" rel="noopener">COIN.LIVE destek paketini aç ↗</a></div>
-<div class="fine"><span>◈ BAĞIMSIZ DEPO</span><span>◉ 6 VERİ DENETLEYİCİSİ</span><span>⊘ OTOMATİK İŞLEM YOK</span></div></div>
-<div class="hero-card"><div class="hero-card-header">UPSTREAM / DOWNSTREAM <span>V2</span></div><div class="node upstream"><small>GİRDİ: 6 MODÜL · ALTI</small><strong>ALTI <span>QUANT</span></strong><p>Gerçek strateji durumu, funding olayları, sağlayıcı sağlığı</p></div><div class="arrow">↓ <span>DENETİM + DOĞRULAMA</span></div><div class="node central"><small>BAĞIMSIZ İŞLEYİCİ</small><strong>MAKİNE <span>CORE</span></strong><p>Kaynak yaşı · bütünlük · 6 modül · güvenlik kapıları</p></div><div class="arrow">↓ <span>YALNIZCA BAĞLAM JSON'U</span></div><div class="node downstream"><small>HEDEF: COIN.LIVE</small><strong>COIN<span>.</span>LIVE</strong><p>Kaynak kodu, sinyal politikası ve sanal kasa değişmez</p></div><div class="hero-card-foot"><span class="green">● VERİ YÖNLÜ</span><span>İŞLEM YETKİSİ: YOK</span></div></div>
-</section>
-<section class="kpi"><article><small>MODÜL</small><strong>6<span>/6</span></strong><p>Her çevrimde durum kontrolü</p></article><article><small>GÖZLEMLENEN VERİ</small><strong id="working">—</strong><p>Doğrulanabilen girdi sayısı</p></article><article><small>KAYNAK SAĞLIĞI</small><strong id="health">—</strong><p>ALTI + COIN.LIVE</p></article><article><small>COIN.LIVE ÖNERİLERİ</small><strong>0</strong><p>Otomatik işlem önerisi üretilmez</p></article></section>
-<section class="section" id="motorlar"><div class="heading"><div><span class="chapter">01 / ALTI DESTEK MOTORU</span><h2>Altı modül. Gerçek kaynak durumu.</h2><p>Her modülün görevi sabittir. Gerekli veri yoksa sonuç “girdi eksik” olur; çalışma veya kazanç uydurulmaz.</p></div><span class="muted">A1 · A2 · A3 · B1 · B2 · T0</span></div><div id="moduleGrid" class="modgrid" aria-live="polite"><div class="empty">ALTI modülleri kontrol ediliyor…</div></div></section>
-<section class="section" id="finansman"><div class="heading"><div><span class="chapter">02 / CANLI BAĞLAM</span><h2>Funding gözlem köprüsü</h2><p>B1 modülündeki doğrulanmış gerçekleşmiş funding olayları. İşlem fırsatı, arbitraj getirisi veya pozisyon açma önerisi değildir.</p></div></div><div class="funding-box"><div class="row"><strong>OKX · SON GERÇEKLEŞMİŞ OLAYLAR</strong><span id="fundingBadge" class="chip">VERİ BEKLENİYOR</span></div><div id="fundingList" class="funding-list"><p class="muted">Veri alınıyor…</p></div><p class="fundnote">Funding oranları işaretli kesirdir; fiyat değil, net getiri değil. Alım-satım erişimi ve diğer borsadan eşzamanlı fiyat doğrulanmadan uygulanabilir değildir.</p></div></section>
-<section class="section" id="gorev"><div class="heading"><div><span class="chapter">03 / BAĞLANTI SAĞLIĞI</span><h2>Kaynaklar ve açık engeller</h2><p>Girdi sağlığı her çevrimde yeniden kontrol edilir; sorun değişince MAKİNE'nin kendi GitHub görevine yazılır.</p></div></div><div class="sources"><div class="source"><small>COIN.LIVE SAĞLIĞI</small><strong id="coinState">—</strong><p id="coinMeta">—</p></div><div class="source"><small>ALTI SAĞLIĞI</small><strong id="altiState">—</strong><p id="altiMeta">—</p></div></div><div class="tasks"><div class="row"><strong>Açık veri engelleri</strong><span id="taskCount" class="chip">—</span></div><div id="taskList" class="taskList"><p class="muted">Denetim görevleri okunuyor…</p></div></div></section>
-<section class="bottom"><div><span class="chapter">04 / SİSTEM KANITI</span><h2>Bağımsız çalışan yardımcı sistem.</h2><p id="lastRun">İlk kontrol bekleniyor.</p><p>GitHub Actions 30 dakika aralıkla çalışmayı hedefler; gecikme olabilir. Güncel olmayan kaynaklar otomatik olarak eski gösterilir. Başka depoya yazma yetkisi bulunmaz.</p></div><div class="links"><a href="https://github.com/onurqlp/makine-core/actions/workflows/support.yml" target="_blank" rel="noopener">GitHub otomasyonları ↗</a><a href="https://github.com/onurqlp/makine-core/issues/1" target="_blank" rel="noopener">Ortak durum kaydı ↗</a><a href="https://github.com/onurqlp/alti-quant-lab" target="_blank" rel="noopener">ALTI kaynağı ↗</a><a href="https://github.com/onurqlp/coin-live-pro" target="_blank" rel="noopener">COIN.LIVE kaynağı ↗</a></div></section>
-</main><footer>MAKİNE · COIN.LIVE SUPPORT <span>6 MODÜL · 0 İŞLEM · BAĞIMSIZ YÜRÜTME</span></footer></div>
-</body></html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#071420"><meta name="description" content="MAKİNE · COIN.LIVE için bağımsız altı modül destek motoru">
+<title>MAKİNE — COIN.LIVE Destek Motoru</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#071420;color:#e9f2f8}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 75% -10%,#17465966,transparent 55%),#071420;line-height:1.5}a{color:#91d6e1;text-decoration:none}
+.wrap{width:min(1160px,calc(100% - 32px));margin:0 auto;padding:20px 0 64px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid #21384a}
+.brand{font-weight:900;letter-spacing:.07em}.brand span{color:#7ae4be}.right{font-size:12px;color:#a9bfca}h1{font-size:clamp(31px,5vw,56px);line-height:1.08;letter-spacing:-.06em;margin:42px 0 12px}h1 em{font-style:normal;color:#8ce2cc}
+.lede{max-width:710px;color:#b2c4d1;margin:0 0 25px}.top{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:21px}
+.tag{background:#123245;border:1px solid #2c6070;border-radius:999px;padding:6px 11px;color:#aadbcf;font-size:11px;font-weight:700}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.panel,.module{border:1px solid #263e51;background:#102332dd;border-radius:17px;padding:18px;min-width:0}
+.label{color:#91acb9;font-size:11px;font-weight:750;letter-spacing:.08em}.big{font-size:clamp(20px,3vw,29px);font-weight:850;letter-spacing:-.03em;margin-top:6px}
+.sub{font-size:12px;color:#a4b9c6;margin-top:5px;overflow-wrap:anywhere}
+.section{margin-top:35px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+h2{font-size:22px;letter-spacing:-.04em;margin:0}button{background:#1a4c55;border:1px solid #3a958a;color:#d5fbed;padding:9px 15px;border-radius:11px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.6}.modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.module{min-height:230px}
+.module .k{font-size:12px;color:#87dfc5;font-weight:900}.module h3{font-size:20px;margin:8px 0 7px;letter-spacing:-.035em}
+.state{display:inline-block;border-radius:7px;padding:3px 8px;background:#3a3024;color:#ffd09b;font-size:11px;font-weight:800}
+.state.ok{background:#164333;color:#9eefd0}.purpose{margin:13px 0;font-size:13px;color:#bdcddb}.reason{font-size:12px;color:#9bb3c1;overflow-wrap:anywhere}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mono{word-break:break-all;font:12px ui-monospace,SFMono-Regular,monospace;color:#9ab3bd}
+.linkrow{display:flex;flex-wrap:wrap;gap:9px;margin:23px 0}.linkrow a{border:1px solid #376077;border-radius:10px;padding:10px 13px;background:#102c3c;font-size:12px}
+.note{font-size:12px;color:#a5b9c8;margin-top:17px;padding:14px;border-radius:12px;border:1px solid #284557}
+.warning{color:#ffd3ab}.statusline{font-size:12px;color:#b4d7d2}
+@media(max-width:800px){.modules{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom{grid-template-columns:1fr}}
+@media(max-width:560px){.summary,.modules{grid-template-columns:1fr}.module{min-height:0}.right{font-size:10px}.wrap{width:min(100% - 26px,1160px)}}
+</style></head><body>
+<div class="wrap">
+<header><div class="brand">M<span>·</span> MAKİNE <span style="color:#849eab">/ SUPPORT</span></div><div class="right">COIN.LIVE BAĞIMSIZ DESTEK SİSTEMİ</div></header>
+<main><h1>Altı motor.<br><em>Tek görev: COIN.LIVE.</em></h1>
+<p class="lede">MAKİNE artık gelir fikri laboratuvarı değil. ALTI'nın altı strateji modülünden gelen doğrulanabilir verileri ayrıştırır, COIN.LIVE için salt-okunur bir destek paketi üretir. Eksik veriyi işlem sinyaline dönüştürmez.</p>
+<div class="top"><span class="tag">6 SABİT MODÜL</span><span class="tag">BAĞIMSIZ REPO</span><span class="tag">OTOMATİK VERİ KONTROLÜ</span><span class="tag">EMİR / SİNYAL YOK</span></div>
+<div class="summary"><article class="panel"><div class="label">ÇALIŞAN GÖZLEM KAPISI</div><div class="big" id="observing">—</div><div class="sub">Altı denetleyiciden gerçek gözlemi bulunanlar</div></article>
+<article class="panel"><div class="label">ALTI KAYNAĞI</div><div class="big" id="alti">—</div><div class="sub" id="altiTime">Veri saati bekleniyor</div></article>
+<article class="panel"><div class="label">COIN.LIVE KAYNAĞI</div><div class="big" id="coin">—</div><div class="sub" id="coinTime">Veri saati bekleniyor</div></article></div>
+<section class="section"><div class="section-title"><h2>Altı destek modülü</h2><button id="refresh">↻ Yenile</button></div><div id="modules" class="modules"><div class="panel">Modül durumu yükleniyor…</div></div></section>
+<section class="section"><h2>COIN.LIVE aktarımı</h2><div class="bottom" style="margin-top:14px">
+<div class="panel"><div class="label">DESTEK PAKETİ</div><div class="big" id="handoff">—</div><div class="sub" id="matches">Gözlem eşleşmesi bekleniyor</div><p class="note">Bu paket COIN.LIVE tarafından ayrıca tüketilmedikçe canlı sistemde değişiklik oluşturmaz.</p></div>
+<div class="panel"><div class="label">OTOMASYON DURUMU</div><div class="big" id="trigger">—</div><div class="sub" id="generated">Son çalışma bilinmiyor</div><p class="note">Zamanlayıcı ve kaynak gözlemi ayrı doğrulanır. İşlem ve sanal kasa erişimi verilmez.</p></div></div></section>
+<div class="linkrow"><a href="./data/support.json" target="_blank" rel="noopener">Altı modül verisi ↗</a><a href="./data/coinlive-support.json" target="_blank" rel="noopener">COIN.LIVE destek JSON ↗</a><a href="https://github.com/onurqlp/makine-core/actions" target="_blank" rel="noopener">Otomasyon geçmişi ↗</a><a href="https://github.com/onurqlp/alti-quant-lab" target="_blank" rel="noopener">ALTI kaynak deposu ↗</a></div>
+<div class="note">Buradaki modüller otomatik veri sağlık/uygunluk kontrolleridir. Piyasa stratejilerinin kârlılığı, emir erişimi, fiyat eşleşmesi veya hedge kabiliyeti doğrulanmamıştır. Yalnız uygun ve güncel finansal kaynaklar yorumlanır.</div>
+</main></div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=v=>{const d=new Date(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat("tr-TR",{dateStyle:"short",timeStyle:"short",timeZone:"Europe/Istanbul"}).format(d):"Zaman doğrulanmadı"};
+const age=v=>(Date.now()-new Date(v).getTime())/60000;
+const state=(s,minutes)=>{let a=age(s?.observed_at_utc);return (!Number.isFinite(a)||a>minutes)?"STALE":a< -5?"INVALID_TIME":(s?.state||"UNAVAILABLE")};
+const labels={FRESH:"GÜNCEL",PARTIAL:"KISMİ",STALE:"ESKİ",INVALID:"GEÇERSİZ",UNAVAILABLE:"ERİŞİLEMİYOR",INVALID_TIME:"ZAMAN HATASI"};
+function el(tag,cls,text){const o=document.createElement(tag);if(cls)o.className=cls;o.textContent=String(text??"");return o}
+async function refresh(){
+ $("refresh").disabled=true;
+ try{
+ const r=await fetch("./data/support.json?t="+Date.now(),{cache:"no-store"});
+ if(!r.ok)throw Error("HTTP "+r.status);
+ const data=await r.json();
+ if(data.schema!=="makine-six-support-v2"||data.module_count!==6)throw Error("Invalid six-module output");
+ const source=data.sources||{};
+ $("observing").textContent=(data.observing_count||0)+" / 6";
+ for(const [key,id,time,limit] of [["alti","alti","altiTime",120],["coinlive","coin","coinTime",45]]){
+  const s=source[key]||{},st=state(s,limit);$(id).textContent=labels[st]||st;$(time).textContent="Kaynak: "+fmt(s.observed_at_utc);
+ }
+ $("modules").replaceChildren();
+ for(const m of data.modules||[]){
+  const box=el("article","module");box.append(el("div","k",m.id),el("h3","",m.name),el("span","state "+(m.state==="OBSERVING"?"ok":""),m.state==="OBSERVING"?"GÖZLEM VAR":"KAYNAK BEKLENİYOR"),
+   el("p","purpose",m.purpose),el("div","reason",m.blocker||"Doğrulanmış salt-okunur gözlem."),
+   el("div","sub","COIN.LIVE watch eşleşmesi: "+(m.coinlive_watch_matches?.length||0)));
+  box.appendChild(el("div","sub","Emir/sinyal: kapalı"));$("modules").appendChild(box)
+ }
+ $("handoff").textContent=data.feed?.status==="LIMITED_READ_ONLY_CONTEXT"?"KISITLI BAĞLAM":"DOĞRULANMIŞ BAĞLAM YOK";
+ $("matches").textContent="Funding watch eşleşmeleri: "+(data.feed?.watched_funding_matches?.length||0);
+ $("trigger").textContent=({schedule:"ZAMANLAYICI",push:"KOD GÜNCELLEMESİ",workflow_dispatch:"MANUEL TEST"})[data.runtime?.event]||"YEREL / BİLİNMİYOR";
+ $("generated").textContent="Üretim: "+fmt(data.generated_at_utc);
+ if(age(data.generated_at_utc)>120||age(data.generated_at_utc)<-5){$("generated").textContent+=" · BU RAPOR ESKİ";}
+ }catch(e){$("modules").replaceChildren(el("div","panel warning","Veri doğrulanamadı. GitHub Actions geçmişini kontrol edin."));
+ $("handoff").textContent="ERİŞİM HATASI";$("observing").textContent="—";console.error("MAKINE support",e)}
+ finally{$("refresh").disabled=false}
+}
+$("refresh").addEventListener("click",refresh);refresh();
+</script></body></html>
