@@ -19,7 +19,7 @@ on:
       - 'site/data/agent-analysis.json'
 
 concurrency:
-  group: makine-core-publication
+  group: makine-core-publish-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -37,7 +37,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Contract and security tests
-        run: python -m unittest discover -s tests -q
+        run: |
+          python -m unittest discover -s tests -q
+          node --check site/app.js
       - name: Source refresh ONLY on explicit manual request
         if: ${{ (github.event_name == 'workflow_dispatch' && inputs.refresh_source == true) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[refresh-source]')) }}
         run: python -m makine refresh
@@ -63,6 +65,9 @@ jobs:
 
   pages:
     needs: research
+    concurrency:
+      group: makine-core-pages
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
