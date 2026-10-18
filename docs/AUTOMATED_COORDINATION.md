@@ -66,3 +66,14 @@ Local AI denemesine anahtarı terminal geçmişine veya örnek komut içine göm
 - GitHub token sorununda `TOKEN_UNAVAILABLE` / `FAILED_RETRY_NEXT_RUN` yazılır; bildirim başarıyla iletilmiş gibi gösterilmez.
 - İlk doğrulanmış bot yorumu: https://github.com/onurqlp/makine-core/issues/1#issuecomment-6247388866
 - Görev tanımlamak, Copilot/cloud agent başlatmak anlamına gelmez. Bunun için desteklenen/izinli ayrı bir agent runtime ve plan gerekir.
+
+
+## 7. Mobil ürünleştirme ve sürekli yayın
+
+- `site/index.html` ve `site/status.html` MAKİNE'nin mobil masaüstüne uyarlanan iki arayüzüdür.
+- Ana sayfa kaynağın gerçek UTC gözlem zamanını tazelik penceresine göre tekrar değerlendirir; görev ekranı 6 ALTI eşleştirmesini ve son 12 saatlik/eldeki kontrol kaydını gösterir.
+- GitHub Pages her saat koordinatör tamamlandıktan sonra ve normal kod yayınlarında yeniden dağıtılmak üzere yapılandırıldı. Ancak repo ayarında GitHub Pages hâlen kapalıysa `deploy-pages` adımı bilinçli şekilde atlanır; bu durumda herhangi bir URL'ye yeni sürüm dağıtılmış **sayılmaz**.
+- Tek manuel ayar: https://github.com/onurqlp/makine-core/settings/pages → **Source: GitHub Actions**.
+- Sonrasında GitHub Actions `MAKİNE — Autonomous Read-Only Coordination` işinin `pages` adımını ve gerçek URL'yi doğrula. `Settings → Pages` sayfasındaki **Visit site** bağlantısı yalnız yayın tamamlandıysa kullanılmalı.
+- Vercel üretim projesi kaynak repoya otomatik bağlı değildir; Vercel eski sürümüyle GitHub yeni sürümünü birbiriyle karıştırma.
+- İki GitHub Actions workflow'u ayrılmış concurrency gruplarıyla koordinasyon veya yayın güncellemelerinin birbirini gereksiz yere iptal etmesini azaltır.
