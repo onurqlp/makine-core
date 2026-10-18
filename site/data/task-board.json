@@ -1,0 +1,91 @@
+{
+  "schema": "makine-task-board-v1",
+  "generated_at_utc": "2026-10-18T07:59:08Z",
+  "from_coordination_utc": "2026-10-18T07:59:07Z",
+  "status": "ATTENTION_REQUIRED",
+  "active": [
+    {
+      "id": "ALTI_PROVIDER_ACCESS",
+      "owner": "ALTI",
+      "severity": "MEDIUM",
+      "title": "ALTI sağlayıcı erişimi kısmen başarısız",
+      "next_step": "Sağlayıcı hata durumlarını ve alternatif kamuya açık veri erişimini araştır; işlem yapma.",
+      "status": "RESEARCH_REQUIRED",
+      "approval_required": true,
+      "source": {
+        "source_repo": "onurqlp/alti-quant-lab",
+        "source_state": "STALE",
+        "observed_at_utc": "2026-10-18T03:21:03Z",
+        "scan_id": "alti-20261018T0321Z"
+      },
+      "first_seen_utc": "2026-10-18T07:59:08Z",
+      "last_seen_utc": "2026-10-18T07:59:08Z",
+      "issue": "https://github.com/onurqlp/makine-core/issues/1",
+      "autonomous_code_execution": false
+    },
+    {
+      "id": "ALTI_SOURCE_FRESHNESS",
+      "owner": "ALTI",
+      "severity": "HIGH",
+      "title": "ALTI verisi zamanında yenilenmiyor",
+      "next_step": "ALTI Actions cron/success loglarını ve son gerçek piyasa kaydı zamanını kontrol et.",
+      "status": "RESEARCH_REQUIRED",
+      "approval_required": true,
+      "source": {
+        "source_repo": "onurqlp/alti-quant-lab",
+        "source_state": "STALE",
+        "observed_at_utc": "2026-10-18T03:21:03Z",
+        "scan_id": "alti-20261018T0321Z"
+      },
+      "first_seen_utc": "2026-10-18T07:59:08Z",
+      "last_seen_utc": "2026-10-18T07:59:08Z",
+      "issue": "https://github.com/onurqlp/makine-core/issues/1",
+      "autonomous_code_execution": false
+    },
+    {
+      "id": "COIN_SOURCE_FRESHNESS",
+      "owner": "COIN.LIVE",
+      "severity": "HIGH",
+      "title": "COIN.LIVE kaynak tazeliği / bütünlüğü kontrolü",
+      "next_step": "Kaynağın gerçek zaman damgasını, health ve manifest bütünlüğünü kendi deposunda incele.",
+      "status": "RESEARCH_REQUIRED",
+      "approval_required": true,
+      "source": {
+        "source_repo": "onurqlp/coin-live-pro",
+        "source_state": "PARTIAL",
+        "observed_at_utc": "2026-10-18T07:54:33.133000+00:00",
+        "scan_id": "67cf8e185c9f091d2ab98d9f"
+      },
+      "first_seen_utc": "2026-10-18T07:59:08Z",
+      "last_seen_utc": "2026-10-18T07:59:08Z",
+      "issue": "https://github.com/onurqlp/makine-core/issues/1",
+      "autonomous_code_execution": false
+    }
+  ],
+  "resolved_recent": [],
+  "transition": {
+    "started": [
+      "ALTI_PROVIDER_ACCESS",
+      "ALTI_SOURCE_FRESHNESS",
+      "COIN_SOURCE_FRESHNESS"
+    ],
+    "resolved": [],
+    "changed": true,
+    "signature": "956ef9328eeeb3a2"
+  },
+  "last_notified_signature": "956ef9328eeeb3a2",
+  "issue_delivery": {
+    "state": "POSTED",
+    "posted": true
+  },
+  "notification_required": true,
+  "master_issue": "https://github.com/onurqlp/makine-core/issues/1",
+  "automation": {
+    "issue_updates": "ON_TRANSITIONS_ONLY",
+    "cross_repository_writes": false,
+    "auto_assign_coding_agent": false,
+    "allow_trading": false,
+    "allow_releases": false,
+    "ai_proposals_not_executable": true
+  }
+}
