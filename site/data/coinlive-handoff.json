@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-18T19:27:39Z",
-  "source_commit_sha": "9637204268eb896399b4b82386a9386c9ac78334",
-  "source_scan_id": "81b5388ec61067d8ca082aee",
+  "generated_at_utc": "2026-10-18T20:15:21Z",
+  "source_commit_sha": "428e45c2a185a14e4061b04695a3f039ca38a979",
+  "source_scan_id": "9f88e79064dfc1759a6f7060",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -15,17 +15,20 @@
     "status": "SIX_MODULE_LIMITED_CONTEXT",
     "radar_counts": {
       "spotlight": 0,
-      "motion": 0,
+      "motion": 12,
       "watch": 40,
-      "recheck_pending": 114,
-      "active_total": 121,
-      "archived_total": 235
+      "recheck_pending": 95,
+      "active_total": 131,
+      "archived_total": 244
     },
-    "health": "DEGRADED_SCHEDULE_GAP",
-    "import_timestamp": "2026-10-18T19:27:39Z",
+    "health": "OK",
+    "import_timestamp": "2026-10-18T20:15:21Z",
     "alti_source_state": "PARTIAL",
-    "funding_watch_matches": [],
-    "modules_observing": 1,
+    "funding_watch_matches": [
+      "BTCUSDT",
+      "ETHUSDT"
+    ],
+    "modules_observing": 4,
     "module_ids": [
       "A1",
       "A2",
@@ -58,8 +61,8 @@
       "id": "SUPPORT-A3",
       "module_id": "A3",
       "title": "İstatistiksel sepet",
-      "state": "BLOCKED_SOURCE",
-      "recommendation": "SOURCE_NOT_READY",
+      "state": "OBSERVING",
+      "recommendation": "OBSERVATION_ONLY",
       "not_executable": true,
       "alti_overlap": "A3"
     },
@@ -76,8 +79,8 @@
       "id": "SUPPORT-B2",
       "module_id": "B2",
       "title": "Stablecoin sapması",
-      "state": "BLOCKED_SOURCE",
-      "recommendation": "SOURCE_NOT_READY",
+      "state": "OBSERVING",
+      "recommendation": "OBSERVATION_ONLY",
       "not_executable": true,
       "alti_overlap": "B2"
     },
@@ -85,8 +88,8 @@
       "id": "SUPPORT-T0",
       "module_id": "T0",
       "title": "Tahvil–repo",
-      "state": "BLOCKED_SOURCE",
-      "recommendation": "SOURCE_NOT_READY",
+      "state": "OBSERVING",
+      "recommendation": "OBSERVATION_ONLY",
       "not_executable": true,
       "alti_overlap": "T0"
     }
