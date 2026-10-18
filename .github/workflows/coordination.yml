@@ -17,6 +17,8 @@ on:
       - '.github/workflows/coordination.yml'
       - 'makine/coordinator.py'
       - 'tests/test_coordination.py'
+      - 'makine/agent.py'
+      - 'tests/test_agent.py'
 
 permissions:
   contents: write
@@ -48,6 +50,13 @@ jobs:
         env:
           MAKINE_SCHEDULED_REFRESH: '1'
         run: python -m makine refresh
+      - name: Optional approved daily AI research synthesis (never on push)
+        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '41 4 * * *') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
+        env:
+          MAKINE_AI_ENABLED: ${{ vars.MAKINE_AI_ENABLED }}
+          MAKINE_AI_MODEL: ${{ vars.MAKINE_AI_MODEL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python -m makine.agent
       - name: Check outputs and keep an auditable hourly log
         run: |
           python - <<'PY'
@@ -72,6 +81,7 @@ jobs:
           git add site/data/coordination.json data/coordination-history.json
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "41 4 * * *" ]; then
             git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
+            if [ -f site/data/agent-analysis.json ]; then git add site/data/agent-analysis.json; fi
           fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.full_refresh }}" = "true" ]; then
             git add data/update-history.json site/data/report.json site/data/coinlive-handoff.json site/data/update-history.json
