@@ -1,6 +1,6 @@
 {
   "schema": "makine-coordination-v1",
-  "generated_at_utc": "2026-10-18T08:18:10Z",
+  "generated_at_utc": "2026-10-18T08:22:53Z",
   "mode": "AUTOMATED_READ_ONLY",
   "system_state": "ATTENTION_REQUIRED",
   "sources": {
@@ -9,7 +9,7 @@
       "commit_sha": "241afba59d7d0f9ef1c5103b1756cda3b6d8c338",
       "scan_id": "8d88b0aada88ef8f9c82c614",
       "observed_at_utc": "2026-10-18T08:14:43.906000+00:00",
-      "age_minutes": 3.45,
+      "age_minutes": 8.15,
       "freshness_limit_minutes": 30,
       "state": "PARTIAL",
       "source_health": "DEGRADED_SCHEDULE_GAP",
@@ -32,7 +32,7 @@
       "scan_id": "alti-20261018T0815Z",
       "observed_at_utc": "2026-10-18T08:15:45Z",
       "last_successful_scan_utc": "2026-10-18T08:15:45Z",
-      "age_minutes": 2.43,
+      "age_minutes": 7.14,
       "freshness_limit_minutes": 90,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
@@ -174,5 +174,7 @@
     "A current immutable commit does not mean market observations are fresh.",
     "Coin.Live hash checks here cover v4-radar and v4-paper; the separate full research refresh has wider checks.",
     "No parallel ChatGPT/Codex agents are remotely started by this job."
-  ]
+  ],
+  "runtime_event": "push",
+  "schedule_proven_this_run": false
 }
