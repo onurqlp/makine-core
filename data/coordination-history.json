@@ -3,7 +3,7 @@
   "entries": [
     {
       "hour_utc": "2026-10-18T07",
-      "generated_at_utc": "2026-10-18T07:46:57Z",
+      "generated_at_utc": "2026-10-18T07:48:18Z",
       "system_state": "ATTENTION_REQUIRED",
       "source_states": {
         "coinlive": "FRESH",

@@ -1,6 +1,6 @@
 {
   "schema": "makine-coordination-v1",
-  "generated_at_utc": "2026-10-18T07:46:57Z",
+  "generated_at_utc": "2026-10-18T07:48:18Z",
   "mode": "AUTOMATED_READ_ONLY",
   "system_state": "ATTENTION_REQUIRED",
   "sources": {
@@ -9,7 +9,7 @@
       "commit_sha": "cb541b47515cac083a7bfdd515126dfc5fb4ab6f",
       "scan_id": "0458b54e7a26a08523190fe5",
       "observed_at_utc": "2026-10-18T07:44:40.985000+00:00",
-      "age_minutes": 2.27,
+      "age_minutes": 3.62,
       "freshness_limit_minutes": 30,
       "state": "FRESH",
       "source_health": "OK",
@@ -30,7 +30,7 @@
       "scan_id": "alti-20261018T0321Z",
       "observed_at_utc": "2026-10-18T03:21:03Z",
       "last_successful_scan_utc": "2026-10-18T03:21:03Z",
-      "age_minutes": 265.91,
+      "age_minutes": 267.26,
       "freshness_limit_minutes": 90,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
