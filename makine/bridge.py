@@ -180,6 +180,12 @@ def build(now=None,fetcher=fetch):
                  if c.get("verified_market_context") else [],
              "matching_watch_symbols":next((x["coinlive_watch_symbol_matches"] for x in six if x["id"]=="B1"),[])
                  if c.get("verified_market_context") else [],
+             "module_checks":[{"id":m["id"],"state":m["state"],
+                               "source_strategy_status":m["source_strategy_status"],
+                               "data_label":m["data_label"],
+                               "input_blocker":m["blocker"],
+                               "coinlive_support":m["coinlive_support"],
+                               "trade_ready":False} for m in six],
              "trade_candidates":[],"can_change_signal_policy":False,"can_place_orders":False,
              "can_change_paper_ledger":False,"machine_readable_context_only":True},
         "safety":{"allow_source_repo_writes":False,"allow_orders":False,"allow_paper_fills":False,
