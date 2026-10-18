@@ -79,10 +79,15 @@ def coin_input(now,fetcher=fetch):
         reasons.append("UNVERIFIED_MANIFEST_SAFETY")
     fresh,age=freshness(m.get("finished_at_utc"),now,45)
     healthy=health.get("status")=="OK"
-    if health.get("last_scan_id")!=scan:reasons.append("HEALTH_SCAN_MISMATCH")
+    # The health payload is manifest-hash-pinned, but its last_scan_id can
+    # refer to a different scheduler slot than the publication manifest.
+    # Flag that discrepancy separately; it is not a radar integrity failure.
+    health_differs=health.get("last_scan_id")!=scan
+    if health_differs:reasons.append("HEALTH_SCAN_REFERENCE_DIFFERS")
     st=fresh
-    if reasons:st="INVALID"
-    elif fresh=="FRESH" and not healthy:st="PARTIAL"
+    if any(x.startswith("HASH_MISMATCH") or x in ("SCAN_ID_MISMATCH","UNVERIFIED_MANIFEST_SAFETY") for x in reasons):
+        st="INVALID"
+    elif fresh=="FRESH" and (not healthy or health_differs):st="PARTIAL"
     if health.get("schedule_proven") is not True:reasons.append("SCHEDULE_NOT_PROVEN")
     return {"repo":repo,"source_sha":sha,"scan_id":scan,"observed_at_utc":m.get("finished_at_utc"),
             "age_minutes":age,"state":st,"health_status":health.get("status"),
