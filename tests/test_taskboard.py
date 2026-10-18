@@ -39,6 +39,7 @@ class TaskBoardTests(unittest.TestCase):
             return {"id": 123}
         a = post_update(build_board(snap(), now=T), "dummy", sender=sender)
         self.assertEqual(a["issue_delivery"]["state"], "POSTED")
+        self.assertFalse(a["notification_required"])
         self.assertIn("MAKINE-READONLY-COORDINATION", calls[0]["body"])
         later = T + dt.timedelta(hours=1)
         b = build_board(snap(), a, now=later)
