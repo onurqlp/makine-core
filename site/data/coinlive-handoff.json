@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-20T06:37:05Z",
-  "source_commit_sha": "e6d635d61f7f380c03ad9f0ae31c20b39e639645",
-  "source_scan_id": "8cdf687b346f0df142f4da04",
+  "generated_at_utc": "2026-10-20T12:12:48Z",
+  "source_commit_sha": "ce83eab8b93d6ca5f2214112ca16431292778748",
+  "source_scan_id": "36a8e964d15143258e6d4721",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -14,15 +14,15 @@
   "market_context": {
     "status": "SIX_MODULE_LIMITED_CONTEXT",
     "radar_counts": {
-      "spotlight": 1,
-      "motion": 2,
+      "spotlight": 0,
+      "motion": 3,
       "watch": 40,
-      "recheck_pending": 141,
+      "recheck_pending": 139,
       "active_total": 150,
-      "archived_total": 571
+      "archived_total": 638
     },
-    "health": "DEGRADED_SCHEDULE_GAP",
-    "import_timestamp": "2026-10-20T06:37:05Z",
+    "health": "OK",
+    "import_timestamp": "2026-10-20T12:12:48Z",
     "alti_source_state": "PARTIAL",
     "funding_watch_matches": [
       "ETHUSDT"
