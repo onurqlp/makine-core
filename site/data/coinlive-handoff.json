@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-10-22T23:59:21Z",
-  "source_commit_sha": "f7b6aacb64c308b074eb3d2ce4c56dc3e4d7b934",
-  "source_scan_id": "093c4a7bc30a5170747a7c1a",
+  "generated_at_utc": "2026-10-23T04:46:43Z",
+  "source_commit_sha": "b2d8239a98df375031b9091e410aa05aceefcfd2",
+  "source_scan_id": "e66d5975b9e2e8c7322f16e7",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -12,20 +12,20 @@
   "can_modify_coins_live_ledger": false,
   "new_trade_candidates": [],
   "market_context": {
-    "status": "SIX_MODULE_LIMITED_CONTEXT",
+    "status": "NO_VERIFIED_CONTEXT",
     "radar_counts": {
-      "spotlight": 0,
-      "motion": 2,
+      "spotlight": 1,
+      "motion": 0,
       "watch": 40,
       "recheck_pending": 138,
       "active_total": 150,
-      "archived_total": 1567
+      "archived_total": 1617
     },
-    "health": "OK",
-    "import_timestamp": "2026-10-22T23:59:21Z",
-    "alti_source_state": "PARTIAL",
+    "health": "DEGRADED_SCHEDULE_GAP",
+    "import_timestamp": "2026-10-23T04:46:43Z",
+    "alti_source_state": "STALE",
     "funding_watch_matches": [],
-    "modules_observing": 6,
+    "modules_observing": 0,
     "module_ids": [
       "A1",
       "A2",
@@ -40,8 +40,8 @@
       "id": "SUPPORT-A1",
       "module_id": "A1",
       "title": "Hisse pairs",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "A1"
     },
@@ -49,8 +49,8 @@
       "id": "SUPPORT-A2",
       "module_id": "A2",
       "title": "ETF–ETF",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "A2"
     },
@@ -58,8 +58,8 @@
       "id": "SUPPORT-A3",
       "module_id": "A3",
       "title": "İstatistiksel sepet",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "A3"
     },
@@ -67,8 +67,8 @@
       "id": "SUPPORT-B1",
       "module_id": "B1",
       "title": "Perpetual funding",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "B1"
     },
@@ -76,8 +76,8 @@
       "id": "SUPPORT-B2",
       "module_id": "B2",
       "title": "Stablecoin sapması",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "B2"
     },
@@ -85,8 +85,8 @@
       "id": "SUPPORT-T0",
       "module_id": "T0",
       "title": "Tahvil–repo",
-      "state": "OBSERVING",
-      "recommendation": "OBSERVATION_ONLY",
+      "state": "BLOCKED_SOURCE",
+      "recommendation": "SOURCE_NOT_READY",
       "not_executable": true,
       "alti_overlap": "T0"
     }
