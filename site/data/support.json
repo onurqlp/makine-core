@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-24T19:48:12Z",
+  "generated_at_utc": "2026-10-24T22:28:15Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,10 +10,10 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "3a012e33d89a93866b6439ea3aa117fd6716b311",
-      "scan_id": "alti-20261024T1820Z",
-      "observed_at_utc": "2026-10-24T18:20:01Z",
-      "age_minutes": 88.19,
+      "sha": "4cf8c5b0e4f7edce647692457b495a0d42b7b8c5",
+      "scan_id": "alti-20261024T2104Z",
+      "observed_at_utc": "2026-10-24T21:04:19Z",
+      "age_minutes": 83.94,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
@@ -72,14 +72,14 @@
             "OKX": {
               "bid": 1.00117,
               "ask": 1.00118,
-              "bid_qty_base": 75394.087976,
-              "ask_qty_base": 290219.221057
+              "bid_qty_base": 78333.683371,
+              "ask_qty_base": 1335839.95481
             },
             "KRAKEN": {
               "bid": 1.0011,
               "ask": 1.0012,
-              "bid_qty_base": 302622.725,
-              "ask_qty_base": 1021900.222
+              "bid_qty_base": 433091.003,
+              "ask_qty_base": 865192.618
             }
           },
           "routes": [
@@ -110,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-24T18:20:01Z",
+          "asof_utc": "2026-10-24T21:04:19Z",
           "actionable": false
         },
         "A3": {
@@ -150,26 +150,26 @@
         }
       },
       "warnings": [],
-      "sha256": "190eead8efee84c7e5513fe8676022200f6bc6040666c93c580f6ab60fa71ddd"
+      "sha256": "b69c305ad7967744684fcedcc115f941f005d236beac75d6e20ae2abf8d62ca6"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "92affc0bf2a324baa0e91a15dfcc11a5c2efa0f8",
-      "scan_id": "42147de46627051ce8cd08fa",
-      "observed_at_utc": "2026-10-24T19:39:39.893000+00:00",
-      "age_minutes": 8.54,
+      "sha": "4b56360038d1c52c93ca90240265b06cca066bbf",
+      "scan_id": "d152f2da2768f2a61fc63ea6",
+      "observed_at_utc": "2026-10-24T22:24:43.178000+00:00",
+      "age_minutes": 3.53,
       "state": "PARTIAL",
-      "health": "OK",
+      "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
         "HEALTH_SCAN_LAG"
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 1,
+        "motion": 3,
         "watch": 40,
-        "recheck_pending": 144,
-        "active_total": 149,
-        "archived_total": 2102
+        "recheck_pending": 139,
+        "active_total": 150,
+        "archived_total": 2133
       }
     }
   },
@@ -314,7 +314,9 @@
           "executable": false
         }
       ],
-      "coinlive_watch_matches": [],
+      "coinlive_watch_matches": [
+        "BTCUSDT"
+      ],
       "data_scope": "REALIZED_FUNDING_ONLY",
       "signal": false,
       "executable": false,
@@ -339,14 +341,14 @@
             "OKX": {
               "bid": 1.00117,
               "ask": 1.00118,
-              "bid_qty_base": 75394.087976,
-              "ask_qty_base": 290219.221057
+              "bid_qty_base": 78333.683371,
+              "ask_qty_base": 1335839.95481
             },
             "KRAKEN": {
               "bid": 1.0011,
               "ask": 1.0012,
-              "bid_qty_base": 302622.725,
-              "ask_qty_base": 1021900.222
+              "bid_qty_base": 433091.003,
+              "ask_qty_base": 865192.618
             }
           },
           "routes": [
@@ -377,7 +379,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-24T18:20:01Z",
+          "asof_utc": "2026-10-24T21:04:19Z",
           "actionable": false
         }
       ],
@@ -419,12 +421,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-24T19:48:12Z",
+    "generated_at_utc": "2026-10-24T22:28:15Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "92affc0bf2a324baa0e91a15dfcc11a5c2efa0f8",
-    "coinlive_scan_id": "42147de46627051ce8cd08fa",
-    "alti_sha": "3a012e33d89a93866b6439ea3aa117fd6716b311",
-    "alti_scan_id": "alti-20261024T1820Z",
+    "coinlive_sha": "4b56360038d1c52c93ca90240265b06cca066bbf",
+    "coinlive_scan_id": "d152f2da2768f2a61fc63ea6",
+    "alti_sha": "4cf8c5b0e4f7edce647692457b495a0d42b7b8c5",
+    "alti_scan_id": "alti-20261024T2104Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {
@@ -444,7 +446,9 @@
         "executable": false
       }
     ],
-    "watched_funding_matches": [],
+    "watched_funding_matches": [
+      "BTCUSDT"
+    ],
     "trade_candidates": [],
     "change_signals": false,
     "orders": false,
