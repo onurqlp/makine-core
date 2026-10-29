@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-28T21:53:58Z",
+  "generated_at_utc": "2026-10-29T01:47:30Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,13 +10,13 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "282999ebcf59ccec1a66fb9d7edaccae6af985c7",
-      "scan_id": "alti-20261028T2149Z",
-      "observed_at_utc": "2026-10-28T21:49:54Z",
-      "age_minutes": 4.07,
+      "sha": "95055f32c80536f60bd3c85eddbfbf02d93d621a",
+      "scan_id": "alti-20261029T0135Z",
+      "observed_at_utc": "2026-10-29T01:35:32Z",
+      "age_minutes": 11.98,
       "state": "PARTIAL",
-      "scan_status": "PARTIAL_LIVE",
-      "provider_error_count": 2,
+      "scan_status": "READ_ONLY_LIVE",
+      "provider_error_count": 0,
       "public_inputs": {
         "A1": {
           "status": "INPUTS_ONLY",
@@ -27,7 +27,7 @@
             "PEP"
           ],
           "last_complete_session": "2026-10-27",
-          "aligned_sessions": 507,
+          "aligned_sessions": 506,
           "return_20d_percent": {
             "KO": 4.9977,
             "PEP": 3.7377
@@ -49,7 +49,7 @@
             "VOO"
           ],
           "last_complete_session": "2026-10-27",
-          "aligned_sessions": 507,
+          "aligned_sessions": 506,
           "return_20d_percent": {
             "IVV": 0.7466,
             "VOO": 0.7203
@@ -66,30 +66,30 @@
           "status": "SCREEN_ONLY",
           "venues": [
             "OKX",
-            "KRAKEN"
+            "BINANCE"
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00068,
-              "ask": 1.00069,
-              "bid_qty_base": 1193895.167294,
-              "ask_qty_base": 216702.223101
+              "bid": 1.00099,
+              "ask": 1.001,
+              "bid_qty_base": 105604.757071,
+              "ask_qty_base": 1943587.74053
             },
-            "KRAKEN": {
-              "bid": 1.0006,
-              "ask": 1.0007,
-              "bid_qty_base": 659692.17,
-              "ask_qty_base": 529429.548
+            "BINANCE": {
+              "bid": 1.00099,
+              "ask": 1.001,
+              "bid_qty_base": 705602.0,
+              "ask_qty_base": 499.0
             }
           },
           "routes": [
             {
               "buy_venue": "OKX",
-              "sell_venue": "KRAKEN",
+              "sell_venue": "BINANCE",
               "base_units": 1000.0,
-              "buy_vwap": 1.00069,
-              "sell_vwap": 1.0006,
-              "gross_spread_bps": -0.899,
+              "buy_vwap": 1.001,
+              "sell_vwap": 1.00099,
+              "gross_spread_bps": -0.1,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -97,12 +97,12 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             },
             {
-              "buy_venue": "KRAKEN",
+              "buy_venue": "BINANCE",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0007,
-              "sell_vwap": 1.00068,
-              "gross_spread_bps": -0.2,
+              "buy_vwap": 1.001005,
+              "sell_vwap": 1.00099,
+              "gross_spread_bps": -0.15,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -110,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-28T21:49:54Z",
+          "asof_utc": "2026-10-29T01:35:32Z",
           "actionable": false
         },
         "A3": {
@@ -122,17 +122,17 @@
             "SOLUSDT"
           ],
           "latest_close_usdt": {
-            "BTC": 80907.5,
-            "ETH": 2350.43,
-            "SOL": 101.34
+            "BTC": 81350.9,
+            "ETH": 2359.72,
+            "SOL": 102.42
           },
           "return_20d_percent": {
-            "BTC": -2.899,
-            "ETH": -8.7013,
-            "SOL": -12.8558
+            "BTC": -0.5004,
+            "ETH": -4.6543,
+            "SOL": -6.5596
           },
           "aligned_closed_days": 80,
-          "asof_utc": "2026-10-27T00:00:00Z",
+          "asof_utc": "2026-10-28T00:00:00Z",
           "actionable": false
         },
         "T0": {
@@ -150,26 +150,26 @@
         }
       },
       "warnings": [],
-      "sha256": "1725d34fa1723be9f5f6d3f917241e60754fb5e10fa49953dbc1c6be616eac68"
+      "sha256": "d67407f642b551987a85af9bbaccd96c29a196f4482d3b1e3eedf3923f4fe611"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "8438711e524476f9b5f62c5cdc65de4ea2aa7005",
-      "scan_id": "533434ebf60dcfb56876bbaf",
-      "observed_at_utc": "2026-10-28T21:48:51.380000+00:00",
-      "age_minutes": 5.12,
+      "sha": "4f8106e35811e5b374cbef603894918d46e823c5",
+      "scan_id": "630ae818903f0d4a73248ed3",
+      "observed_at_utc": "2026-10-29T01:39:43.255000+00:00",
+      "age_minutes": 7.79,
       "state": "PARTIAL",
-      "health": "OK",
+      "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
         "HEALTH_SCAN_LAG"
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 1,
+        "motion": 2,
         "watch": 40,
         "recheck_pending": 129,
-        "active_total": 147,
-        "archived_total": 3903
+        "active_total": 150,
+        "archived_total": 3975
       }
     }
   },
@@ -192,7 +192,7 @@
             "PEP"
           ],
           "last_complete_session": "2026-10-27",
-          "aligned_sessions": 507,
+          "aligned_sessions": 506,
           "return_20d_percent": {
             "KO": 4.9977,
             "PEP": 3.7377
@@ -230,7 +230,7 @@
             "VOO"
           ],
           "last_complete_session": "2026-10-27",
-          "aligned_sessions": 507,
+          "aligned_sessions": 506,
           "return_20d_percent": {
             "IVV": 0.7466,
             "VOO": 0.7203
@@ -268,17 +268,17 @@
             "SOLUSDT"
           ],
           "latest_close_usdt": {
-            "BTC": 80907.5,
-            "ETH": 2350.43,
-            "SOL": 101.34
+            "BTC": 81350.9,
+            "ETH": 2359.72,
+            "SOL": 102.42
           },
           "return_20d_percent": {
-            "BTC": -2.899,
-            "ETH": -8.7013,
-            "SOL": -12.8558
+            "BTC": -0.5004,
+            "ETH": -4.6543,
+            "SOL": -6.5596
           },
           "aligned_closed_days": 80,
-          "asof_utc": "2026-10-27T00:00:00Z",
+          "asof_utc": "2026-10-28T00:00:00Z",
           "actionable": false
         }
       ],
@@ -300,16 +300,16 @@
         {
           "symbol": "BTCUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": 6.56055512239e-05,
-          "last_realized_time_utc": "2026-10-28T16:00:00Z",
+          "last_realized_rate_fraction_per_event": 0.0001,
+          "last_realized_time_utc": "2026-10-29T00:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         },
         {
           "symbol": "ETHUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": 7.19253722218e-05,
-          "last_realized_time_utc": "2026-10-28T16:00:00Z",
+          "last_realized_rate_fraction_per_event": 9.8923567401e-05,
+          "last_realized_time_utc": "2026-10-29T00:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         }
@@ -336,30 +336,30 @@
           "status": "SCREEN_ONLY",
           "venues": [
             "OKX",
-            "KRAKEN"
+            "BINANCE"
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00068,
-              "ask": 1.00069,
-              "bid_qty_base": 1193895.167294,
-              "ask_qty_base": 216702.223101
+              "bid": 1.00099,
+              "ask": 1.001,
+              "bid_qty_base": 105604.757071,
+              "ask_qty_base": 1943587.74053
             },
-            "KRAKEN": {
-              "bid": 1.0006,
-              "ask": 1.0007,
-              "bid_qty_base": 659692.17,
-              "ask_qty_base": 529429.548
+            "BINANCE": {
+              "bid": 1.00099,
+              "ask": 1.001,
+              "bid_qty_base": 705602.0,
+              "ask_qty_base": 499.0
             }
           },
           "routes": [
             {
               "buy_venue": "OKX",
-              "sell_venue": "KRAKEN",
+              "sell_venue": "BINANCE",
               "base_units": 1000.0,
-              "buy_vwap": 1.00069,
-              "sell_vwap": 1.0006,
-              "gross_spread_bps": -0.899,
+              "buy_vwap": 1.001,
+              "sell_vwap": 1.00099,
+              "gross_spread_bps": -0.1,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -367,12 +367,12 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             },
             {
-              "buy_venue": "KRAKEN",
+              "buy_venue": "BINANCE",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0007,
-              "sell_vwap": 1.00068,
-              "gross_spread_bps": -0.2,
+              "buy_vwap": 1.001005,
+              "sell_vwap": 1.00099,
+              "gross_spread_bps": -0.15,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -380,7 +380,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-28T21:49:54Z",
+          "asof_utc": "2026-10-29T01:35:32Z",
           "actionable": false
         }
       ],
@@ -422,27 +422,27 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-28T21:53:58Z",
+    "generated_at_utc": "2026-10-29T01:47:30Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "8438711e524476f9b5f62c5cdc65de4ea2aa7005",
-    "coinlive_scan_id": "533434ebf60dcfb56876bbaf",
-    "alti_sha": "282999ebcf59ccec1a66fb9d7edaccae6af985c7",
-    "alti_scan_id": "alti-20261028T2149Z",
+    "coinlive_sha": "4f8106e35811e5b374cbef603894918d46e823c5",
+    "coinlive_scan_id": "630ae818903f0d4a73248ed3",
+    "alti_sha": "95055f32c80536f60bd3c85eddbfbf02d93d621a",
+    "alti_scan_id": "alti-20261029T0135Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {
         "symbol": "BTCUSDT",
         "venue": "OKX",
-        "last_realized_rate_fraction_per_event": 6.56055512239e-05,
-        "last_realized_time_utc": "2026-10-28T16:00:00Z",
+        "last_realized_rate_fraction_per_event": 0.0001,
+        "last_realized_time_utc": "2026-10-29T00:00:00Z",
         "interval_hours": 8.0,
         "executable": false
       },
       {
         "symbol": "ETHUSDT",
         "venue": "OKX",
-        "last_realized_rate_fraction_per_event": 7.19253722218e-05,
-        "last_realized_time_utc": "2026-10-28T16:00:00Z",
+        "last_realized_rate_fraction_per_event": 9.8923567401e-05,
+        "last_realized_time_utc": "2026-10-29T00:00:00Z",
         "interval_hours": 8.0,
         "executable": false
       }
