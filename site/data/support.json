@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-10-31T19:32:48Z",
+  "generated_at_utc": "2026-10-31T22:49:23Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,10 +10,10 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "9b126f22a78f2d47e3e1a19248af624ba08dabcf",
-      "scan_id": "alti-20261031T1927Z",
-      "observed_at_utc": "2026-10-31T19:27:43Z",
-      "age_minutes": 5.1,
+      "sha": "587a5ea7bf17cd7b4e6aff1c574124df97646f4e",
+      "scan_id": "alti-20261031T2244Z",
+      "observed_at_utc": "2026-10-31T22:44:33Z",
+      "age_minutes": 4.85,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
@@ -70,16 +70,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00093,
-              "ask": 1.00094,
-              "bid_qty_base": 26419.285606,
-              "ask_qty_base": 7839.650375
+              "bid": 1.00098,
+              "ask": 1.00099,
+              "bid_qty_base": 3418.241682,
+              "ask_qty_base": 13539.720549
             },
             "KRAKEN": {
               "bid": 1.0009,
               "ask": 1.001,
-              "bid_qty_base": 560238.775,
-              "ask_qty_base": 452237.897
+              "bid_qty_base": 539564.552,
+              "ask_qty_base": 342400.18
             }
           },
           "routes": [
@@ -87,9 +87,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00094,
+              "buy_vwap": 1.00099,
               "sell_vwap": 1.0009,
-              "gross_spread_bps": -0.4,
+              "gross_spread_bps": -0.899,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -101,8 +101,8 @@
               "sell_venue": "OKX",
               "base_units": 1000.0,
               "buy_vwap": 1.001,
-              "sell_vwap": 1.00093,
-              "gross_spread_bps": -0.699,
+              "sell_vwap": 1.00098,
+              "gross_spread_bps": -0.2,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -110,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-31T19:27:43Z",
+          "asof_utc": "2026-10-31T22:44:33Z",
           "actionable": false
         },
         "A3": {
@@ -150,14 +150,14 @@
         }
       },
       "warnings": [],
-      "sha256": "44458ea4b8aaf350774589199fb3a0ee4a4b8ba611e4f7fe2d36aa1c303d8813"
+      "sha256": "a1e61c3032a29464779b81462264314ea41304a70b01309826981b2a461a5d12"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "f20d9bc9f7f723a42b16a25d8d7007cccf2e8595",
-      "scan_id": "95b08d1fc9a5a5c5c9ff764e",
-      "observed_at_utc": "2026-10-31T19:25:06.320000+00:00",
-      "age_minutes": 7.71,
+      "sha": "ce39555dae3a83a3ab0ca6c5099cd1978f9f53ba",
+      "scan_id": "fba66fd32a74dbc268f77366",
+      "observed_at_utc": "2026-10-31T22:44:52.279000+00:00",
+      "age_minutes": 4.53,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -165,11 +165,11 @@
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 1,
+        "motion": 2,
         "watch": 40,
-        "recheck_pending": 127,
+        "recheck_pending": 130,
         "active_total": 150,
-        "archived_total": 5303
+        "archived_total": 5404
       }
     }
   },
@@ -315,8 +315,7 @@
         }
       ],
       "coinlive_watch_matches": [
-        "BTCUSDT",
-        "ETHUSDT"
+        "BTCUSDT"
       ],
       "data_scope": "REALIZED_FUNDING_ONLY",
       "signal": false,
@@ -340,16 +339,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00093,
-              "ask": 1.00094,
-              "bid_qty_base": 26419.285606,
-              "ask_qty_base": 7839.650375
+              "bid": 1.00098,
+              "ask": 1.00099,
+              "bid_qty_base": 3418.241682,
+              "ask_qty_base": 13539.720549
             },
             "KRAKEN": {
               "bid": 1.0009,
               "ask": 1.001,
-              "bid_qty_base": 560238.775,
-              "ask_qty_base": 452237.897
+              "bid_qty_base": 539564.552,
+              "ask_qty_base": 342400.18
             }
           },
           "routes": [
@@ -357,9 +356,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00094,
+              "buy_vwap": 1.00099,
               "sell_vwap": 1.0009,
-              "gross_spread_bps": -0.4,
+              "gross_spread_bps": -0.899,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -371,8 +370,8 @@
               "sell_venue": "OKX",
               "base_units": 1000.0,
               "buy_vwap": 1.001,
-              "sell_vwap": 1.00093,
-              "gross_spread_bps": -0.699,
+              "sell_vwap": 1.00098,
+              "gross_spread_bps": -0.2,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -380,7 +379,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-10-31T19:27:43Z",
+          "asof_utc": "2026-10-31T22:44:33Z",
           "actionable": false
         }
       ],
@@ -422,12 +421,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-10-31T19:32:48Z",
+    "generated_at_utc": "2026-10-31T22:49:23Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "f20d9bc9f7f723a42b16a25d8d7007cccf2e8595",
-    "coinlive_scan_id": "95b08d1fc9a5a5c5c9ff764e",
-    "alti_sha": "9b126f22a78f2d47e3e1a19248af624ba08dabcf",
-    "alti_scan_id": "alti-20261031T1927Z",
+    "coinlive_sha": "ce39555dae3a83a3ab0ca6c5099cd1978f9f53ba",
+    "coinlive_scan_id": "fba66fd32a74dbc268f77366",
+    "alti_sha": "587a5ea7bf17cd7b4e6aff1c574124df97646f4e",
+    "alti_scan_id": "alti-20261031T2244Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {
@@ -448,8 +447,7 @@
       }
     ],
     "watched_funding_matches": [
-      "BTCUSDT",
-      "ETHUSDT"
+      "BTCUSDT"
     ],
     "trade_candidates": [],
     "change_signals": false,
