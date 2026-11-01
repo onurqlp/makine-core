@@ -1,11 +1,11 @@
 {
   "schema": "makine-coinlive-support-feed-v2",
-  "generated_at_utc": "2026-11-01T09:20:35Z",
+  "generated_at_utc": "2026-11-01T16:23:25Z",
   "source": "onurqlp/makine-core",
-  "coinlive_sha": "0e09cfce70ec1e77a1d5e784e1880cb649e4d083",
-  "coinlive_scan_id": "f6260e80eb2ce7612dcedd7f",
-  "alti_sha": "1c598b032045c6844e20147a6ca578fb41b68780",
-  "alti_scan_id": "alti-20261101T0848Z",
+  "coinlive_sha": "4080cce0589e4e712ee3158167dfca510b2c2fc5",
+  "coinlive_scan_id": "629e4706dd4b6731c0ed927d",
+  "alti_sha": "75f9b9547e596f159360d914edd50b17c8dfac45",
+  "alti_scan_id": "alti-20261101T1550Z",
   "status": "LIMITED_READ_ONLY_CONTEXT",
   "funding_observations": [
     {
