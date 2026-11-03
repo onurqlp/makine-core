@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-03T06:44:29Z",
+  "generated_at_utc": "2026-11-03T15:05:44Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,35 +10,35 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "bae5bcae5384ee986a2b98d49222888cd0334269",
-      "scan_id": "alti-20261103T0337Z",
-      "observed_at_utc": "2026-11-03T03:37:52Z",
-      "age_minutes": 186.63,
+      "sha": "afec7ab6587ae3033233e572c1a80fc87132e73d",
+      "scan_id": "alti-20261103T1140Z",
+      "observed_at_utc": "2026-11-03T11:40:11Z",
+      "age_minutes": 205.55,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
-      "provider_error_count": 3,
+      "provider_error_count": 2,
       "public_inputs": {},
       "warnings": [],
-      "sha256": "97eccf286599f34beb14d583ce0e9c34da821fadce523892cdc102d2bc97c82e"
+      "sha256": "19ab03464d85e9fdc562d579ced126e3bb4f9a3de6895bf2981d3ead1f62f6e2"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "da997104daf7654130db5cc7282b75c7720451d6",
-      "scan_id": "6627e04a25a9f38588f387ae",
-      "observed_at_utc": "2026-11-03T06:40:20.318000+00:00",
-      "age_minutes": 4.16,
+      "sha": "d9b02e7cd176b6f1e9354a2a71495bdd3422ab56",
+      "scan_id": "9dd9376a8d4827d7a21d325d",
+      "observed_at_utc": "2026-11-03T15:00:01.193000+00:00",
+      "age_minutes": 5.72,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
         "HEALTH_SCAN_LAG"
       ],
       "counts": {
-        "spotlight": 1,
-        "motion": 2,
+        "spotlight": 0,
+        "motion": 0,
         "watch": 40,
-        "recheck_pending": 133,
+        "recheck_pending": 120,
         "active_total": 150,
-        "archived_total": 6076
+        "archived_total": 6187
       }
     }
   },
@@ -123,9 +123,9 @@
       "name": "Tahvil–repo",
       "purpose": "Tahvil/repo finansman filtresi",
       "state": "BLOCKED_SOURCE",
-      "strategy_state": "SOURCE_ERROR",
-      "data_label": "NOT_CONNECTED",
-      "blocker": "Treasury reference source unavailable",
+      "strategy_state": "REFERENCE_ONLY",
+      "data_label": "REFERENCE_ONLY",
+      "blocker": "Treasury par yield curve available; dealer repo and dirty prices missing",
       "observations": [],
       "coinlive_watch_matches": [],
       "data_scope": "NOT_CONNECTED",
@@ -136,12 +136,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-03T06:44:29Z",
+    "generated_at_utc": "2026-11-03T15:05:44Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "da997104daf7654130db5cc7282b75c7720451d6",
-    "coinlive_scan_id": "6627e04a25a9f38588f387ae",
-    "alti_sha": "bae5bcae5384ee986a2b98d49222888cd0334269",
-    "alti_scan_id": "alti-20261103T0337Z",
+    "coinlive_sha": "d9b02e7cd176b6f1e9354a2a71495bdd3422ab56",
+    "coinlive_scan_id": "9dd9376a8d4827d7a21d325d",
+    "alti_sha": "afec7ab6587ae3033233e572c1a80fc87132e73d",
+    "alti_scan_id": "alti-20261103T1140Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
