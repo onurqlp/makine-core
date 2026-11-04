@@ -1,26 +1,26 @@
 {
   "schema": "makine-coinlive-support-feed-v2",
-  "generated_at_utc": "2026-11-04T08:00:31Z",
+  "generated_at_utc": "2026-11-04T16:17:34Z",
   "source": "onurqlp/makine-core",
-  "coinlive_sha": "1db5ee8cf65247ef57f5dd8c6ed5241db53ea965",
-  "coinlive_scan_id": "c6afef0e9ef46ca1b10d7314",
-  "alti_sha": "0764982ac33e2dbbc1d7872716289aade15051e4",
-  "alti_scan_id": "alti-20261104T0652Z",
+  "coinlive_sha": "0b97bc2a98c0b0d9a0a525c6c84282e04ed81310",
+  "coinlive_scan_id": "f926b6548b1f6d22dcd6522c",
+  "alti_sha": "af6d83e5866187c49dafb5c9d2800dcbb941dd2f",
+  "alti_scan_id": "alti-20261104T1510Z",
   "status": "LIMITED_READ_ONLY_CONTEXT",
   "funding_observations": [
     {
       "symbol": "BTCUSDT",
       "venue": "OKX",
-      "last_realized_rate_fraction_per_event": 0.0001,
-      "last_realized_time_utc": "2026-11-04T00:00:00Z",
+      "last_realized_rate_fraction_per_event": 8.75528996391e-05,
+      "last_realized_time_utc": "2026-11-04T08:00:00Z",
       "interval_hours": 8.0,
       "executable": false
     },
     {
       "symbol": "ETHUSDT",
       "venue": "OKX",
-      "last_realized_rate_fraction_per_event": 0.0001,
-      "last_realized_time_utc": "2026-11-04T00:00:00Z",
+      "last_realized_rate_fraction_per_event": 6.59753340704e-05,
+      "last_realized_time_utc": "2026-11-04T08:00:00Z",
       "interval_hours": 8.0,
       "executable": false
     }
