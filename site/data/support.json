@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-05T18:00:07Z",
+  "generated_at_utc": "2026-11-05T23:37:36Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,10 +10,10 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "d1cadc752d35a4703e9d8e20f71c5fa161c0c0b8",
-      "scan_id": "alti-20261105T1733Z",
-      "observed_at_utc": "2026-11-05T17:33:19Z",
-      "age_minutes": 26.81,
+      "sha": "9a48c5a513b7359ac498d30feafbeab32076f966",
+      "scan_id": "alti-20261105T2320Z",
+      "observed_at_utc": "2026-11-05T23:20:45Z",
+      "age_minutes": 16.86,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
@@ -70,16 +70,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00109,
-              "ask": 1.0011,
-              "bid_qty_base": 808927.723835,
-              "ask_qty_base": 767067.521686
+              "bid": 1.00127,
+              "ask": 1.00128,
+              "bid_qty_base": 1587708.528869,
+              "ask_qty_base": 382419.390015
             },
             "KRAKEN": {
-              "bid": 1.001,
-              "ask": 1.0011,
-              "bid_qty_base": 698492.412,
-              "ask_qty_base": 11079415.613
+              "bid": 1.0012,
+              "ask": 1.0013,
+              "bid_qty_base": 572970.91,
+              "ask_qty_base": 514898.147
             }
           },
           "routes": [
@@ -87,9 +87,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.001,
-              "gross_spread_bps": -0.999,
+              "buy_vwap": 1.00128,
+              "sell_vwap": 1.0012,
+              "gross_spread_bps": -0.799,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -100,9 +100,9 @@
               "buy_venue": "KRAKEN",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.00109,
-              "gross_spread_bps": -0.1,
+              "buy_vwap": 1.0013,
+              "sell_vwap": 1.00127,
+              "gross_spread_bps": -0.3,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -110,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-11-05T17:33:19Z",
+          "asof_utc": "2026-11-05T23:20:45Z",
           "actionable": false
         },
         "A3": {
@@ -137,27 +137,27 @@
         },
         "T0": {
           "status": "REFERENCE_ONLY",
-          "date_utc": "2026-11-04",
+          "date_utc": "2026-11-05",
           "yields_percent": {
-            "1Y": 4.39,
-            "2Y": 4.58,
-            "5Y": 4.69,
-            "10Y": 4.9,
-            "30Y": 5.28
+            "1Y": 4.28,
+            "2Y": 4.46,
+            "5Y": 4.59,
+            "10Y": 4.84,
+            "30Y": 5.25
           },
-          "slope_10y_minus_2y_pct_points": 0.32,
+          "slope_10y_minus_2y_pct_points": 0.38,
           "actionable": false
         }
       },
       "warnings": [],
-      "sha256": "c2db5e3065a50872958cbbfbf08f7160447dd69baee76c9eb40ed7a40c4df957"
+      "sha256": "b6a03040aea352691bff39c228c0d1579a1949b585633c27b723e372218667b5"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "ddbf9d89860553528ddb8dd883a599b8eda9b36c",
-      "scan_id": "c5f0d6a8344aa8396e918b4a",
-      "observed_at_utc": "2026-11-05T17:50:11.775000+00:00",
-      "age_minutes": 9.93,
+      "sha": "6c8022000bafc923af08f77c223c086f401d53ee",
+      "scan_id": "38e6e3f68e0ff11aabfd37c0",
+      "observed_at_utc": "2026-11-05T23:30:17.001000+00:00",
+      "age_minutes": 7.33,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -165,11 +165,11 @@
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 3,
+        "motion": 1,
         "watch": 40,
-        "recheck_pending": 117,
+        "recheck_pending": 128,
         "active_total": 150,
-        "archived_total": 6946
+        "archived_total": 7138
       }
     }
   },
@@ -340,16 +340,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00109,
-              "ask": 1.0011,
-              "bid_qty_base": 808927.723835,
-              "ask_qty_base": 767067.521686
+              "bid": 1.00127,
+              "ask": 1.00128,
+              "bid_qty_base": 1587708.528869,
+              "ask_qty_base": 382419.390015
             },
             "KRAKEN": {
-              "bid": 1.001,
-              "ask": 1.0011,
-              "bid_qty_base": 698492.412,
-              "ask_qty_base": 11079415.613
+              "bid": 1.0012,
+              "ask": 1.0013,
+              "bid_qty_base": 572970.91,
+              "ask_qty_base": 514898.147
             }
           },
           "routes": [
@@ -357,9 +357,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.001,
-              "gross_spread_bps": -0.999,
+              "buy_vwap": 1.00128,
+              "sell_vwap": 1.0012,
+              "gross_spread_bps": -0.799,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -370,9 +370,9 @@
               "buy_venue": "KRAKEN",
               "sell_venue": "OKX",
               "base_units": 1000.0,
-              "buy_vwap": 1.0011,
-              "sell_vwap": 1.00109,
-              "gross_spread_bps": -0.1,
+              "buy_vwap": 1.0013,
+              "sell_vwap": 1.00127,
+              "gross_spread_bps": -0.3,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -380,7 +380,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-11-05T17:33:19Z",
+          "asof_utc": "2026-11-05T23:20:45Z",
           "actionable": false
         }
       ],
@@ -401,15 +401,15 @@
       "observations": [
         {
           "status": "REFERENCE_ONLY",
-          "date_utc": "2026-11-04",
+          "date_utc": "2026-11-05",
           "yields_percent": {
-            "1Y": 4.39,
-            "2Y": 4.58,
-            "5Y": 4.69,
-            "10Y": 4.9,
-            "30Y": 5.28
+            "1Y": 4.28,
+            "2Y": 4.46,
+            "5Y": 4.59,
+            "10Y": 4.84,
+            "30Y": 5.25
           },
-          "slope_10y_minus_2y_pct_points": 0.32,
+          "slope_10y_minus_2y_pct_points": 0.38,
           "actionable": false
         }
       ],
@@ -422,12 +422,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-05T18:00:07Z",
+    "generated_at_utc": "2026-11-05T23:37:36Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "ddbf9d89860553528ddb8dd883a599b8eda9b36c",
-    "coinlive_scan_id": "c5f0d6a8344aa8396e918b4a",
-    "alti_sha": "d1cadc752d35a4703e9d8e20f71c5fa161c0c0b8",
-    "alti_scan_id": "alti-20261105T1733Z",
+    "coinlive_sha": "6c8022000bafc923af08f77c223c086f401d53ee",
+    "coinlive_scan_id": "38e6e3f68e0ff11aabfd37c0",
+    "alti_sha": "9a48c5a513b7359ac498d30feafbeab32076f966",
+    "alti_scan_id": "alti-20261105T2320Z",
     "status": "LIMITED_READ_ONLY_CONTEXT",
     "funding_observations": [
       {
