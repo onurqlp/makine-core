@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-08T05:57:54Z",
+  "generated_at_utc": "2026-11-08T13:21:08Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,23 +10,23 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "d74684f0d291cceeedb05ac2ecd5844f8a82178d",
-      "scan_id": "alti-20261108T0051Z",
-      "observed_at_utc": "2026-11-08T00:51:09Z",
-      "age_minutes": 306.75,
+      "sha": "08b94df57a07e630140259aa2dc79d44e19c5519",
+      "scan_id": "alti-20261108T0657Z",
+      "observed_at_utc": "2026-11-08T06:57:26Z",
+      "age_minutes": 383.7,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
       "public_inputs": {},
       "warnings": [],
-      "sha256": "0ffd79b3b6be9f8929c8b6c452e362aa4327c7321513628ee489593b2c3a06f0"
+      "sha256": "3f1cf15957577daf019c48196a5b2a04b5c00b9780be15320315a03223d6f9d6"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "cae1679d43f7990083f83aa45e3fe001c3a63552",
-      "scan_id": "f9751caa6e77d0eb48902b7e",
-      "observed_at_utc": "2026-11-08T05:50:12.943000+00:00",
-      "age_minutes": 7.69,
+      "sha": "7352ad8d48aa389ad144b6c592ee04d41bd177a4",
+      "scan_id": "42bcf008d2912e3991a4145a",
+      "observed_at_utc": "2026-11-08T13:15:15.422000+00:00",
+      "age_minutes": 5.88,
       "state": "PARTIAL",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -34,11 +34,11 @@
       ],
       "counts": {
         "spotlight": 0,
-        "motion": 4,
+        "motion": 3,
         "watch": 40,
         "recheck_pending": 133,
         "active_total": 150,
-        "archived_total": 7998
+        "archived_total": 8127
       }
     }
   },
@@ -136,12 +136,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-08T05:57:54Z",
+    "generated_at_utc": "2026-11-08T13:21:08Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "cae1679d43f7990083f83aa45e3fe001c3a63552",
-    "coinlive_scan_id": "f9751caa6e77d0eb48902b7e",
-    "alti_sha": "d74684f0d291cceeedb05ac2ecd5844f8a82178d",
-    "alti_scan_id": "alti-20261108T0051Z",
+    "coinlive_sha": "7352ad8d48aa389ad144b6c592ee04d41bd177a4",
+    "coinlive_scan_id": "42bcf008d2912e3991a4145a",
+    "alti_sha": "08b94df57a07e630140259aa2dc79d44e19c5519",
+    "alti_scan_id": "alti-20261108T0657Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
