@@ -1,9 +1,9 @@
 {
   "schema": "makine-coinlive-research-handoff-v1",
   "generator": "MAKINE_CORE",
-  "generated_at_utc": "2026-11-09T01:58:38Z",
-  "source_commit_sha": "0f0c524d851de8dba0c4feb17aa9e2b8756ab36c",
-  "source_scan_id": "5a14c587c8a4bbcc7dc4f5bb",
+  "generated_at_utc": "2026-11-09T09:46:37Z",
+  "source_commit_sha": "6df8efe3a84bf3ec1866d887c84737493515641b",
+  "source_scan_id": "aa571f87a5bfb6cd84def85a",
   "source_integrity": "VERIFIED",
   "source_fresh_at_import": true,
   "can_promote_to_live_signal": false,
@@ -15,14 +15,14 @@
     "status": "NO_VERIFIED_CONTEXT",
     "radar_counts": {
       "spotlight": 0,
-      "motion": 3,
+      "motion": 4,
       "watch": 40,
-      "recheck_pending": 119,
+      "recheck_pending": 113,
       "active_total": 150,
-      "archived_total": 8384
+      "archived_total": 8463
     },
     "health": "DEGRADED_SCHEDULE_GAP",
-    "import_timestamp": "2026-11-09T01:58:38Z",
+    "import_timestamp": "2026-11-09T09:46:37Z",
     "alti_source_state": "STALE",
     "funding_watch_matches": [],
     "modules_observing": 0,
