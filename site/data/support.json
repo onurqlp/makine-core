@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-17T01:04:07Z",
+  "generated_at_utc": "2026-11-17T09:12:00Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,10 +10,10 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "c53da201ed24742befc57ee58a85f96ad36e2e68",
-      "scan_id": "alti-20261117T0058Z",
-      "observed_at_utc": "2026-11-17T00:58:20Z",
-      "age_minutes": 5.79,
+      "sha": "31248b033cde5957e1d0d027ef899326e3002042",
+      "scan_id": "alti-20261117T0859Z",
+      "observed_at_utc": "2026-11-17T08:59:40Z",
+      "age_minutes": 12.35,
       "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
@@ -26,18 +26,18 @@
             "KO",
             "PEP"
           ],
-          "last_complete_session": "2026-11-13",
-          "aligned_sessions": 506,
+          "last_complete_session": "2026-11-16",
+          "aligned_sessions": 507,
           "return_20d_percent": {
-            "KO": 5.6976,
-            "PEP": 10.6092
+            "KO": 6.4868,
+            "PEP": 9.6279
           },
-          "relative_return_20d_pct_points": -4.9116,
+          "relative_return_20d_pct_points": -3.1411,
           "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
-          "asof_utc": "2026-11-13T00:00:00Z",
+          "asof_utc": "2026-11-16T00:00:00Z",
           "actionable": false
         },
         "A2": {
@@ -48,18 +48,18 @@
             "IVV",
             "VOO"
           ],
-          "last_complete_session": "2026-11-13",
-          "aligned_sessions": 506,
+          "last_complete_session": "2026-11-16",
+          "aligned_sessions": 507,
           "return_20d_percent": {
-            "IVV": -1.1765,
-            "VOO": -1.173
+            "IVV": -3.4649,
+            "VOO": -3.4544
           },
-          "relative_return_20d_pct_points": -0.0035,
+          "relative_return_20d_pct_points": -0.0105,
           "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
-          "asof_utc": "2026-11-13T00:00:00Z",
+          "asof_utc": "2026-11-16T00:00:00Z",
           "actionable": false
         },
         "B2": {
@@ -70,16 +70,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00076,
-              "ask": 1.00077,
-              "bid_qty_base": 69361.024801,
-              "ask_qty_base": 669667.359081
+              "bid": 1.00074,
+              "ask": 1.00075,
+              "bid_qty_base": 242892.261395,
+              "ask_qty_base": 65073.416207
             },
             "KRAKEN": {
               "bid": 1.0007,
               "ask": 1.0008,
-              "bid_qty_base": 181432.945,
-              "ask_qty_base": 1034635.699
+              "bid_qty_base": 238658.973,
+              "ask_qty_base": 1116444.509
             }
           },
           "routes": [
@@ -87,9 +87,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00077,
+              "buy_vwap": 1.00075,
               "sell_vwap": 1.0007,
-              "gross_spread_bps": -0.699,
+              "gross_spread_bps": -0.5,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -101,8 +101,8 @@
               "sell_venue": "OKX",
               "base_units": 1000.0,
               "buy_vwap": 1.0008,
-              "sell_vwap": 1.00076,
-              "gross_spread_bps": -0.4,
+              "sell_vwap": 1.00074,
+              "gross_spread_bps": -0.6,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -110,7 +110,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-11-17T00:58:20Z",
+          "asof_utc": "2026-11-17T08:59:40Z",
           "actionable": false
         },
         "A3": {
@@ -150,14 +150,14 @@
         }
       },
       "warnings": [],
-      "sha256": "69a9d37b9b5948480822fdb86f94700f0a14cd15fbfc47bdabf2390d359ec1e2"
+      "sha256": "add1574bb5f822a421c23313964c771910e9673182e9aeeedf53759509c1bec5"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
       "sha": "0e07c02d9a3ab926213a070fb78f36e8f91ca4d9",
       "scan_id": "e61cafe135ea164a0659670d",
       "observed_at_utc": "2026-11-09T18:00:18.627000+00:00",
-      "age_minutes": 10503.82,
+      "age_minutes": 10991.7,
       "state": "STALE",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -191,18 +191,18 @@
             "KO",
             "PEP"
           ],
-          "last_complete_session": "2026-11-13",
-          "aligned_sessions": 506,
+          "last_complete_session": "2026-11-16",
+          "aligned_sessions": 507,
           "return_20d_percent": {
-            "KO": 5.6976,
-            "PEP": 10.6092
+            "KO": 6.4868,
+            "PEP": 9.6279
           },
-          "relative_return_20d_pct_points": -4.9116,
+          "relative_return_20d_pct_points": -3.1411,
           "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
-          "asof_utc": "2026-11-13T00:00:00Z",
+          "asof_utc": "2026-11-16T00:00:00Z",
           "actionable": false
         }
       ],
@@ -229,18 +229,18 @@
             "IVV",
             "VOO"
           ],
-          "last_complete_session": "2026-11-13",
-          "aligned_sessions": 506,
+          "last_complete_session": "2026-11-16",
+          "aligned_sessions": 507,
           "return_20d_percent": {
-            "IVV": -1.1765,
-            "VOO": -1.173
+            "IVV": -3.4649,
+            "VOO": -3.4544
           },
-          "relative_return_20d_pct_points": -0.0035,
+          "relative_return_20d_pct_points": -0.0105,
           "adjustment": "UNADJUSTED_OR_MIXED",
           "nav_verified": false,
           "borrow_verified": false,
           "redistribution_rights_verified": false,
-          "asof_utc": "2026-11-13T00:00:00Z",
+          "asof_utc": "2026-11-16T00:00:00Z",
           "actionable": false
         }
       ],
@@ -300,16 +300,16 @@
         {
           "symbol": "BTCUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": 4.48915321898e-05,
-          "last_realized_time_utc": "2026-11-17T00:00:00Z",
+          "last_realized_rate_fraction_per_event": 1.42512298338e-05,
+          "last_realized_time_utc": "2026-11-17T08:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         },
         {
           "symbol": "ETHUSDT",
           "venue": "OKX",
-          "last_realized_rate_fraction_per_event": -2.48290710527e-05,
-          "last_realized_time_utc": "2026-11-17T00:00:00Z",
+          "last_realized_rate_fraction_per_event": -2.05535173033e-05,
+          "last_realized_time_utc": "2026-11-17T08:00:00Z",
           "interval_hours": 8.0,
           "executable": false
         }
@@ -339,16 +339,16 @@
           ],
           "best_quotes": {
             "OKX": {
-              "bid": 1.00076,
-              "ask": 1.00077,
-              "bid_qty_base": 69361.024801,
-              "ask_qty_base": 669667.359081
+              "bid": 1.00074,
+              "ask": 1.00075,
+              "bid_qty_base": 242892.261395,
+              "ask_qty_base": 65073.416207
             },
             "KRAKEN": {
               "bid": 1.0007,
               "ask": 1.0008,
-              "bid_qty_base": 181432.945,
-              "ask_qty_base": 1034635.699
+              "bid_qty_base": 238658.973,
+              "ask_qty_base": 1116444.509
             }
           },
           "routes": [
@@ -356,9 +356,9 @@
               "buy_venue": "OKX",
               "sell_venue": "KRAKEN",
               "base_units": 1000.0,
-              "buy_vwap": 1.00077,
+              "buy_vwap": 1.00075,
               "sell_vwap": 1.0007,
-              "gross_spread_bps": -0.699,
+              "gross_spread_bps": -0.5,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -370,8 +370,8 @@
               "sell_venue": "OKX",
               "base_units": 1000.0,
               "buy_vwap": 1.0008,
-              "sell_vwap": 1.00076,
-              "gross_spread_bps": -0.4,
+              "sell_vwap": 1.00074,
+              "gross_spread_bps": -0.6,
               "net_spread_bps": null,
               "net_pnl": null,
               "fees_known": false,
@@ -379,7 +379,7 @@
               "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
             }
           ],
-          "asof_utc": "2026-11-17T00:58:20Z",
+          "asof_utc": "2026-11-17T08:59:40Z",
           "actionable": false
         }
       ],
@@ -421,12 +421,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-17T01:04:07Z",
+    "generated_at_utc": "2026-11-17T09:12:00Z",
     "source": "onurqlp/makine-core",
     "coinlive_sha": "0e07c02d9a3ab926213a070fb78f36e8f91ca4d9",
     "coinlive_scan_id": "e61cafe135ea164a0659670d",
-    "alti_sha": "c53da201ed24742befc57ee58a85f96ad36e2e68",
-    "alti_scan_id": "alti-20261117T0058Z",
+    "alti_sha": "31248b033cde5957e1d0d027ef899326e3002042",
+    "alti_scan_id": "alti-20261117T0859Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
