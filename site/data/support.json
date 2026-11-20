@@ -1,32 +1,163 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-20T16:10:13Z",
+  "generated_at_utc": "2026-11-20T22:40:42Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
   "module_count": 6,
-  "observing_count": 0,
-  "state": "PARTIAL",
+  "observing_count": 6,
+  "state": "READY",
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "4f3b8b29e7a833c2bca8bdac7250d7fed0442aa2",
-      "scan_id": "alti-20261120T1326Z",
-      "observed_at_utc": "2026-11-20T13:26:38Z",
-      "age_minutes": 163.6,
-      "state": "STALE",
+      "sha": "c2858594fb04d172ba34725cfc6669241750cd22",
+      "scan_id": "alti-20261120T2127Z",
+      "observed_at_utc": "2026-11-20T21:27:00Z",
+      "age_minutes": 73.71,
+      "state": "PARTIAL",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
-      "public_inputs": {},
+      "public_inputs": {
+        "A1": {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "KO",
+            "PEP"
+          ],
+          "last_complete_session": "2026-11-19",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "KO": 0.7867,
+            "PEP": 0.1225
+          },
+          "relative_return_20d_pct_points": 0.6642,
+          "adjustment": "UNADJUSTED_OR_MIXED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        },
+        "A2": {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "IVV",
+            "VOO"
+          ],
+          "last_complete_session": "2026-11-19",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "IVV": -6.3017,
+            "VOO": -6.3064
+          },
+          "relative_return_20d_pct_points": 0.0047,
+          "adjustment": "UNADJUSTED_OR_MIXED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        },
+        "B2": {
+          "status": "SCREEN_ONLY",
+          "venues": [
+            "OKX",
+            "KRAKEN"
+          ],
+          "best_quotes": {
+            "OKX": {
+              "bid": 1.00177,
+              "ask": 1.00178,
+              "bid_qty_base": 5722.644724,
+              "ask_qty_base": 247088.411396
+            },
+            "KRAKEN": {
+              "bid": 1.0018,
+              "ask": 1.0019,
+              "bid_qty_base": 2251.51,
+              "ask_qty_base": 1228618.204
+            }
+          },
+          "routes": [
+            {
+              "buy_venue": "OKX",
+              "sell_venue": "KRAKEN",
+              "base_units": 1000.0,
+              "buy_vwap": 1.00178,
+              "sell_vwap": 1.0018,
+              "gross_spread_bps": 0.2,
+              "net_spread_bps": null,
+              "net_pnl": null,
+              "fees_known": false,
+              "status": "SCREEN_ONLY",
+              "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
+            },
+            {
+              "buy_venue": "KRAKEN",
+              "sell_venue": "OKX",
+              "base_units": 1000.0,
+              "buy_vwap": 1.0019,
+              "sell_vwap": 1.00177,
+              "gross_spread_bps": -1.298,
+              "net_spread_bps": null,
+              "net_pnl": null,
+              "fees_known": false,
+              "status": "SCREEN_ONLY",
+              "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
+            }
+          ],
+          "asof_utc": "2026-11-20T21:27:00Z",
+          "actionable": false
+        },
+        "A3": {
+          "status": "INPUTS_ONLY",
+          "source": "OKX_SPOT",
+          "symbols": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT"
+          ],
+          "latest_close_usdt": {
+            "BTC": 61984.8,
+            "ETH": 1757.55,
+            "SOL": 73.15
+          },
+          "return_20d_percent": {
+            "BTC": -19.819,
+            "ETH": -21.6834,
+            "SOL": -24.0473
+          },
+          "aligned_closed_days": 80,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        },
+        "T0": {
+          "status": "REFERENCE_ONLY",
+          "date_utc": "2026-11-20",
+          "yields_percent": {
+            "1Y": 4.51,
+            "2Y": 4.63,
+            "5Y": 4.71,
+            "10Y": 4.92,
+            "30Y": 5.31
+          },
+          "slope_10y_minus_2y_pct_points": 0.29,
+          "actionable": false
+        }
+      },
       "warnings": [],
-      "sha256": "3691f9db87acc1aae3b4cc3a21abd777f4981c398b3bf667bfbfbb5439849acc"
+      "sha256": "f37b7ce3f7c4297d34f59be9962485b4514f0a69d7143ead7c93ec20c68bf330"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
       "sha": "ab02bb85d1578f514d28dc41719a07e118233272",
       "scan_id": "e61cafe135ea164a0659670d",
       "observed_at_utc": "2026-11-09T18:00:18.627000+00:00",
-      "age_minutes": 15729.92,
+      "age_minutes": 16120.4,
       "state": "STALE",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -47,13 +178,36 @@
       "id": "A1",
       "name": "Hisse pairs",
       "purpose": "Hisse çifti göreli değer filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "INPUTS_ONLY",
       "data_label": "PUBLIC_EOD_UNLICENSED",
-      "blocker": "Observed vendor-adjusted KO/PEP EOD; rights/borrow and forward validation absent",
-      "observations": [],
+      "blocker": null,
+      "observations": [
+        {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "KO",
+            "PEP"
+          ],
+          "last_complete_session": "2026-11-19",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "KO": 0.7867,
+            "PEP": 0.1225
+          },
+          "relative_return_20d_pct_points": 0.6642,
+          "adjustment": "UNADJUSTED_OR_MIXED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "PUBLIC_UNLICENSED_EOD_INPUTS_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -62,13 +216,36 @@
       "id": "A2",
       "name": "ETF–ETF",
       "purpose": "ETF farkı ve endeks bağlamı filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "INPUTS_ONLY",
       "data_label": "PUBLIC_EOD_UNLICENSED",
-      "blocker": "Observed IVV/VOO adjusted EOD; NAV/benchmark/borrow and feed rights not verified",
-      "observations": [],
+      "blocker": null,
+      "observations": [
+        {
+          "status": "INPUTS_ONLY",
+          "source": "NASDAQ_PUBLIC_HISTORY",
+          "adjustment_claim": "UNADJUSTED_OR_MIXED",
+          "symbols": [
+            "IVV",
+            "VOO"
+          ],
+          "last_complete_session": "2026-11-19",
+          "aligned_sessions": 508,
+          "return_20d_percent": {
+            "IVV": -6.3017,
+            "VOO": -6.3064
+          },
+          "relative_return_20d_pct_points": 0.0047,
+          "adjustment": "UNADJUSTED_OR_MIXED",
+          "nav_verified": false,
+          "borrow_verified": false,
+          "redistribution_rights_verified": false,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "PUBLIC_UNLICENSED_EOD_INPUTS_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -77,13 +254,36 @@
       "id": "A3",
       "name": "İstatistiksel sepet",
       "purpose": "Cointegration/sepet sapması filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "INPUTS_ONLY",
       "data_label": "READ_ONLY_LIVE",
-      "blocker": "BTC ETH SOL daily inputs available; Johansen/OOS/borrow unverified",
-      "observations": [],
+      "blocker": null,
+      "observations": [
+        {
+          "status": "INPUTS_ONLY",
+          "source": "OKX_SPOT",
+          "symbols": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT"
+          ],
+          "latest_close_usdt": {
+            "BTC": 61984.8,
+            "ETH": 1757.55,
+            "SOL": 73.15
+          },
+          "return_20d_percent": {
+            "BTC": -19.819,
+            "ETH": -21.6834,
+            "SOL": -24.0473
+          },
+          "aligned_closed_days": 80,
+          "asof_utc": "2026-11-19T00:00:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "DAILY_SPOT_INPUTS_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -92,13 +292,32 @@
       "id": "B1",
       "name": "Perpetual funding",
       "purpose": "Funding gözlem ve COIN.LIVE eşleme filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "WATCH_ONLY",
       "data_label": "READ_ONLY_LIVE",
-      "blocker": "Only realized event observations; trading eligibility/hedging/fees remain unverified",
-      "observations": [],
-      "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "blocker": null,
+      "observations": [
+        {
+          "symbol": "BTCUSDT",
+          "venue": "OKX",
+          "last_realized_rate_fraction_per_event": 3.8402336078e-05,
+          "last_realized_time_utc": "2026-11-20T16:00:00Z",
+          "interval_hours": 8.0,
+          "executable": false
+        },
+        {
+          "symbol": "ETHUSDT",
+          "venue": "OKX",
+          "last_realized_rate_fraction_per_event": 1.9637292889e-06,
+          "last_realized_time_utc": "2026-11-20T16:00:00Z",
+          "interval_hours": 8.0,
+          "executable": false
+        }
+      ],
+      "coinlive_watch_matches": [
+        "BTCUSDT"
+      ],
+      "data_scope": "REALIZED_FUNDING_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -107,13 +326,65 @@
       "id": "B2",
       "name": "Stablecoin sapması",
       "purpose": "USDC/USDT çift-borsa sapma filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "SCREEN_ONLY",
       "data_label": "READ_ONLY_LIVE",
-      "blocker": "Two-way observed orderbook; fees and quote simultaneity unverified",
-      "observations": [],
+      "blocker": null,
+      "observations": [
+        {
+          "status": "SCREEN_ONLY",
+          "venues": [
+            "OKX",
+            "KRAKEN"
+          ],
+          "best_quotes": {
+            "OKX": {
+              "bid": 1.00177,
+              "ask": 1.00178,
+              "bid_qty_base": 5722.644724,
+              "ask_qty_base": 247088.411396
+            },
+            "KRAKEN": {
+              "bid": 1.0018,
+              "ask": 1.0019,
+              "bid_qty_base": 2251.51,
+              "ask_qty_base": 1228618.204
+            }
+          },
+          "routes": [
+            {
+              "buy_venue": "OKX",
+              "sell_venue": "KRAKEN",
+              "base_units": 1000.0,
+              "buy_vwap": 1.00178,
+              "sell_vwap": 1.0018,
+              "gross_spread_bps": 0.2,
+              "net_spread_bps": null,
+              "net_pnl": null,
+              "fees_known": false,
+              "status": "SCREEN_ONLY",
+              "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
+            },
+            {
+              "buy_venue": "KRAKEN",
+              "sell_venue": "OKX",
+              "base_units": 1000.0,
+              "buy_vwap": 1.0019,
+              "sell_vwap": 1.00177,
+              "gross_spread_bps": -1.298,
+              "net_spread_bps": null,
+              "net_pnl": null,
+              "fees_known": false,
+              "status": "SCREEN_ONLY",
+              "reason": "No verified fees, simultaneous executable quotes, custody or transfer route"
+            }
+          ],
+          "asof_utc": "2026-11-20T21:27:00Z",
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "CROSS_VENUE_BOOK_SCREEN_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -122,13 +393,27 @@
       "id": "T0",
       "name": "Tahvil–repo",
       "purpose": "Tahvil/repo finansman filtresi",
-      "state": "BLOCKED_SOURCE",
+      "state": "OBSERVING",
       "strategy_state": "REFERENCE_ONLY",
       "data_label": "REFERENCE_ONLY",
-      "blocker": "Treasury par yield curve available; dealer repo and dirty prices missing",
-      "observations": [],
+      "blocker": null,
+      "observations": [
+        {
+          "status": "REFERENCE_ONLY",
+          "date_utc": "2026-11-20",
+          "yields_percent": {
+            "1Y": 4.51,
+            "2Y": 4.63,
+            "5Y": 4.71,
+            "10Y": 4.92,
+            "30Y": 5.31
+          },
+          "slope_10y_minus_2y_pct_points": 0.29,
+          "actionable": false
+        }
+      ],
       "coinlive_watch_matches": [],
-      "data_scope": "NOT_CONNECTED",
+      "data_scope": "TREASURY_YIELD_REFERENCE_ONLY",
       "signal": false,
       "executable": false,
       "source_repo_write": false
@@ -136,12 +421,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-20T16:10:13Z",
+    "generated_at_utc": "2026-11-20T22:40:42Z",
     "source": "onurqlp/makine-core",
     "coinlive_sha": "ab02bb85d1578f514d28dc41719a07e118233272",
     "coinlive_scan_id": "e61cafe135ea164a0659670d",
-    "alti_sha": "4f3b8b29e7a833c2bca8bdac7250d7fed0442aa2",
-    "alti_scan_id": "alti-20261120T1326Z",
+    "alti_sha": "c2858594fb04d172ba34725cfc6669241750cd22",
+    "alti_scan_id": "alti-20261120T2127Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
