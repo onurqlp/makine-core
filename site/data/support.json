@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-22T06:43:47Z",
+  "generated_at_utc": "2026-11-22T15:16:08Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,23 +10,23 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "5961f95d04d3326aa67d8296b8cd543ed176700a",
-      "scan_id": "alti-20261122T0251Z",
-      "observed_at_utc": "2026-11-22T02:51:03Z",
-      "age_minutes": 232.74,
+      "sha": "0e26809d4d8c1694bb942369abae19622bd4efa5",
+      "scan_id": "alti-20261122T1047Z",
+      "observed_at_utc": "2026-11-22T10:47:41Z",
+      "age_minutes": 268.46,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
       "public_inputs": {},
       "warnings": [],
-      "sha256": "59f0f2d777353dc2f6016ea600884e306a6a0646156bb43a01900029ba6a644c"
+      "sha256": "4758c1a81f7620fc5327b65fd39d559da7ee31ebb76cd9eaef292a9340f9ebaa"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
-      "sha": "bf38c9d51c1217056b427e970a9055f2debe2b76",
+      "sha": "391d9de88f4b29c3dc48f5894e25eff636215cf3",
       "scan_id": "e61cafe135ea164a0659670d",
       "observed_at_utc": "2026-11-09T18:00:18.627000+00:00",
-      "age_minutes": 18043.48,
+      "age_minutes": 18555.83,
       "state": "STALE",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -136,12 +136,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-22T06:43:47Z",
+    "generated_at_utc": "2026-11-22T15:16:08Z",
     "source": "onurqlp/makine-core",
-    "coinlive_sha": "bf38c9d51c1217056b427e970a9055f2debe2b76",
+    "coinlive_sha": "391d9de88f4b29c3dc48f5894e25eff636215cf3",
     "coinlive_scan_id": "e61cafe135ea164a0659670d",
-    "alti_sha": "5961f95d04d3326aa67d8296b8cd543ed176700a",
-    "alti_scan_id": "alti-20261122T0251Z",
+    "alti_sha": "0e26809d4d8c1694bb942369abae19622bd4efa5",
+    "alti_scan_id": "alti-20261122T1047Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
