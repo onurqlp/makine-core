@@ -1280,6 +1280,14 @@
       "alti": "PARTIAL",
       "coinlive": "STALE",
       "observing_count": 6
+    },
+    {
+      "generated_at_utc": "2026-11-22T06:43:47Z",
+      "event": "schedule",
+      "state": "PARTIAL",
+      "alti": "STALE",
+      "coinlive": "STALE",
+      "observing_count": 0
     }
   ]
 }
