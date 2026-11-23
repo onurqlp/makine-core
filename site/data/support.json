@@ -1,6 +1,6 @@
 {
   "schema": "makine-six-support-v2",
-  "generated_at_utc": "2026-11-22T21:15:59Z",
+  "generated_at_utc": "2026-11-23T01:58:17Z",
   "mission": "COINLIVE_INDEPENDENT_SUPPORT",
   "retired_idea_count": 57,
   "ideas_in_active_service": 0,
@@ -10,23 +10,23 @@
   "sources": {
     "alti": {
       "repo": "onurqlp/alti-quant-lab",
-      "sha": "a05a60361bbb229e97489e93860773f971184898",
-      "scan_id": "alti-20261122T1815Z",
-      "observed_at_utc": "2026-11-22T18:15:48Z",
-      "age_minutes": 180.19,
+      "sha": "c6854574a39c4217fc0fa3760932468747175fb3",
+      "scan_id": "alti-20261122T2343Z",
+      "observed_at_utc": "2026-11-22T23:43:57Z",
+      "age_minutes": 134.34,
       "state": "STALE",
       "scan_status": "PARTIAL_LIVE",
       "provider_error_count": 2,
       "public_inputs": {},
       "warnings": [],
-      "sha256": "d7130b3aba804ebc44db9cbf12010f1c14bee2865d3c6faa8c877336840e5d92"
+      "sha256": "0e631df2915c53fe44cd274b9dcb4a915f299db5c53d1fc74aee4130561cfd43"
     },
     "coinlive": {
       "repo": "onurqlp/coin-live-pro",
       "sha": "391d9de88f4b29c3dc48f5894e25eff636215cf3",
       "scan_id": "e61cafe135ea164a0659670d",
       "observed_at_utc": "2026-11-09T18:00:18.627000+00:00",
-      "age_minutes": 18915.68,
+      "age_minutes": 19197.98,
       "state": "STALE",
       "health": "DEGRADED_SCHEDULE_GAP",
       "warnings": [
@@ -136,12 +136,12 @@
   ],
   "feed": {
     "schema": "makine-coinlive-support-feed-v2",
-    "generated_at_utc": "2026-11-22T21:15:59Z",
+    "generated_at_utc": "2026-11-23T01:58:17Z",
     "source": "onurqlp/makine-core",
     "coinlive_sha": "391d9de88f4b29c3dc48f5894e25eff636215cf3",
     "coinlive_scan_id": "e61cafe135ea164a0659670d",
-    "alti_sha": "a05a60361bbb229e97489e93860773f971184898",
-    "alti_scan_id": "alti-20261122T1815Z",
+    "alti_sha": "c6854574a39c4217fc0fa3760932468747175fb3",
+    "alti_scan_id": "alti-20261122T2343Z",
     "status": "NO_VERIFIED_CONTEXT",
     "funding_observations": [],
     "watched_funding_matches": [],
